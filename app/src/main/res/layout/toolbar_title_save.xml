@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v7.widget.Toolbar xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/toolbar"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/bookBlue"
+    android:fitsSystemWindows="true"
+    android:minHeight="?attr/actionBarSize"
+    android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
+    app:popupTheme="@style/ThemeOverlay.AppCompat.Light">
+
+    <TextView
+        android:id="@+id/toolbar_text_save"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:singleLine="true"
+        android:textColor="@color/white"
+        android:textSize="@dimen/x16" />
+
+    <ImageView
+        android:id="@+id/toolbar_delete"
+        android:layout_width="@dimen/x22"
+        android:layout_height="@dimen/x20"
+        android:layout_gravity="right"
+        android:layout_marginRight="@dimen/x14"
+        android:visibility="gone"
+        android:singleLine="true"
+        android:src="@drawable/toolbar_delete"
+         />
+
+    <ImageView
+        android:id="@+id/toolbar_save"
+        android:layout_width="@dimen/x24"
+        android:layout_height="@dimen/x23"
+        android:layout_gravity="right"
+        android:layout_marginRight="@dimen/x14"
+        android:singleLine="true"
+        android:src="@drawable/toolbar_save" />
+</android.support.v7.widget.Toolbar>
+
+

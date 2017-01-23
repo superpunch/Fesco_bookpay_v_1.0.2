@@ -1,0 +1,385 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/bookGrayground"
+    android:orientation="vertical"
+    android:clickable="true"
+    >
+
+    <LinearLayout
+        android:id="@+id/linear_tpye"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/x7"
+        android:layout_marginRight="@dimen/x7"
+        android:layout_marginTop="@dimen/x17"
+        android:layout_marginBottom="@dimen/x7"
+        android:background="@color/white"
+
+        >
+
+        <TextView
+            android:id="@+id/rest_tpye"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingBottom="@dimen/x7"
+            android:paddingLeft="@dimen/x17"
+            android:paddingRight="@dimen/x17"
+            android:paddingTop="@dimen/x7"
+            android:text="假期类型"
+            android:textColor="@color/black" />
+
+        <EditText
+            android:id="@+id/rest_tpye_id"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@null"
+            android:cursorVisible="false"
+            android:hint="请选择请假类型"
+            android:paddingBottom="@dimen/x7"
+            android:paddingLeft="@dimen/x17"
+            android:paddingRight="@dimen/x7"
+            android:paddingTop="@dimen/x7"
+            android:textColor="@color/black"
+            android:textSize="@dimen/x12" />
+
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:id="@+id/linear_time"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/linear_tpye"
+        android:layout_marginBottom="@dimen/x7"
+        android:layout_marginLeft="@dimen/x7"
+        android:layout_marginRight="@dimen/x7"
+        android:layout_marginTop="@dimen/x10"
+        android:background="@color/white">
+
+        <TextView
+            android:id="@+id/rest_time"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingBottom="@dimen/x7"
+            android:paddingLeft="@dimen/x17"
+            android:paddingRight="@dimen/x17"
+            android:paddingTop="@dimen/x7"
+            android:text="时间单位"
+            android:textColor="@color/black" />
+
+        <EditText
+            android:id="@+id/rest_unit"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@null"
+            android:cursorVisible="false"
+            android:hint="请选择时间单位"
+            android:paddingBottom="@dimen/x7"
+            android:paddingLeft="@dimen/x17"
+            android:paddingRight="@dimen/x7"
+            android:paddingTop="@dimen/x7"
+            android:textColor="@color/black"
+            android:textSize="@dimen/x12" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/linear_startime"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/linear_time"
+        android:layout_marginBottom="@dimen/x7"
+        android:layout_marginLeft="@dimen/x7"
+        android:layout_marginTop="@dimen/x10"
+        android:layout_marginRight="@dimen/x7"
+        android:background="@color/white"
+
+        >
+
+        <TextView
+            android:id="@+id/rest_stime"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingBottom="@dimen/x7"
+            android:paddingLeft="@dimen/x17"
+            android:paddingRight="@dimen/x17"
+            android:paddingTop="@dimen/x7"
+            android:text="开始时间"
+            android:textColor="@color/black" />
+
+        <EditText
+            android:id="@+id/rest_start_time"
+            android:layout_width="@dimen/x120"
+            android:layout_height="wrap_content"
+            android:background="@null"
+            android:cursorVisible="false"
+            android:hint="请选择开始时间"
+            android:paddingBottom="@dimen/x7"
+            android:paddingLeft="@dimen/x17"
+            android:paddingRight="@dimen/x7"
+            android:paddingTop="@dimen/x7"
+            android:textColor="@color/black"
+            android:textSize="@dimen/x12" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/linear_time"
+        android:layout_marginBottom="@dimen/x7"
+        android:layout_marginRight="@dimen/x7"
+        android:layout_marginTop="@dimen/x10"
+        android:layout_toRightOf="@+id/linear_startime"
+        android:background="@color/white">
+
+        <EditText
+            android:id="@+id/rest_apm"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/linear_time"
+            android:layout_toRightOf="@+id/linear_startime"
+            android:background="@null"
+            android:cursorVisible="false"
+            android:hint="请选择上午或下午"
+            android:paddingBottom="@dimen/x7"
+            android:paddingTop="@dimen/x7"
+            android:textColor="@color/black"
+            android:textSize="@dimen/x12"
+            android:gravity="center"
+            android:visibility="invisible"
+            />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/linear_endtime"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/linear_startime"
+        android:layout_marginBottom="@dimen/x7"
+        android:layout_marginLeft="@dimen/x7"
+        android:layout_marginTop="@dimen/x10"
+        android:layout_marginRight="@dimen/x7"
+        android:background="@color/white">
+
+        <TextView
+            android:id="@+id/rest_etime"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingBottom="@dimen/x7"
+            android:paddingLeft="@dimen/x17"
+            android:paddingRight="@dimen/x17"
+            android:paddingTop="@dimen/x7"
+            android:text="截止时间"
+            android:textColor="@color/black" />
+
+        <EditText
+            android:id="@+id/rest_end_time"
+            android:layout_width="@dimen/x120"
+            android:layout_height="wrap_content"
+            android:background="@null"
+            android:cursorVisible="false"
+            android:hint="请选择结束时间"
+            android:paddingBottom="@dimen/x7"
+            android:paddingLeft="@dimen/x17"
+            android:paddingRight="@dimen/x7"
+            android:paddingTop="@dimen/x7"
+            android:textColor="@color/black"
+            android:textSize="@dimen/x12" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/linear_startime"
+        android:layout_marginBottom="@dimen/x7"
+        android:layout_marginRight="@dimen/x7"
+        android:layout_marginTop="@dimen/x10"
+        android:layout_toRightOf="@+id/linear_endtime"
+        android:background="@color/white">
+
+        <EditText
+            android:id="@+id/rest_endapm"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@null"
+            android:cursorVisible="false"
+            android:hint="请选择上午或下午"
+            android:paddingBottom="@dimen/x7"
+            android:paddingTop="@dimen/x7"
+            android:textColor="@color/black"
+            android:textSize="@dimen/x12"
+            android:gravity="center"
+            android:visibility="invisible" />
+    </LinearLayout>
+
+
+
+    <LinearLayout
+        android:id="@+id/linear_number"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/linear_endtime"
+        android:layout_marginBottom="@dimen/x7"
+        android:layout_marginLeft="@dimen/x7"
+        android:layout_marginRight="@dimen/x7"
+        android:layout_marginTop="@dimen/x10"
+        android:background="@color/white"
+        android:visibility="gone">
+
+        <TextView
+            android:id="@+id/rest_number_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingBottom="@dimen/x7"
+            android:paddingLeft="@dimen/x17"
+            android:paddingRight="@dimen/x17"
+            android:paddingTop="@dimen/x7"
+            android:text="请假时数"
+            android:textColor="@color/black" />
+
+        <EditText
+            android:id="@+id/rest_number"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@null"
+            android:hint="请输入请假时数"
+            android:paddingBottom="@dimen/x7"
+            android:paddingLeft="@dimen/x17"
+            android:paddingRight="@dimen/x7"
+            android:paddingTop="@dimen/x7"
+            android:textColor="@color/black"
+            android:textSize="@dimen/x12" />
+
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:id="@+id/linear_reason"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/linear_number"
+        android:layout_marginBottom="@dimen/x7"
+        android:layout_marginLeft="@dimen/x7"
+        android:layout_marginRight="@dimen/x7"
+        android:layout_marginTop="@dimen/x10"
+        android:background="@color/white">
+
+        <TextView
+            android:id="@+id/rest_reason_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingBottom="@dimen/x7"
+            android:paddingLeft="@dimen/x17"
+            android:paddingRight="@dimen/x17"
+            android:paddingTop="@dimen/x7"
+            android:text="休假原因"
+            android:textColor="@color/black" />
+
+        <EditText
+            android:id="@+id/rest_reason"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@null"
+            android:hint="请输入休假原因"
+            android:paddingBottom="@dimen/x7"
+            android:paddingLeft="@dimen/x17"
+            android:paddingRight="@dimen/x7"
+            android:paddingTop="@dimen/x7"
+            android:textColor="@color/black"
+            android:textSize="@dimen/x12" />
+
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:id="@+id/linear_patch"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+
+        android:layout_below="@+id/linear_reason"
+        android:layout_marginBottom="@dimen/x7"
+        android:layout_marginLeft="@dimen/x7"
+        android:layout_marginRight="@dimen/x7"
+        android:layout_marginTop="@dimen/x10"
+        android:background="@color/white">
+
+        <TextView
+            android:id="@+id/rest_person_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingBottom="@dimen/x7"
+            android:paddingLeft="@dimen/x17"
+            android:paddingRight="@dimen/x17"
+            android:paddingTop="@dimen/x7"
+            android:text="审批人"
+            android:textColor="@color/black" />
+
+        <EditText
+            android:id="@+id/rest_person"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@null"
+            android:cursorVisible="false"
+            android:hint="请选择请假审批人"
+            android:paddingBottom="@dimen/x7"
+            android:paddingLeft="@dimen/x27"
+            android:paddingRight="@dimen/x7"
+            android:paddingTop="@dimen/x7"
+            android:textColor="@color/black"
+            android:textSize="@dimen/x12" />
+
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:id="@+id/rest_linear_surplus"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/linear_patch"
+        android:layout_marginBottom="@dimen/x7"
+        android:layout_marginLeft="@dimen/x7"
+        android:layout_marginRight="@dimen/x7"
+        android:layout_marginTop="@dimen/x10"
+        android:background="@color/white"
+        android:visibility="gone">
+
+        <TextView
+
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingBottom="@dimen/x7"
+            android:paddingLeft="@dimen/x17"
+            android:paddingRight="@dimen/x17"
+            android:paddingTop="@dimen/x7"
+            android:text="剩余时间"
+            android:textColor="@color/black" />
+
+        <TextView
+            android:id="@+id/rest_surplus"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@null"
+            android:paddingBottom="@dimen/x7"
+            android:paddingLeft="@dimen/x17"
+            android:paddingRight="@dimen/x7"
+            android:paddingTop="@dimen/x7"
+            android:text="0"
+            android:textSize="@dimen/x12" />
+
+    </LinearLayout>
+
+
+
+    <Button
+        android:id="@+id/btn_restpatch"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:background="@color/bookBlue"
+        android:text="提交申请" />
+
+</RelativeLayout>

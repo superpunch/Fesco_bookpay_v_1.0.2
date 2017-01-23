@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="@dimen/x63"
+    android:gravity="center"
+    android:orientation="horizontal"
+    >
+
+
+<TextView
+    android:layout_width="@dimen/x43"
+    android:layout_height="wrap_content"
+    android:id="@+id/outlate_name"
+    android:textColor="@color/bookBlue"
+    android:layout_marginLeft="@dimen/x20"
+    />
+
+    <com.fesco.bookpay.view.MyProgessBar
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/progrssbar"
+        android:progress="6"
+        android:layout_marginLeft="@dimen/x14"
+        android:layout_marginRight="@dimen/x34"
+        android:max="15"
+        />
+
+</LinearLayout>

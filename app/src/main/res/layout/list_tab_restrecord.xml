@@ -1,0 +1,162 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:card_view="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+
+   >
+
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    android:id="@+id/linear_list_rest"
+    >
+
+
+
+    <android.support.v7.widget.CardView
+        android:id="@+id/card_view"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:foreground="?android:attr/selectableItemBackground"
+        card_view:cardBackgroundColor="@color/cardview_light_background"
+        card_view:cardCornerRadius="3dp"
+        card_view:cardElevation="2dp"
+        card_view:cardUseCompatPadding="true">
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            >
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/resttype"
+                android:text="@string/title"
+                android:textSize="@dimen/x14"
+                android:paddingTop="@dimen/x2"
+                android:paddingBottom="@dimen/x2"
+                android:layout_marginLeft="@dimen/x12"
+
+                />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/tv_rest_name"
+        android:layout_below="@+id/resttype"
+        android:paddingLeft="@dimen/x121"
+        android:paddingRight="@dimen/x7"
+        android:layout_marginTop="@dimen/x5"
+        android:textSize="@dimen/x14"
+        android:text="@string/login_name"
+        android:textColor="@color/black"
+
+        />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/tv_rest_applica"
+                android:layout_below="@+id/tv_rest_name"
+                android:paddingRight="@dimen/x7"
+                android:paddingLeft="@dimen/x121"
+                android:paddingTop="@dimen/x7"
+                android:paddingBottom="@dimen/x7"
+                android:text="@string/approval_time"
+                android:textColor="@color/gray"
+
+
+                />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/rest_applica_time"
+                android:layout_toRightOf="@+id/tv_rest_applica"
+                android:layout_alignTop="@+id/tv_rest_applica"
+                android:paddingLeft="@dimen/x17"
+                android:paddingRight="@dimen/x17"
+                android:paddingTop="@dimen/x7"
+                android:paddingBottom="@dimen/x7"
+                android:text="@string/not_available"
+                android:textColor="@color/gray"
+                />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp_066"
+        android:layout_marginLeft="@dimen/x111"
+        android:layout_marginRight="@dimen/x7"
+        android:layout_below="@+id/rest_applica_time"
+        android:background="@color/gray" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/rest_start"
+        android:layout_below="@+id/rest_applica_time"
+        android:paddingLeft="@dimen/x121"
+        android:paddingRight="@dimen/x7"
+        android:paddingTop="@dimen/x7"
+        android:text="@string/approval_star"
+        android:textColor="@color/gray" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/rest_start_time"
+        android:layout_toRightOf="@+id/rest_start"
+        android:layout_alignTop="@+id/rest_start"
+        android:paddingLeft="@dimen/x17"
+        android:paddingRight="@dimen/x7"
+        android:paddingTop="@dimen/x7"
+        android:text="@string/not_available"
+        android:textColor="@color/gray" />
+
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/rest_end"
+        android:layout_below="@+id/rest_start"
+        android:paddingLeft="@dimen/x121"
+        android:paddingRight="@dimen/x7"
+        android:paddingTop="@dimen/x7"
+        android:paddingBottom="@dimen/x7"
+        android:text="@string/approval_end"
+        android:textColor="@color/gray" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/rest_end_time"
+        android:layout_toRightOf="@+id/rest_end"
+        android:layout_alignTop="@+id/rest_end"
+        android:paddingLeft="@dimen/x17"
+        android:paddingRight="@dimen/x7"
+        android:paddingTop="@dimen/x7"
+        android:paddingBottom="@dimen/x7"
+        android:text="@string/not_available"
+        android:textColor="@color/gray" />
+
+ <include layout="@layout/include_rest_text"
+     />
+
+        </RelativeLayout>
+
+    </android.support.v7.widget.CardView>
+
+    <TextView
+        android:id="@+id/item_delete"
+        android:layout_width="100dp"
+        android:layout_height="match_parent"
+        android:background="#88ff0000"
+        android:gravity="center"
+        android:text="删除"
+        android:textColor="#ffffff"
+        android:textSize="20sp"
+        />
+</LinearLayout>
+</LinearLayout>

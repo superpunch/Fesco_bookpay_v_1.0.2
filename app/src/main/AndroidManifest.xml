@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.fesco.bookpay.activity">
+
+    <application
+        android:name="com.fesco.bookpay.FApplication"
+        android:allowBackup="true"
+        android:icon="@mipmap/logo"
+        android:label="@string/app_name"
+        android:supportsRtl="true"
+        android:theme="@style/AppThemeNoActionBar">
+
+        <meta-data
+            android:name="com.baidu.lbsapi.API_KEY"
+            android:value="HRgeDkmHLNAGBo5wedcKcapvWu0pANkh" />
+        <activity android:name=".SplashActivity"
+            >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+        <activity android:name=".LoginActivity"
+             android:screenOrientation="portrait"
+            ></activity>
+        <activity android:name=".EnrollActivity"></activity>
+        <activity android:name=".MainActivity"></activity>
+        <activity android:name=".InforPersonActivity"></activity>
+        <activity android:name=".ClipImageActivity"></activity>
+        <activity android:name=".InforPswdActivity"></activity>
+        <activity android:name=".InformationActivity"></activity>
+        <activity android:name=".ContactsActivity"></activity>
+        <activity android:name=".SearchActivity"></activity>
+        <activity android:name=".AttendanceActivity"  android:windowSoftInputMode="stateUnchanged|adjustPan"></activity>
+        <activity android:name=".EndlessLinearLayoutActivity"></activity>
+        <activity android:name=".OvertimeActivity"  android:windowSoftInputMode="stateUnchanged|adjustPan"></activity>
+        <activity android:name=".RestActivity" android:windowSoftInputMode="stateUnchanged|adjustPan"></activity>
+        <activity android:name=".TabLayoutActivity"  android:windowSoftInputMode="stateUnchanged|adjustPan" ></activity>
+        <activity android:name=".StatisticActivity"></activity>
+        <activity android:name=".ApprovalActivity"></activity>
+        <activity android:name=".DetailRestActivity"></activity>
+        <activity android:name=".DetailOverActivity"></activity>
+        <activity android:name=".DetailCheckActivity"></activity>
+        <activity android:name=".DetailBillActivity"  android:windowSoftInputMode="stateUnchanged|adjustPan" ></activity>
+        <activity android:name=".ConsumptionPreviewActivity"></activity>
+
+        <activity android:name=".RankOverTimeActivity"></activity>
+        <activity android:name=".RankOutLateActivity"></activity>
+
+        <activity android:name=".ReimbursementActivity"></activity>
+        <activity android:name=".ReimbursementApproveActivity"></activity>
+        <activity android:name=".ReimburBillActivity"  android:windowSoftInputMode="stateUnchanged|adjustPan"></activity>
+        <activity android:name=".ConsumptionActivity" android:launchMode="singleTask"></activity>
+        <activity android:name=".CityPickerActivity"></activity>
+        <activity android:name=".ConsumptionTypeActivity"></activity>
+        <activity android:name=".ConsumptionTypedetailActivity"></activity>
+        <activity android:name=".ConsumptionTowActivity"></activity>
+        <activity android:name=".ConsumptionNotActivity"></activity>
+        <activity android:name=".ConsumptionNotOptionActivity"></activity>
+
+
+        <activity android:name=".SocialActivity"></activity>
+
+
+
+        <activity android:name=".ScrollViewActivity"></activity>
+
+
+        <activity android:name=".ptui.ReleaseImageActivity"></activity>
+        <activity android:name=".ptui.ImagePreviewActivity"></activity>
+        <activity android:name=".ptui.ImageZoomActivity"></activity>
+        <activity android:name=".ptui.TakePhotoPreview"></activity>
+        <activity android:name=".ptui.KSelectImagesActivity"></activity>
+
+
+
+
+
+        <service
+            android:name="com.baidu.location.f"
+            android:enabled="true"
+            android:process=":remote" >
+        </service><!-- ATTENTION: This was auto-generated to add Google Play services to your project for
+     App Indexing.  See https://g.co/AppIndexing/AndroidStudio for more information. -->
+        <meta-data
+            android:name="com.google.android.gms.version"
+            android:value="@integer/google_play_services_version" />
+    </application>
+    <uses-permission android:name="android.permission.INTERNET"></uses-permission>
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
+    <uses-permission android:name="android.permission.CALL_PHONE"/>
+
+
+    <uses-permission android:name="com.android.launcher.permission.READ_SETTINGS" />
+    <uses-permission android:name="android.permission.WAKE_LOCK"/>
+    <uses-permission android:name="android.permission.CHANGE_WIFI_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+    <uses-permission android:name="android.permission.GET_TASKS" />
+    <!-- 这个权限用于访问GPS定位 -->
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <!-- 这个权限用于进行网络定位 -->
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.BAIDU_LOCATION_SERVICE" />
+
+    <uses-permission android:name="android.permission.CAMERA" />
+    <uses-permission android:name="android.permission.READ_CONTACTS" />
+    <uses-permission android:name="android.permission.WRITE_CONTACTS" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.MOUNT_UNMOUNT_FILESYSTEMS"/>
+
+
+    <uses-permission android:name="android.permission.READ_PHONE_STATE"/>
+
+
+
+</manifest>

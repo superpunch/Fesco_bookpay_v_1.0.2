@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:card_view="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <android.support.v7.widget.CardView
+        android:id="@+id/card_view"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:foreground="?android:attr/selectableItemBackground"
+        card_view:cardBackgroundColor="@color/cardview_light_background"
+        card_view:cardCornerRadius="3dp"
+        card_view:cardElevation="2dp"
+        card_view:cardUseCompatPadding="true">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <ImageView
+                android:id="@+id/image_bill_head"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignTop="@+id/approval_bill_tites"
+                android:layout_alignParentRight="true"
+                android:layout_marginRight="@dimen/x35"
+                android:layout_marginTop="@dimen/x4"
+                android:background="@drawable/head" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/approval_bill_name"
+                android:layout_alignBottom="@+id/approval_bill_title"
+                android:layout_below="@+id/image_bill_head"
+                android:layout_alignLeft="@+id/image_bill_head"
+                android:textColor="@color/black"
+                android:layout_marginTop="@dimen/x7"
+                android:text="傻傻的"
+                />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/approval_bill_type"
+                android:layout_below="@+id/approval_bill_name"
+                android:layout_alignLeft="@+id/image_bill_head"
+                android:layout_alignTop="@+id/approval_bill_desc"
+                android:layout_marginTop="@dimen/x7"
+                android:textColor="@color/bookBlue"
+                android:text="@string/reimbursement_bill"
+                />
+
+
+
+
+
+
+
+            <TextView
+                android:id="@+id/approval_bill_tites"
+                android:layout_width="@dimen/x90"
+                android:layout_height="wrap_content"
+                android:paddingLeft="@dimen/x17"
+                android:paddingTop="@dimen/x10"
+                android:text="@string/title"
+              />
+
+            <TextView
+                android:id="@+id/approval_bill_titetv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_toRightOf="@+id/approval_bill_tites"
+                android:paddingTop="@dimen/x10"
+                android:layout_alignBottom="@+id/approval_bill_tites"
+                android:text="@string/title"
+              />
+
+            <TextView
+                android:id="@+id/approval_bill_tvm"
+                android:layout_width="@dimen/x90"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/approval_bill_tites"
+                android:paddingLeft="@dimen/x17"
+                android:paddingTop="@dimen/x8"
+                android:text="@string/money"
+                android:textColor="@color/bookBlue" />
+
+            <TextView
+                android:id="@+id/approval_bill_time"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_toRightOf="@+id/approval_bill_tvm"
+                android:paddingTop="@dimen/x8"
+                android:layout_alignBottom="@+id/approval_bill_tvm"
+                android:text="@string/money_number"
+                android:textColor="@color/bookBlue" />
+
+
+            <TextView
+                android:id="@+id/approval_check_star"
+                android:layout_width="@dimen/x90"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/approval_bill_tvm"
+                android:paddingLeft="@dimen/x17"
+                android:paddingTop="@dimen/x7"
+                android:text="@string/reimbursement_time"
+                android:textColor="@color/gray" />
+
+            <TextView
+                android:id="@+id/approval_bill_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignTop="@+id/approval_check_star"
+                android:layout_toRightOf="@+id/approval_check_star"
+                android:paddingTop="@dimen/x7"
+                android:text="@string/reimbursement_day"
+                android:textColor="@color/gray" />
+
+            <TextView
+                android:id="@+id/approval_check_type"
+                android:layout_width="@dimen/x90"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/approval_check_star"
+                android:paddingBottom="@dimen/x7"
+                android:paddingLeft="@dimen/x17"
+                android:paddingRight="@dimen/x7"
+                android:paddingTop="@dimen/x7"
+                android:text="@string/description"
+                android:textColor="@color/gray" />
+
+            <TextView
+                android:id="@+id/approval_bill_desc"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignTop="@+id/approval_check_type"
+                android:layout_toRightOf="@+id/approval_check_type"
+                android:paddingBottom="@dimen/x7"
+                android:paddingTop="@dimen/x7"
+                android:text="@string/not_available"
+                android:textColor="@color/gray" />
+
+
+        </RelativeLayout>
+
+    </android.support.v7.widget.CardView>
+</LinearLayout>

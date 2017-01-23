@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#3F4551"
+    android:orientation="vertical">
+
+
+<TextView
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:text="选择审批人"
+    android:textColor="@color/white"
+    android:layout_marginLeft="@dimen/x19"
+    android:layout_marginTop="@dimen/x11"
+    />
+
+
+    <RadioGroup
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_marginLeft="@dimen/x23"
+        >
+        <RadioButton
+            android:id="@+id/rb_word"
+            android:layout_width="174dp"
+            android:layout_height="wrap_content"
+            android:button="@null"
+            android:drawableLeft="@drawable/selector_rabtn_png"
+            android:textColor="@drawable/selector_rabtn"
+            android:checked="true"
+            android:gravity="center"
+            android:text="工作"
+            android:layout_marginTop="@dimen/x11"
+             />
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="0.8dp"
+            android:background="@color/grayInfor"
+            android:layout_marginTop="@dimen/x6"
+            android:layout_marginBottom="@dimen/x6"
+            android:layout_marginRight="@dimen/x20"
+            />
+        <RadioButton
+            android:id="@+id/rb_"
+            android:layout_width="174dp"
+            android:layout_height="wrap_content"
+            android:button="@null"
+            android:drawableLeft="@drawable/selector_rabtn_png"
+            android:textColor="@drawable/selector_rabtn"
+            android:checked="true"
+            android:gravity="center"
+            android:text="工作"
+
+            />
+
+    </RadioGroup>
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="0.8dp"
+        android:background="@color/grayInfor"
+        android:layout_marginTop="@dimen/x6"
+        android:layout_marginBottom="@dimen/x6"
+        android:layout_marginRight="@dimen/x20"
+        />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/x23"
+        android:text="取消"
+
+
+        />
+
+</LinearLayout>

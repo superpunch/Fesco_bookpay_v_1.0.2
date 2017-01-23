@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/csp_relative"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:paddingTop="@dimen/x24">
+
+    <TextView
+        android:id="@+id/csp_fontawesome"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/x5"
+        android:layout_marginLeft="@dimen/x29"
+        android:paddingBottom="@dimen/x5"
+        android:text="@string/fa_search"
+        android:textColor="@color/bookBlue"
+        android:textSize="30sp"
+
+        />
+
+    <TextView
+        android:id="@+id/csp_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/csp_fontawesome"
+        android:layout_marginLeft="@dimen/x29"
+        android:layout_marginTop="@dimen/x4"
+        android:layout_toRightOf="@id/csp_fontawesome"
+        android:paddingBottom="@dimen/x5"
+        android:text="长途"
+        android:textSize="@dimen/x14" />
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="@dimen/x19"
+        android:layout_alignBottom="@+id/csp_fontawesome"
+        android:layout_alignEnd="@+id/imageView"
+        android:layout_alignRight="@+id/imageView"
+        android:layout_gravity="center"
+        android:paddingBottom="@dimen/x5"
+        android:src="@drawable/rbm_arrows" />
+    <!--<TextView-->
+    <!--android:layout_width="wrap_content"-->
+    <!--android:layout_height="wrap_content"-->
+    <!--android:layout_toRightOf="@+id/csp_name"-->
+    <!--android:textSize="@dimen/x14"-->
+    <!--android:layout_marginLeft="@dimen/x71"-->
+    <!--android:text="@string/fa_music"-->
+    <!--android:layout_centerVertical="true"-->
+    <!--android:layout_toEndOf="@+id/csp_image" />-->
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp_034"
+        android:layout_below="@id/csp_name"
+        android:layout_marginLeft="@dimen/x29"
+        android:layout_marginRight="@dimen/x29"
+        android:background="@color/gray" />
+
+
+</RelativeLayout>

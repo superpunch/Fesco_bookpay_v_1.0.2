@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item android:state_pressed="true" android:drawable="@drawable/bg_edittext_focused" />
+    <item android:state_focused="true" android:drawable="@drawable/bg_edittext_focused"/>
+    <item  android:state_enabled="true" android:drawable="@drawable/bg_edittext_focused"/>
+    <item  android:state_enabled="false" android:drawable="@drawable/bg_edittext_normal"/>
+    <item android:drawable="@drawable/bg_edittext_normal"/>
+
+    <!--<item android:drawable="@drawable/bg_edittext_focused_style"-->
+        <!--android:state_enabled="true"/>-->
+    <!--<item android:drawable="@drawable/bg_edittext_normal"-->
+        <!--android:state_enabled="false"/>-->
+
+    <!--<item android:drawable="@drawable/bg_edittext_normal"-->
+        <!--android:state_pressed="false"/>-->
+    <!--<item android:drawable="@drawable/bg_edittext_focused"-->
+        <!--android:state_pressed="true"/>-->
+
+    <!--<item android:state_focused="true" android:drawable="@color/bookBlue"/>-->
+    <!--<item android:state_pressed="true" android:drawable="@color/bookBlue" />-->
+
+    <!--<item android:drawable="@drawable/bg_edittext_normal"/>-->
+</selector>

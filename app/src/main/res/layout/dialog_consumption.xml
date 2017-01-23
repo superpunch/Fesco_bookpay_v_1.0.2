@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="@dimen/x200"
+    android:layout_height="wrap_content"
+    android:layout_gravity="center"
+    android:gravity="left"
+    android:background="@drawable/shape_dialog"
+    android:layout_marginLeft="@dimen/x36"
+    android:layout_marginRight="@dimen/x36"
+    android:paddingLeft="@dimen/x15"
+    android:orientation="vertical">
+
+    <TextView
+        android:layout_width="@dimen/x200"
+        android:layout_height="@dimen/x36"
+        android:layout_marginTop="@dimen/x10"
+        android:gravity="center_vertical"
+        android:text="新建消费记录"
+        android:textSize="16sp"
+        android:id="@+id/dialog_new"
+        android:textColor="@color/white"
+        />
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="0.8dp"
+        android:background="@drawable/dialog_line"
+        android:layout_marginRight="@dimen/x15"
+        />
+    <TextView
+        android:layout_width="@dimen/x200"
+        android:layout_height="@dimen/x36"
+        android:textSize="16sp"
+        android:id="@+id/dialog_import"
+        android:text="导入已有消费"
+        android:gravity="center_vertical"
+        android:textColor="@color/white"
+        />
+
+    <ImageView
+        android:layout_width="@dimen/x200"
+        android:layout_height="0.8dp"
+        android:background="@drawable/dialog_line"
+        android:layout_marginRight="@dimen/x15"
+        />
+    <TextView
+        android:layout_width="@dimen/x200"
+        android:layout_height="@dimen/x36"
+        android:gravity="center_vertical"
+        android:textSize="16sp"
+        android:id="@+id/dialog_cancel"
+        android:text="取消"
+        android:textColor="@color/white"
+        />
+
+
+
+
+</LinearLayout>

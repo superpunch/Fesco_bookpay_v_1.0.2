@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="@dimen/x66"
+    android:background="@color/white"
+    android:layout_gravity="center"
+  >
+
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/approval_bill_one"
+        android:id="@+id/image_reimburse"
+        android:layout_centerVertical="true"
+        android:layout_margin="@dimen/x9"
+        />
+<TextView
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_toRightOf="@+id/image_reimburse"
+    android:layout_alignTop="@+id/image_reimburse"
+    android:textColor="@color/bookBlue"
+    android:textSize="@dimen/x14"
+    android:id="@+id/rbm_approve_title"
+    />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/rbm_approve_state"
+        android:layout_toRightOf="@+id/image_reimburse"
+        android:layout_below="@+id/rbm_approve_title"
+        android:textSize="@dimen/x12"
+        android:text="待提交"
+        />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toRightOf="@+id/rbm_approve_state"
+        android:layout_alignBottom="@+id/rbm_approve_state"
+        android:layout_marginLeft="@dimen/x9"
+        android:layout_marginRight="@dimen/x9"
+        android:textSize="@dimen/x12"
+        android:text="|"
+        android:id="@+id/tv_reim_line"
+        />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/rbm_approve_type"
+        android:layout_toRightOf="@+id/tv_reim_line"
+        android:layout_alignBottom="@+id/rbm_approve_state"
+        android:textSize="@dimen/x12"
+        android:text="差旅报销单"
+        />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toLeftOf="@+id/rbm_approve_money"
+        android:textColor="@color/bookBlue"
+        android:gravity="center"
+        android:textSize="@dimen/x14"
+        android:text="￥"
+        android:layout_above="@+id/rbm_approve_type"
+       />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/rbm_approve_money"
+        android:gravity="center"
+        android:textSize="@dimen/x14"
+        android:layout_marginRight="@dimen/x15"
+        android:text="0.00"
+        android:layout_above="@+id/rbm_approve_type"
+        android:layout_alignParentRight="true" />
+
+
+
+</RelativeLayout>

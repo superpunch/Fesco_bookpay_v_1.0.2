@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+android:background="@drawable/login_backgroud"
+>
+<ImageView
+    android:layout_width="@dimen/x203"
+    android:layout_height="@dimen/x123"
+    android:layout_gravity="center"
+    android:layout_marginTop="@dimen/x44"
+    android:id="@+id/image_log"
+    android:layout_centerHorizontal="true"
+    android:src="@drawable/logo_x"
+    />
+
+<EditText
+    android:layout_width="@dimen/x190"
+    android:layout_height="@dimen/x33"
+    android:layout_gravity="center"
+    android:layout_marginTop="@dimen/x34"
+    android:ems="10"
+    android:id="@+id/user"
+    android:hint="@string/login_name"
+    android:textColorHint="@color/colorAccent"
+    android:textColor="@color/colorAccent"
+    android:textCursorDrawable="@drawable/cursor_color_user"
+    android:background="#202020"
+    android:paddingLeft="@dimen/x7"
+
+    />
+
+    <EditText
+        android:layout_width="@dimen/x190"
+        android:layout_height="@dimen/x33"
+        android:ems="10"
+        android:layout_gravity="center"
+        android:layout_marginTop="@dimen/x18"
+        android:inputType="textPassword"
+        android:textCursorDrawable="@drawable/cursor_color_pass"
+        android:id="@+id/password"
+        android:textColorHint="@color/white"
+        android:hint="@string/login_password"
+        android:background="#202020"
+        android:paddingLeft="@dimen/x7"
+        />
+
+
+
+    <Button
+        android:layout_width="@dimen/x173"
+        android:layout_height="@dimen/x37"
+        android:background="@drawable/shape_btlogin"
+        android:layout_gravity="center"
+        android:layout_marginTop="@dimen/x34"
+        android:text="登录"
+        android:textSize="@dimen/x16"
+        android:id="@+id/buttonlogin"
+
+        />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="@dimen/x40"
+        android:text="注册"
+        android:textColor="@color/white"
+        android:textSize="18sp"
+        android:id="@+id/login_enroll"
+        />
+
+    <View
+        android:layout_width="wrap_content"
+        android:layout_height="@dimen/x1"
+        android:layout_marginTop="@dimen/x10"
+        android:id="@+id/idview"
+        android:layout_gravity="center"
+        android:layout_marginLeft="@dimen/x60"
+        android:layout_marginRight="@dimen/x60"
+        android:background="@color/white"
+        />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="@dimen/x24"
+        android:text="找回密码"
+        android:textColor="@color/white"
+        android:textSize="18sp"
+       />
+
+
+</LinearLayout>

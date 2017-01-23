@@ -1,0 +1,341 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/bookBackground"
+    android:focusable="true"
+    android:focusableInTouchMode="true">
+
+    <include
+        android:id="@+id/infor_toolbar"
+        layout="@layout/toolbar_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+
+    <!--<ImageView-->
+    <!--android:id="@+id/image_informa"-->
+    <!--android:layout_width="wrap_content"-->
+    <!--android:layout_height="wrap_content"-->
+    <!--android:layout_alignParentStart="true"-->
+    <!--android:layout_below="@+id/infor_toolbar"-->
+    <!--android:layout_marginStart="@dimen/x32"-->
+    <!--android:layout_marginTop="@dimen/x20"-->
+    <!--android:background="@drawable/head" />-->
+
+    <com.fesco.bookpay.view.cliperimage.CircleImageView
+        android:id="@+id/image_informa"
+        android:layout_width="@dimen/x80"
+        android:layout_height="@dimen/x80"
+        android:layout_below="@+id/infor_toolbar"
+        android:layout_centerVertical="true"
+        android:layout_marginLeft="@dimen/x20"
+        android:layout_marginTop="@dimen/x20"
+        android:src="@drawable/head" />
+
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/infor_toolbar"
+        android:layout_marginLeft="@dimen/x32"
+        android:layout_marginTop="@dimen/x25"
+        android:layout_toRightOf="@id/image_informa"
+        android:text="@string/infor_name"
+        android:textColor="@color/blue" />
+
+    <TextView
+        android:id="@+id/tv_inforname"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@+id/textView2"
+        android:layout_marginLeft="@dimen/x50"
+        android:layout_toRightOf="@+id/textView2"
+        android:text="@string/infor_name"
+        android:textColor="@color/white" />
+
+    <View
+        android:id="@+id/line"
+        android:layout_width="wrap_content"
+        android:layout_height="1dp"
+        android:layout_alignLeft="@+id/textView2"
+        android:layout_below="@+id/textView2"
+        android:layout_marginTop="@dimen/x12"
+        android:background="@color/grayLine" />
+
+
+    <TextView
+        android:id="@+id/textView4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/line"
+        android:layout_marginLeft="@dimen/x32"
+        android:layout_marginTop="@dimen/x15"
+        android:layout_toRightOf="@id/image_informa"
+        android:text="@string/infor_sex"
+        android:textColor="@color/blue" />
+
+    <TextView
+        android:id="@+id/tv_inforsex"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@+id/textView4"
+        android:layout_marginLeft="@dimen/x50"
+        android:layout_toRightOf="@+id/textView4"
+        android:text="@string/infor_name"
+        android:textColor="@color/white" />
+
+    <ImageView
+        android:id="@+id/infor_option"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@+id/tv_inforsex"
+        android:layout_marginLeft="@dimen/x60"
+        android:layout_toRightOf="@+id/tv_inforsex"
+        android:src="@drawable/inforoption" />
+
+
+    <View
+        android:id="@+id/viewline"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_below="@+id/image_informa"
+        android:layout_marginTop="@dimen/x23"
+        android:background="@color/grayLine" />
+
+    <ImageView
+        android:id="@+id/mobile"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/image_informa"
+        android:layout_below="@+id/viewline"
+        android:layout_marginTop="@dimen/x10"
+        android:src="@drawable/informobile" />
+
+    <EditText
+        android:id="@+id/et_mobile"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/mobile"
+        android:layout_below="@+id/viewline"
+        android:layout_marginLeft="@dimen/x50"
+        android:layout_marginTop="@dimen/x10"
+        android:layout_toRightOf="@id/mobile"
+        android:background="@null"
+        android:inputType="phone"
+        android:textColor="@color/white"
+        android:textColorHint="@color/edit_hint"
+         />
+
+
+    <View
+        android:id="@+id/viewlinetwo"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_below="@+id/mobile"
+        android:layout_marginTop="@dimen/x8"
+        android:background="@color/grayLine" />
+
+    <ImageView
+        android:id="@+id/phone"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/mobile"
+        android:layout_below="@+id/viewlinetwo"
+        android:layout_marginTop="@dimen/x10"
+        android:src="@drawable/inforphone"
+
+        />
+
+    <EditText
+        android:id="@+id/et_phone"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/phone"
+        android:layout_below="@+id/viewlinetwo"
+        android:layout_marginLeft="@dimen/x50"
+        android:layout_marginTop="@dimen/x10"
+        android:layout_toRightOf="@id/phone"
+        android:background="@null"
+        android:inputType="phone"
+        android:textColor="@color/white"
+        android:textColorHint="@color/edit_hint"
+         />
+
+    <View
+        android:id="@+id/viewlinethree"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_below="@id/et_phone"
+        android:layout_marginTop="@dimen/x8"
+        android:background="@color/grayLine"
+
+        />
+
+    <ImageView
+        android:id="@+id/infoName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/mobile"
+        android:layout_below="@+id/viewlinethree"
+        android:layout_marginTop="@dimen/x10"
+        android:src="@drawable/inforname" />
+
+    <EditText
+        android:id="@+id/et_weixin"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/infoName"
+        android:layout_below="@+id/viewlinethree"
+        android:layout_marginLeft="@dimen/x50"
+        android:layout_marginTop="@dimen/x10"
+        android:layout_toRightOf="@id/phone"
+        android:background="@null"
+        android:textColor="@color/white"
+        android:textColorHint="@color/edit_hint"
+         />
+
+    <View
+        android:id="@+id/viewlinefour"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/x1"
+        android:layout_below="@id/et_weixin"
+        android:layout_marginTop="@dimen/x8"
+        android:background="@color/grayLine" />
+
+    <ImageView
+        android:id="@+id/informail"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/mobile"
+        android:layout_below="@+id/viewlinefour"
+        android:layout_marginTop="@dimen/x10"
+        android:src="@drawable/informail" />
+
+    <EditText
+        android:id="@+id/et_mail"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/informail"
+        android:layout_below="@+id/viewlinefour"
+        android:layout_marginLeft="@dimen/x50"
+        android:layout_marginTop="@dimen/x10"
+        android:layout_toRightOf="@id/phone"
+        android:background="@null"
+        android:maxLines="1"
+        android:textColor="@color/white"
+        android:textColorHint="@color/edit_hint"
+         />
+
+    <View
+        android:id="@+id/viewlinefive"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/x1"
+        android:layout_below="@id/et_mail"
+        android:layout_marginTop="@dimen/x8"
+        android:background="@color/grayLine" />
+
+    <ImageView
+        android:id="@+id/inforaddress"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/mobile"
+        android:layout_below="@+id/viewlinefive"
+        android:layout_marginTop="@dimen/x10"
+        android:background="@drawable/inforaddress" />
+
+    <EditText
+        android:id="@+id/et_address"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/inforaddress"
+        android:layout_marginLeft="@dimen/x50"
+        android:layout_marginTop="@dimen/x8"
+        android:layout_toRightOf="@id/inforaddress"
+        android:background="@null"
+        android:hint="请输入居住地址"
+        android:maxLines="1"
+        android:textColor="@color/white"
+        android:textColorHint="@color/edit_hint"
+         />
+
+    <View
+        android:id="@+id/viewlinesix"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/x1"
+        android:layout_below="@id/et_address"
+        android:layout_marginTop="@dimen/x8"
+        android:background="@color/grayLine" />
+
+    <ImageView
+        android:id="@+id/inforpostcode"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/mobile"
+        android:layout_below="@+id/viewlinesix"
+        android:layout_marginTop="@dimen/x10"
+        android:background="@drawable/inforpostcode" />
+
+    <EditText
+        android:id="@+id/et_postcode"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/inforpostcode"
+        android:layout_marginLeft="@dimen/x50"
+        android:layout_marginTop="@dimen/x8"
+        android:layout_toRightOf="@id/inforaddress"
+        android:background="@null"
+        android:hint="请输入邮编"
+        android:maxLines="1"
+        android:textColor="@color/white"
+        android:textColorHint="@color/edit_hint"
+         />
+
+    <View
+        android:id="@+id/viewlineseveb"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_below="@id/et_postcode"
+        android:layout_marginTop="@dimen/x8"
+        android:background="@color/grayLine" />
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/x47"
+        android:layout_alignParentBottom="true"
+        android:gravity="bottom"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/infor_save"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="3"
+            android:background="@color/bookBlue"
+            android:text="@string/infor_save"
+            android:textColor="@color/black" />
+
+        <View
+            android:layout_width="0dp"
+            android:layout_height="@dimen/x60"
+            android:layout_below="@id/et_postcode"
+            android:layout_weight="0.1"
+
+            android:background="@color/bookBackground" />
+
+        <Button
+            android:id="@+id/infor_modify"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="3"
+            android:background="@color/bookBlue"
+            android:text="@string/infor_modify"
+            android:textColor="@color/black" />
+
+
+    </LinearLayout>
+
+
+</RelativeLayout>

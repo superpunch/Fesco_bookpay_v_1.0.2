@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/bookGrayground"
+    >
+
+    <RadioGroup
+        android:id="@+id/radioGroup"
+        android:layout_width="match_parent"
+        android:background="@color/bookBlue"
+        android:layout_height="@dimen/x120"
+        android:orientation="vertical"
+        android:paddingBottom="7dp"
+        android:paddingLeft="@dimen/x10"
+        android:paddingTop="7dp">
+
+    </RadioGroup>
+    <RadioGroup
+        android:id="@+id/radioGroup2"
+        android:layout_below="@+id/radioGroup"
+        android:layout_width="match_parent"
+        android:background="@color/oranger"
+        android:layout_height="@dimen/x120"
+        android:orientation="horizontal"
+      >
+
+    </RadioGroup>
+
+
+    <RadioGroup
+        android:id="@+id/radioGroup3"
+        android:layout_below="@+id/radioGroup2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        >
+
+    </RadioGroup>
+
+    <LinearLayout
+        android:id="@+id/top_search"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/radioGroup3"
+        android:layout_gravity="top|center_horizontal"
+        android:layout_marginTop="2dip"
+        android:focusable="true"
+        android:focusableInTouchMode="true"
+        android:gravity="center_horizontal" >
+
+        <EditText
+            android:id="@+id/url_edittext"
+            android:layout_width="0dip"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="4dip"
+            android:layout_marginRight="4dip"
+            android:layout_weight="3"
+            android:drawablePadding="5.0dip"
+            android:hint="请输入地址"
+            android:singleLine="true"
+            android:textSize="15dip" />
+
+        <EditText
+            android:id="@+id/search_edittext"
+            android:layout_width="0dip"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="4dip"
+            android:layout_marginRight="4dip"
+            android:layout_weight="1"
+            android:drawablePadding="5.0dip"
+            android:hint="搜索"
+            android:singleLine="true"
+            android:textSize="15dip" />
+    </LinearLayout>
+
+</RelativeLayout>

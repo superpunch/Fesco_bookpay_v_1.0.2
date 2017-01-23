@@ -1,0 +1,136 @@
+<resources>
+    <string name="app_name">书薪</string>
+
+
+    <string name="login_name">用户名</string>
+    <string name="login_password">密码</string>
+    <string name="toolbar_back">退出</string>
+
+    <string name="toolbar_infor">个人信息</string>
+    <string name="toolbar_infor_modify">修改密码</string>
+
+    <string name="infor_name">姓名</string>
+    <string name="infor_sex">性别</string>
+
+
+    <string name="infor_save">保存修改</string>
+    <string name="infor_modify">修改密码</string>
+
+    <string name="infor_oldpassword">旧密码</string>
+    <string name="infor_newpassword">新密码</string>
+    <string name="infor_confirm">确定密码</string>
+    <string name="infor_oldpassword_edit">输入旧密码</string>
+    <string name="infor_newpassword_edit">新密码</string>
+    <string name="infor_confirm_edit">确定密码</string>
+
+    <string name="att_checkin">签到</string>
+    <string name="att_checkout">签退</string>
+    <string name="att_checkfield">外勤</string>
+    <string name="determine">确定</string>
+    <string name="cancel">取消</string>
+    <string name="back">返回</string>
+
+    <string name="not_available">无</string>
+
+    <string name="agree">同意</string>
+    <string name="disagree">驳回</string>
+
+    <string name="backout">撤销</string>
+    <string name="reedit">重新编辑</string>
+
+
+    <string name="sunday">日</string>
+    <string name="monday">一</string>
+    <string name="thesday">二</string>
+    <string name="wednesday">三</string>
+    <string name="thursday">四</string>
+    <string name="friday">五</string>
+    <string name="saturday">六</string>
+
+
+    <string name="preview">预览</string>
+    <string name="all_image">所有图片</string>
+    <string name="image">图片</string>
+    <string name="finish">完成</string>
+    <string name="share_images">分享图片</string>
+    <string name="send">发送</string>
+    <string name="think">这一刻的想法...</string>
+    <string name="image_error">图片错误</string>
+    <string name="prompt">提示</string>
+    <string name="exit_edit">退出编辑</string>
+    <string name="not_network">没有网络</string>
+    <string name="at_least_one_photo">至少选择一张图片</string>
+    <string name="loading">上传中...</string>
+    <string name="delele_image">确定删除最后一张图片？</string>
+    <string name="image_amount_limit">最多只能选择5张图片</string>
+    <string name="stretch">张</string>
+    <string name="no_image">暂无图片</string>
+    <string name="delete">删除</string>
+    <string name="delete_sucess">删除成功</string>
+    <string name="upload_sucess">上传成功</string>
+    <string name="revoke">撤销</string>
+    <string name="exit_app">报销单尚未保存，是否返回?</string>
+    <string name="exit_delete_app">删除报销单及消费记录，是否确定?</string>
+
+    <!--  CityPicker   -->
+    <string name="select_city">选择城市</string>
+    <string name="hot_city">热门城市</string>
+    <string name="located_city">定位城市</string>
+    <string name="hint_search_box">请输入城市名或拼音</string>
+    <string name="nothing_found">没有搜索结果~</string>
+    <string name="locating">正在定位…</string>
+    <string name="located_failed">定位失败</string>
+
+
+    <string name="rbm_addition">添加</string>
+    <string name="rbm_information">已选0条，0.00元</string>
+
+
+    <string name="basic_information">基本信息</string>
+    <string name="approval_progress">审批进度</string>
+    <string name="reimbursement_details">报销明细</string>
+    <string name="reimbursement_day">报销日期</string>
+    <string name="reimbursement_department">报销部门</string>
+    <string name="reimbursement_approve">审批中</string>
+    <string name="reimbursement_approve_type">差旅报销单#</string>
+    <string name="reimbursement_money">￥</string>
+    <string name="reimbursement_line">|</string>
+    <string name="reimbursement_bill">报销单</string>
+    <string name="reimbursement_time">报销时间</string>
+
+    <string name="money">金钱</string>
+    <string name="money_number">￥0.00</string>
+    <string name="title">标题</string>
+    <string name="details">内容</string>
+    <string name="description">描述</string>
+
+    <!--自助-->
+    <string name="social_one">入职办理</string>
+    <string name="social_one_detail">员工基本信息自助</string>
+    <string name="social_two">社保</string>
+    <string name="social_two_detail">员工社保信息自助</string>
+    <string name="social_three">公积金</string>
+    <string name="social_three_detail">员工公积金信息自助</string>
+
+    <string name="settings">设置</string>
+    <string name="help">帮助</string>
+    <string name="string_help_text">当前应用缺少必要权限。\n\n请点击\"设置\"-\"权限\"-打开所需权限。\n\n最后点击两次后退按钮，即可返回。</string>
+    <string name="quit">退出</string>
+
+    <string name="approval_time">申请时间:</string>
+    <string name="approval_star">开始时间:</string>
+    <string name="approval_end">结束时间:</string>
+    <string name="approval_datime">打卡时间:</string>
+    <string name="approval_check">签到类型:</string>
+
+
+
+
+
+
+<!--  Font Awesome 图标    -->
+    <string name="fa_music">&#xf001;</string>
+     <string name="fa_search">&#xf002;</string>
+     <string name="fa_address">&#xf2ba;</string>
+
+</resources>

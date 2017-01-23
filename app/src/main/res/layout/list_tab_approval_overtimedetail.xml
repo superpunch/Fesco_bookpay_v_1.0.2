@@ -1,0 +1,226 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@color/bookGrayground"
+    >
+    <include layout="@layout/toolbar_title" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_marginTop="@dimen/x12"
+        android:background="@color/white"
+
+        >
+
+    <LinearLayout
+        android:id="@+id/linear_overdetail_start"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+
+
+        >
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingBottom="@dimen/x7"
+            android:paddingLeft="@dimen/x17"
+            android:paddingRight="@dimen/x17"
+            android:paddingTop="@dimen/x7"
+            android:text="开始时间"
+            android:textColor="@color/black" />
+
+        <TextView
+            android:id="@+id/overdetail_start"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@null"
+            android:cursorVisible="false"
+            android:hint="无"
+            android:paddingBottom="@dimen/x7"
+            android:paddingLeft="@dimen/x17"
+            android:paddingRight="@dimen/x7"
+            android:paddingTop="@dimen/x7"
+            android:textColor="@color/black"
+            android:textSize="@dimen/x12" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/linear_overdetail_end"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/x10"
+        >
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingBottom="@dimen/x7"
+            android:paddingLeft="@dimen/x17"
+            android:paddingRight="@dimen/x17"
+            android:paddingTop="@dimen/x7"
+            android:text="截止时间"
+            android:textColor="@color/black" />
+
+        <TextView
+            android:id="@+id/overdetail_end"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@null"
+            android:cursorVisible="false"
+            android:hint="无"
+            android:paddingBottom="@dimen/x7"
+            android:paddingLeft="@dimen/x17"
+            android:paddingRight="@dimen/x7"
+            android:paddingTop="@dimen/x7"
+            android:textColor="@color/black"
+            android:textSize="@dimen/x12" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/linear_overdetail_reason"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/x10"
+        >
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingBottom="@dimen/x7"
+            android:paddingLeft="@dimen/x17"
+            android:paddingRight="@dimen/x17"
+            android:paddingTop="@dimen/x7"
+            android:text="加班原因"
+            android:textColor="@color/black" />
+
+        <TextView
+            android:id="@+id/overdetail_reason"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@null"
+            android:cursorVisible="false"
+            android:hint="无"
+            android:paddingBottom="@dimen/x7"
+            android:paddingLeft="@dimen/x17"
+            android:paddingRight="@dimen/x7"
+            android:paddingTop="@dimen/x7"
+            android:textColor="@color/black"
+            android:textSize="@dimen/x12" />
+    </LinearLayout>
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_marginTop="@dimen/x10"
+        android:background="@color/white"
+        >
+
+    <LinearLayout
+        android:id="@+id/linear_overdetali_opinion"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+
+        >
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingBottom="@dimen/x7"
+            android:paddingLeft="@dimen/x17"
+            android:paddingRight="@dimen/x17"
+            android:paddingTop="@dimen/x7"
+            android:text="审批意见"
+            android:textColor="@color/black" />
+
+        <EditText
+            android:id="@+id/overdetail_opinion"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@null"
+            android:cursorVisible="false"
+            android:hint="请输入审批意见"
+            android:paddingBottom="@dimen/x7"
+            android:paddingLeft="@dimen/x17"
+            android:paddingRight="@dimen/x7"
+            android:paddingTop="@dimen/x7"
+            android:textColor="@color/black"
+            android:textSize="@dimen/x12" />
+
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:id="@+id/linear_overdetali_person"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+
+        >
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingBottom="@dimen/x7"
+            android:paddingLeft="@dimen/x17"
+            android:paddingRight="@dimen/x17"
+            android:paddingTop="@dimen/x7"
+            android:text="再次审批"
+            android:textColor="@color/black" />
+
+        <EditText
+            android:id="@+id/overdetail_person"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@null"
+            android:cursorVisible="false"
+            android:hint="点击选择再次审批人"
+            android:paddingBottom="@dimen/x7"
+            android:paddingLeft="@dimen/x17"
+            android:paddingRight="@dimen/x7"
+            android:paddingTop="@dimen/x7"
+            android:textColor="@color/black"
+            android:textSize="@dimen/x12" />
+    </LinearLayout>
+
+    </LinearLayout>
+
+
+    <include
+        android:id="@+id/layout_lastapproval"
+        layout="@layout/include_restdetail_patch"
+        ></include>
+
+
+    <LinearLayout
+
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="0.1"
+        android:gravity="bottom"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/overdetail_agree"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@color/bookBlue"
+            android:text="@string/agree"
+            android:textColor="@color/black"
+            />
+        <Button
+            android:id="@+id/overdetail_disagree"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@color/bookBackground"
+            android:textColor="@color/white"
+            android:text="@string/disagree"
+            />
+
+
+    </LinearLayout>
+
+
+
+</LinearLayout>

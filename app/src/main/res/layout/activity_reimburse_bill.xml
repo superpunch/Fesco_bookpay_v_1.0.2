@@ -1,0 +1,279 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/bookGrayground">
+
+    <include
+        android:id="@+id/reimbur_toolbar"
+        layout="@layout/toolbar_title_save" />
+
+    <ScrollView
+        android:id="@+id/scroll_bill"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@+id/liner_btn_bill"
+        android:layout_below="@id/reimbur_toolbar"
+        android:fillViewport="true">
+
+        <LinearLayout
+            android:id="@+id/linear_bill"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/x50"
+                android:layout_marginTop="@dimen/x20"
+                android:layout_marginLeft="@dimen/x7"
+                android:layout_marginRight="@dimen/x7"
+                android:background="@color/white"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="@dimen/x60"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginLeft="@dimen/x11"
+                    android:hint="模板" />
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/x50"
+                    android:id="@+id/linear_applybill"
+                    android:background="@color/white"
+                    android:orientation="horizontal">
+                <TextView
+                    android:id="@+id/applybill"
+                    android:layout_width="wrap_content"
+                    android:layout_height="@dimen/x50"
+                    android:layout_gravity="center"
+                    android:layout_marginLeft="@dimen/x34"
+                    android:gravity="center|left"
+                    android:hint="请选择报销单" />
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="@dimen/x19"
+                    android:layout_marginLeft="@dimen/x114"
+                    android:layout_marginRight="@dimen/x6"
+                    android:layout_gravity="center"
+                    android:src="@drawable/rbm_arrows" />
+</LinearLayout>
+
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/basic"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/x18"
+                android:layout_marginTop="@dimen/x11"
+                android:hint="基本信息" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/x12"
+                android:layout_marginLeft="@dimen/x7"
+                android:layout_marginRight="@dimen/x7"
+                android:background="@color/white"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="@dimen/x60"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/x11"
+                    android:hint="标题"
+                    android:paddingBottom="@dimen/x10"
+                    android:paddingTop="@dimen/x10" />
+
+                <EditText
+                    android:id="@+id/rb_title"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:cursorVisible="false"
+                    android:background="@null"
+                    android:hint="请输入标题"
+                    android:layout_marginLeft="@dimen/x34"
+                    android:paddingBottom="@dimen/x10"
+                    android:paddingTop="@dimen/x10"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/x12" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/x5"
+                android:layout_marginLeft="@dimen/x7"
+                android:layout_marginRight="@dimen/x7"
+                android:background="@color/white"
+                android:gravity="center"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="@dimen/x60"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/x11"
+                    android:hint="报销日期"
+                    android:paddingBottom="@dimen/x10"
+                    android:paddingTop="@dimen/x10" />
+
+                <TextView
+                    android:id="@+id/rb_day"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/x34"
+                    android:hint="请选择报销日期"
+                    android:paddingBottom="@dimen/x10"
+                    android:paddingTop="@dimen/x10" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/x7"
+                android:layout_marginRight="@dimen/x7"
+                android:layout_marginTop="@dimen/x5"
+                android:background="@color/white"
+                android:gravity="center"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="@dimen/x60"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/x11"
+                    android:hint="报销部门"
+                    android:paddingBottom="@dimen/x10"
+                    android:paddingTop="@dimen/x10" />
+
+                <TextView
+                    android:id="@+id/rb_department"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/x34"
+                    android:hint="请选择报销部门"
+                    android:paddingBottom="@dimen/x10"
+                    android:paddingTop="@dimen/x10" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/x7"
+                android:layout_marginRight="@dimen/x7"
+                android:layout_marginTop="@dimen/x5"
+                android:background="@color/white"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="@dimen/x60"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginLeft="@dimen/x11"
+                    android:hint="收款人" />
+
+                <TextView
+                    android:id="@+id/rb_person"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginLeft="@dimen/x34"
+                    android:hint="请选择收款人"
+                    android:paddingBottom="@dimen/x10"
+                    android:paddingTop="@dimen/x10" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/x7"
+                android:layout_marginRight="@dimen/x7"
+                android:layout_marginTop="@dimen/x5"
+                android:background="@color/white"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="@dimen/x60"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginLeft="@dimen/x11"
+                    android:hint="备注"
+                    android:paddingBottom="@dimen/x10"
+                    android:paddingTop="@dimen/x10" />
+
+                <EditText
+                    android:id="@+id/rb_memo"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/x34"
+                    android:background="@null"
+                    android:cursorVisible="false"
+                    android:hint="(选填)"
+                    android:paddingBottom="@dimen/x10"
+                    android:paddingTop="@dimen/x10"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/x12" />
+
+
+            </LinearLayout>
+
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/x5"
+                android:paddingBottom="@dimen/x10"
+                android:paddingTop="@dimen/x10">
+
+                <TextView
+                    android:layout_width="@dimen/x60"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/x18"
+                    android:hint="消费细节" />
+
+                <TextView
+                    android:id="@+id/add_bill"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_marginRight="@dimen/x10"
+                    android:text="+添加消费"
+                    android:textColor="@color/bookBlue" />
+            </RelativeLayout>
+
+            <android.support.v7.widget.RecyclerView xmlns:android="http://schemas.android.com/apk/res/android"
+                android:id="@+id/recycler_bill"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/x36" />
+        </LinearLayout>
+    </ScrollView>
+
+    <LinearLayout
+        android:id="@+id/liner_btn_bill"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/rb_amount"
+            android:layout_width="0.0dip"
+            android:layout_height="wrap_content"
+            android:layout_weight="1.0"
+            android:background="@color/white"
+            android:text="￥0.00"
+            android:textColor="@color/bookBlue" />
+
+        <Button
+            android:id="@+id/rb_sumit"
+            android:layout_width="0.0dip"
+            android:layout_height="wrap_content"
+            android:layout_weight="1.0"
+            android:background="@color/bookBlue"
+            android:text="提交审批"
+            android:textColor="@color/white" />
+    </LinearLayout>
+</RelativeLayout>

@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="@dimen/x66"
+    android:gravity="center"
+    >
+<TextView
+    android:layout_width="@dimen/x15"
+    android:layout_height="wrap_content"
+    android:id="@+id/rank_position"
+
+    android:text="1"
+    android:layout_marginTop="@dimen/x14"
+    android:layout_marginLeft="@dimen/x14"
+    />
+
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/rank_image"
+        android:background="@drawable/head"
+        android:layout_toRightOf="@+id/rank_position"
+        android:layout_marginLeft="@dimen/x6"
+        />
+
+<TextView
+    android:layout_width="@dimen/x50"
+    android:layout_height="wrap_content"
+    android:layout_alignTop="@id/rank_position"
+    android:layout_toRightOf="@+id/rank_image"
+    android:layout_marginLeft="@dimen/x6"
+    android:id="@+id/rank_name"
+    />
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/trophy"
+        android:layout_marginRight="@dimen/x12"
+        android:layout_toRightOf="@+id/rank_name"
+        android:layout_alignTop="@+id/rank_name"
+        android:id="@+id/rank_trophy"
+        />
+
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/x54"
+        android:layout_marginRight="@dimen/x12"
+        android:layout_toRightOf="@+id/rank_name"
+        android:layout_alignTop="@+id/rank_name"
+        android:id="@+id/rank_flage"
+        android:text="累计加班"
+        />
+    <TextView
+        android:layout_width="@dimen/x66"
+        android:layout_height="wrap_content"
+        android:layout_toRightOf="@+id/rank_flage"
+        android:layout_alignTop="@+id/rank_name"
+        android:textColor="@color/bookBlue"
+        android:id="@+id/rank_duration"
+        />
+</RelativeLayout>

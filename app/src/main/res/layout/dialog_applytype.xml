@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="@dimen/x200"
+    android:layout_height="@dimen/x150"
+    android:layout_gravity="center"
+    android:background="@drawable/shape_dialog"
+    android:orientation="vertical"
+
+    >
+
+    <!--<RelativeLayout-->
+    <!--android:id="@+id/linear_dialog_apply"-->
+    <!--android:layout_width="@dimen/x180"-->
+    <!--android:layout_height="@dimen/x120"-->
+    <!--android:background="@drawable/shape_dialog"-->
+    <!--android:gravity="center_horizontal">-->
+<RelativeLayout
+    android:layout_width="match_parent"
+    android:layout_height="@dimen/x150">
+    <TextView
+        android:id="@+id/dialog_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/x10"
+        android:layout_marginTop="@dimen/x14"
+        android:textColor="@color/white"
+        android:textSize="16sp" />
+
+    <ScrollView
+        android:id="@+id/dialog_scroll"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fillViewport="true"
+        android:layout_below="@+id/dialog_title"
+        android:layout_above="@+id/dialog_bottom"
+        >
+
+        <RadioGroup
+            android:id="@+id/radioGroup"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/x30"
+            android:orientation="vertical"
+            android:paddingBottom="7dp"
+            android:paddingLeft="@dimen/x30"
+            android:paddingTop="7dp">
+
+        </RadioGroup>
+
+    </ScrollView>
+
+    <LinearLayout
+        android:id="@+id/dialog_bottom"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/dialog_cancel"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@null"
+            android:text="@string/cancel"
+            android:textColor="@color/white" />
+
+
+        <Button
+            android:id="@+id/dialog_sumbit"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@null"
+            android:text="@string/determine"
+            android:textColor="@color/bookBlue" />
+
+    </LinearLayout>
+</RelativeLayout>
+
+</LinearLayout>

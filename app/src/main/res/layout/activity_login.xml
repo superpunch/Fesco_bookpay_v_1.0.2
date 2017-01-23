@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.percent.PercentRelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+
+    android:background="@drawable/login_backgroud"
+    android:weightSum="1">
+<ImageView
+    android:layout_width="0dp"
+    android:layout_height="0dp"
+    android:id="@+id/image_log"
+    android:layout_centerHorizontal="true"
+    android:src="@drawable/logo_x"
+    app:layout_marginTopPercent="13%"
+    app:layout_marginBottomPercent="10%"
+    app:layout_heightPercent="15%"
+    app:layout_widthPercent="30%"
+    />
+
+<EditText
+    android:layout_width="0dp"
+    android:layout_height="0dp"
+    android:layout_below="@+id/image_log"
+    android:layout_centerHorizontal="true"
+    android:ems="10"
+    android:id="@+id/user"
+    android:hint="@string/login_name"
+    android:textColor="@color/colorAccent"
+    android:textCursorDrawable="@drawable/cursor_color_user"
+    android:background="#202020"
+    android:paddingLeft="5dp"
+    app:layout_heightPercent="6%"
+    app:layout_widthPercent="55%"
+    app:layout_marginBottomPercent="5%"
+    />
+
+    <EditText
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_below="@+id/user"
+        android:layout_centerHorizontal="true"
+        android:inputType="textPassword"
+        android:textCursorDrawable="@drawable/cursor_color_pass"
+        android:id="@+id/password"
+        android:layout_gravity="center_horizontal"
+        android:hint="@string/login_password"
+        android:background="#202020"
+        android:paddingLeft="5dp"
+        app:layout_heightPercent="6%"
+        app:layout_widthPercent="55%"
+        app:layout_marginBottomPercent="5%"
+        />
+
+
+
+    <Button
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_below="@+id/password"
+        android:background="@drawable/shape_btlogin"
+        android:text="登录"
+        android:id="@+id/buttonlogin"
+        android:layout_centerHorizontal="true"
+        app:layout_heightPercent="7.5%"
+        app:layout_widthPercent="45%"
+        app:layout_marginBottomPercent="3%"
+        />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/buttonlogin"
+        android:text="注册"
+        android:textColor="#fff"
+        android:textSize="18sp"
+        android:id="@+id/login_enroll"
+        android:layout_centerHorizontal="true"
+        app:layout_marginBottomPercent="5%"
+        />
+
+    <View
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:id="@+id/idview"
+        android:layout_below="@+id/login_enroll"
+        android:layout_gravity="center"
+        android:background="#fff"
+        android:layout_centerHorizontal="true"
+        app:layout_heightPercent="0.1%"
+        app:layout_widthPercent="65%"
+        app:layout_marginBottomPercent="10%"
+        />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/idview"
+        android:text="Welcome password"
+        android:textColor="#fff"
+        android:textSize="18sp"
+        android:layout_centerHorizontal="true" />
+
+
+</android.support.percent.PercentRelativeLayout>

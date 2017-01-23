@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/bookGrayground"
+    >
+
+    <include layout="@layout/toolbar_title"
+        android:id="@+id/not_toolbar"
+        />
+
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/recycler_not_option"
+        android:layout_below="@+id/not_toolbar"
+        android:layout_above="@+id/liner_btn_bill"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"></android.support.v7.widget.RecyclerView>
+
+
+    <RelativeLayout
+        android:id="@+id/liner_btn_bill"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/x53"
+        android:background="@color/white"
+        android:layout_alignParentBottom="true"
+        >
+
+        <TextView
+            android:id="@+id/not_option_amount"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/x16"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="@dimen/x16"
+            android:text="@string/rbm_information"
+            android:textColor="@color/black_tran" />
+
+
+        <Button
+            android:id="@+id/rbm_addition"
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/x27"
+            android:layout_marginRight="@dimen/x10"
+            android:layout_centerVertical="true"
+            android:layout_alignParentRight="true"
+            android:background="@color/bookBlue"
+            android:text="@string/rbm_addition"
+            android:textColor="@color/white" />
+    </RelativeLayout>
+
+
+
+</RelativeLayout>

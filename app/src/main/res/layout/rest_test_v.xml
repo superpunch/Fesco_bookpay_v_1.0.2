@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    >
+
+
+
+
+    <EditText
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+        android:layout_marginRight="@dimen/dp_14"
+        android:layout_marginLeft="@dimen/dp_14"
+        android:focusable="true"
+    android:background="@drawable/edit_rest_style"
+    android:hint="qqqq"
+    />
+
+
+    <ToggleButton
+        android:id="@+id/rb_a"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/dp_14"
+        android:layout_weight="1.0"
+        android:button="@null"
+        android:drawableTop="@drawable/selector_rbm_a"
+        android:textColor="@color/bookBlue"
+        android:layout_gravity="center"
+        android:textOff="报销"
+        android:background="@color/white"
+        />
+<ToggleButton
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:textColor="@color/bookBlue"
+    android:textOff="报销"
+    android:background="@color/white"
+    />
+
+</LinearLayout>

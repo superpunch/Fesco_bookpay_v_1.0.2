@@ -1,0 +1,161 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:card_view="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+
+    <android.support.v7.widget.CardView
+        android:id="@+id/card_view"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:foreground="?android:attr/selectableItemBackground"
+        card_view:cardBackgroundColor="@color/cardview_light_background"
+        card_view:cardCornerRadius="3dp"
+        card_view:cardElevation="2dp"
+        card_view:cardUseCompatPadding="true">
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            >
+
+
+
+    <TextView
+        android:id="@+id/att_typeroval"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+
+        android:paddingLeft="@dimen/x17"
+        android:paddingRight="@dimen/x7"
+        android:paddingTop="@dimen/x17"
+        android:paddingBottom="@dimen/x7"
+        android:textSize="@dimen/x16"
+        android:text="签到"
+        android:textColor="@color/black" />
+
+    <TextView
+        android:id="@+id/att_typeroval_id"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingLeft="@dimen/x7"
+        android:paddingRight="@dimen/x17"
+        android:paddingTop="@dimen/x17"
+        android:paddingBottom="@dimen/x7"
+        android:layout_alignParentRight="true"
+        android:text="申请时间"
+        android:textColor="@color/gray" />
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp_066"
+        android:layout_marginLeft="@dimen/x17"
+        android:layout_marginRight="@dimen/x17"
+        android:id="@+id/att_line"
+        android:layout_below="@+id/att_typeroval"
+        android:background="@color/gray" />
+
+
+   
+
+    <TextView
+        android:id="@+id/att_time"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/att_line"
+
+        android:paddingLeft="@dimen/x17"
+        android:paddingRight="@dimen/x7"
+        android:paddingTop="@dimen/x12"
+        android:paddingBottom="@dimen/x7"
+        android:text="签到时间"
+        android:textColor="@color/gray" />
+
+    <TextView
+        android:id="@+id/att_timeroval"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@+id/att_time"
+        android:layout_toRightOf="@+id/att_time"
+
+
+        android:paddingLeft="@dimen/x17"
+        android:paddingRight="@dimen/x7"
+        android:paddingTop="@dimen/x12"
+        android:paddingBottom="@dimen/x7"
+
+
+        android:text="请选择签到时间"
+        android:textColor="@color/gray" />
+
+    <TextView
+        android:id="@+id/att_address"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/att_time"
+        android:paddingLeft="@dimen/x17"
+        android:paddingRight="@dimen/x7"
+        android:paddingTop="@dimen/x7"
+        android:paddingBottom="@dimen/x7"
+        android:text="签到地点"
+        android:textColor="@color/gray" />
+
+    <TextView
+        android:id="@+id/att_addroval"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toRightOf="@+id/att_address"
+        android:layout_alignTop="@+id/att_address"
+        android:paddingLeft="@dimen/x17"
+        android:paddingRight="@dimen/x7"
+        android:paddingTop="@dimen/x7"
+        android:paddingBottom="@dimen/x7"
+        android:text="签到地点"
+        android:textColor="@color/gray" />
+
+
+    <TextView
+        android:id="@+id/att_person"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/att_address"
+        android:paddingLeft="@dimen/x17"
+        android:paddingRight="@dimen/x7"
+        android:paddingTop="@dimen/x7"
+        android:paddingBottom="@dimen/x17"
+
+        android:text="当前审批人"
+        android:textColor="@color/black" />
+
+    <TextView
+        android:id="@+id/att_peroval"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingLeft="@dimen/x17"
+        android:paddingRight="@dimen/x7"
+        android:paddingTop="@dimen/x7"
+        android:paddingBottom="@dimen/x17"
+        android:text="胡松"
+        android:textColor="@color/black"
+        android:layout_below="@+id/att_addroval"
+        android:layout_alignLeft="@+id/att_addroval"
+        android:layout_alignStart="@+id/att_addroval" />
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/x25"
+        android:id="@+id/btn_approval"
+        android:layout_below="@+id/att_person"
+
+        android:text="审批中"
+        android:background="@color/black"
+        android:layout_marginRight="@dimen/x7"
+        android:layout_marginLeft="@dimen/x7"
+        android:layout_marginBottom="@dimen/x2"
+
+        />
+</RelativeLayout>
+
+</android.support.v7.widget.CardView>
+</LinearLayout>

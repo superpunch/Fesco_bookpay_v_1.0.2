@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginLeft="@dimen/x12"
+    android:layout_marginTop="@dimen/x5"
+    android:layout_below="@+id/resttype"
+    >
+    <FrameLayout
+        android:layout_width="@dimen/x90"
+        android:layout_height="@dimen/x100">
+        <TextView
+            android:layout_width="@dimen/x90"
+            android:layout_height="@dimen/x100"
+            android:id="@+id/tv_side"
+            android:background="@drawable/shape_overtime"
+            android:gravity="center"
+
+            />
+            <TextView
+                android:layout_width="@dimen/x62"
+                android:layout_height="@dimen/x68"
+                android:id="@+id/path_pass"
+                android:background="@drawable/apply_ing"
+                android:layout_alignParentRight="true"
+                android:text="通过"
+                android:gravity="center"
+                android:layout_gravity="center"
+                />
+
+
+        <TextView
+            android:layout_width="@dimen/x95"
+            android:layout_height="@dimen/x15"
+            android:id="@+id/path_pass_name"
+            android:layout_below="@+id/tv_side"
+            android:layout_gravity="bottom"
+            android:gravity="center"
+            android:textColor="@color/white"
+            android:text="审批人:胡松"
+            android:background="@color/bookBlue"
+            />
+
+    </FrameLayout>
+</LinearLayout>

@@ -1,0 +1,217 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@color/bookGrayground"
+    >
+    <include
+        android:id="@+id/bill_detail_toolbar"
+        layout="@layout/toolbar_title" />
+
+    <ScrollView
+        android:id="@+id/scroll_bill"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/bill_detail_toolbar"
+        android:layout_above="@+id/bill_detail_bottom"
+        android:fillViewport="true">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/bill_detail_toolbar"
+        android:orientation="vertical"
+        >
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:focusable="true"
+        android:focusableInTouchMode="true"
+        android:background="@color/white"
+        android:layout_marginTop="@dimen/x14"
+        >
+
+        <android.support.v7.widget.RecyclerView
+            xmlns:android="http://schemas.android.com/apk/res/android"
+            android:id="@+id/bill_detail_recycle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            >
+
+        </android.support.v7.widget.RecyclerView>
+
+
+
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_marginTop="@dimen/x10"
+        android:background="@color/white"
+        >
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingTop="@dimen/x17"
+            >
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingBottom="@dimen/x7"
+                android:paddingLeft="@dimen/x17"
+                android:paddingRight="@dimen/x17"
+                android:text="报销日期"
+                android:textColor="@color/black" />
+
+            <TextView
+                android:id="@+id/bill_detail_day"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@null"
+                android:hint="无"
+                android:paddingLeft="@dimen/x17"
+                android:paddingRight="@dimen/x7"
+                android:textColor="@color/black"
+                android:textSize="@dimen/x12" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingTop="@dimen/x17"
+            >
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingBottom="@dimen/x7"
+                android:paddingLeft="@dimen/x17"
+                android:paddingRight="@dimen/x17"
+                android:text="收款账号"
+                android:textColor="@color/black" />
+
+            <TextView
+                android:id="@+id/bill_detail_account"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@null"
+                android:hint="无"
+                android:paddingLeft="@dimen/x17"
+                android:paddingRight="@dimen/x7"
+                android:textColor="@color/black"
+                android:textSize="@dimen/x12" />
+        </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/linear_bill_detail_opinion"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/x10"
+
+        >
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingBottom="@dimen/x7"
+            android:paddingLeft="@dimen/x17"
+            android:paddingRight="@dimen/x17"
+            android:paddingTop="@dimen/x7"
+            android:text="审批意见"
+            android:textColor="@color/black" />
+
+        <EditText
+            android:id="@+id/bill_detail_opinion"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@null"
+            android:hint="请输入审批意见"
+            android:paddingBottom="@dimen/x7"
+            android:paddingLeft="@dimen/x17"
+            android:paddingRight="@dimen/x7"
+            android:paddingTop="@dimen/x7"
+            android:textColor="@color/black"
+            android:textSize="@dimen/x12" />
+
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:id="@+id/linear_bill_detail_person"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/x10"
+
+        >
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingBottom="@dimen/x7"
+            android:paddingLeft="@dimen/x17"
+            android:paddingRight="@dimen/x17"
+            android:paddingTop="@dimen/x7"
+            android:text="再次审批"
+            android:textColor="@color/black" />
+
+        <EditText
+            android:id="@+id/bill_detail_person"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@null"
+            android:cursorVisible="false"
+            android:hint="点击选择再次审批人"
+            android:paddingBottom="@dimen/x7"
+            android:paddingLeft="@dimen/x17"
+            android:paddingRight="@dimen/x7"
+            android:paddingTop="@dimen/x7"
+            android:textColor="@color/black"
+            android:textSize="@dimen/x12" />
+    </LinearLayout>
+
+    </LinearLayout>
+
+
+    <include
+        android:id="@+id/layout_last_approval"
+        layout="@layout/include_restdetail_patch"
+        ></include>
+
+
+
+
+    </LinearLayout>
+    </ScrollView>
+    <LinearLayout
+
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/bill_detail_bottom"
+        android:layout_alignParentBottom="true"
+        android:gravity="bottom"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/bill_detail_agree"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@color/bookBlue"
+            android:text="@string/agree"
+            android:textColor="@color/black"
+            />
+        <Button
+            android:id="@+id/bill_detail_disagree"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@color/bookBackground"
+            android:textColor="@color/gray"
+            android:text="@string/disagree"
+            />
+
+
+    </LinearLayout>
+</RelativeLayout>

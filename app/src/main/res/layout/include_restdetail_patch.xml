@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:background="@color/white"
+    android:layout_marginTop="@dimen/x11"
+    android:visibility="gone"
+    >
+
+
+    <LinearLayout
+        android:id="@+id/linear_restdetali_last"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+
+        >
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingBottom="@dimen/x7"
+            android:paddingLeft="@dimen/x17"
+            android:paddingRight="@dimen/x17"
+            android:paddingTop="@dimen/x7"
+            android:text="前次审批"
+            android:textColor="@color/black" />
+
+        <TextView
+            android:id="@+id/restdetail_last"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@null"
+            android:cursorVisible="false"
+            android:hint="@string/not_available"
+            android:paddingBottom="@dimen/x7"
+            android:paddingLeft="@dimen/x17"
+            android:paddingRight="@dimen/x7"
+            android:paddingTop="@dimen/x7"
+            android:textColor="@color/black"
+            android:textSize="@dimen/x12" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/linear_restdetali_result"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/x10"
+        >
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingBottom="@dimen/x7"
+            android:paddingLeft="@dimen/x17"
+            android:paddingRight="@dimen/x17"
+            android:paddingTop="@dimen/x7"
+            android:text="审批结果"
+            android:textColor="@color/black" />
+
+        <TextView
+            android:id="@+id/restdetail_result"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@null"
+            android:cursorVisible="false"
+            android:hint="@string/not_available"
+            android:paddingBottom="@dimen/x7"
+            android:paddingLeft="@dimen/x17"
+            android:paddingRight="@dimen/x7"
+            android:paddingTop="@dimen/x7"
+            android:textColor="@color/black"
+            android:textSize="@dimen/x12" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/linear_restdetali_opinion"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/x10"
+        >
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingBottom="@dimen/x7"
+            android:paddingLeft="@dimen/x17"
+            android:paddingRight="@dimen/x17"
+            android:paddingTop="@dimen/x7"
+            android:text="审批意见"
+            android:textColor="@color/black" />
+
+        <TextView
+            android:id="@+id/restdetail_opinion"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@null"
+            android:cursorVisible="false"
+            android:hint="无"
+            android:paddingBottom="@dimen/x7"
+            android:paddingLeft="@dimen/x17"
+            android:paddingRight="@dimen/x7"
+            android:paddingTop="@dimen/x7"
+            android:textColor="@color/black"
+            android:textSize="@dimen/x12" />
+    </LinearLayout>
+
+
+
+</LinearLayout>

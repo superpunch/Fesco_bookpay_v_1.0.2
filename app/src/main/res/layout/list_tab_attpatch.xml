@@ -1,0 +1,214 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/bookGrayground"
+    android:orientation="vertical">
+
+
+
+    <LinearLayout
+        android:id="@+id/linear_att_type"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/x7"
+        android:layout_marginLeft="@dimen/x7"
+        android:layout_marginRight="@dimen/x7"
+        android:layout_marginTop="@dimen/x17"
+        android:background="@color/white"
+
+        >
+
+        <TextView
+            android:id="@+id/att_type"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingBottom="@dimen/x7"
+            android:paddingLeft="@dimen/x17"
+            android:paddingRight="@dimen/x17"
+            android:paddingTop="@dimen/x7"
+            android:text="签到类型"
+            android:textColor="@color/black" />
+
+        <EditText
+            android:id="@+id/att_type_id"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@null"
+            android:cursorVisible="false"
+            android:hint="请选择签到类型"
+            android:paddingBottom="@dimen/x7"
+            android:paddingLeft="@dimen/x17"
+            android:paddingRight="@dimen/x7"
+            android:paddingTop="@dimen/x7"
+            android:textColor="@color/black"
+            android:textSize="@dimen/x12" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/linear_att_time"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/x7"
+        android:layout_marginLeft="@dimen/x7"
+        android:layout_marginRight="@dimen/x7"
+        android:layout_marginTop="@dimen/x10"
+        android:background="@color/white">
+
+        <TextView
+            android:id="@+id/att_time"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingBottom="@dimen/x7"
+            android:paddingLeft="@dimen/x17"
+            android:paddingRight="@dimen/x17"
+            android:paddingTop="@dimen/x7"
+            android:text="签到时间"
+            android:textColor="@color/black" />
+
+        <EditText
+            android:id="@+id/att_time_id"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@null"
+            android:cursorVisible="false"
+            android:hint="请选择签到时间"
+            android:paddingBottom="@dimen/x7"
+            android:paddingLeft="@dimen/x17"
+            android:paddingRight="@dimen/x7"
+            android:paddingTop="@dimen/x7"
+            android:textColor="@color/black"
+            android:textSize="@dimen/x12" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/linear_att_address"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/x7"
+        android:layout_marginLeft="@dimen/x7"
+        android:layout_marginRight="@dimen/x7"
+        android:layout_marginTop="@dimen/x10"
+        android:background="@color/white">
+
+        <TextView
+            android:id="@+id/att_address"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingBottom="@dimen/x7"
+            android:paddingLeft="@dimen/x17"
+            android:paddingRight="@dimen/x17"
+            android:paddingTop="@dimen/x7"
+            android:text="签到地址"
+            android:textColor="@color/black" />
+
+        <EditText
+            android:id="@+id/att_address_id"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@null"
+            android:cursorVisible="false"
+            android:hint="请选择签到地址"
+            android:paddingBottom="@dimen/x7"
+            android:paddingLeft="@dimen/x17"
+            android:paddingRight="@dimen/x7"
+            android:paddingTop="@dimen/x7"
+            android:textColor="@color/black"
+            android:textSize="@dimen/x12" />
+
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:id="@+id/linear_att_patch"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/x7"
+        android:layout_marginLeft="@dimen/x7"
+        android:layout_marginRight="@dimen/x7"
+        android:layout_marginTop="@dimen/x10"
+        android:background="@color/white">
+
+        <TextView
+            android:id="@+id/att_patch"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingBottom="@dimen/x7"
+            android:paddingLeft="@dimen/x17"
+            android:paddingRight="@dimen/x17"
+            android:paddingTop="@dimen/x7"
+            android:text="补签原因"
+            android:textColor="@color/black" />
+
+        <EditText
+            android:id="@+id/att_patch_id"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@null"
+            android:hint="请输入补签原因"
+            android:paddingBottom="@dimen/x7"
+            android:paddingLeft="@dimen/x17"
+            android:paddingRight="@dimen/x7"
+            android:paddingTop="@dimen/x7"
+            android:textColor="@color/black"
+            android:textSize="@dimen/x12" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/linear_att_person"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/x7"
+        android:layout_marginLeft="@dimen/x7"
+        android:layout_marginRight="@dimen/x7"
+        android:layout_marginTop="@dimen/x10"
+        android:background="@color/white">
+
+        <TextView
+            android:id="@+id/att_person"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingBottom="@dimen/x7"
+            android:paddingLeft="@dimen/x17"
+            android:paddingRight="@dimen/x17"
+            android:paddingTop="@dimen/x7"
+            android:text="审批人"
+            android:textColor="@color/black" />
+
+        <EditText
+            android:id="@+id/att_person_id"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@null"
+            android:cursorVisible="false"
+            android:hint="请选择审批人"
+            android:paddingBottom="@dimen/x7"
+            android:paddingLeft="@dimen/x27"
+            android:paddingRight="@dimen/x7"
+            android:paddingTop="@dimen/x7"
+            android:textColor="@color/black"
+            android:textSize="@dimen/x12" />
+
+    </LinearLayout>
+
+    <LinearLayout
+
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="0.1"
+        android:gravity="bottom"
+    >
+
+<Button
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:id="@+id/btn_patch"
+    android:background="@color/bookBlue"
+    android:text="提交申请"
+    />
+</LinearLayout>
+
+</LinearLayout>

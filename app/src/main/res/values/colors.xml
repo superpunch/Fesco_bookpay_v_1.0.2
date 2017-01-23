@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!--<color name="colorPrimary">#3F51B5</color>-->
+    <!--<color name="colorPrimaryDark">#303F9F</color>-->
+    <color name="colorPrimary">#00b6d8</color>
+    <color name="colorPrimaryDark">#00B6D8</color>
+    <color name="colorAccent">#DCD008</color>
+    <color name="primary_color">#ff4c4b</color>
+    <color name="white">#ffffff</color>
+    <color name="black">#000000</color>
+    <color name="black_tran">#C8000000</color>
+    <color name="black_two">#22000000</color>
+    <color name="black_circle">#293544</color>
+
+    <color name="black_boom">#323A45</color>
+    <color name="edit_hint">#66696D</color>
+
+    <color name="blue">#00B6D8</color>
+    <color name="gray">#666666</color>
+    <color name="grayInfor">#323A45</color>
+
+    <color name="doalogInfor">#3F4551</color>
+
+
+    <color name="grayLine">#414D5E</color>
+    <color name="bookBackground">#323a45</color>
+    <color name="bookBlue">#00b6d8</color>
+    <color name="editEnrollBlue">#32C5E0</color>
+    <color name="bookGrayground">#ECEBF3</color>
+
+
+    <color name="over_black">#323a45</color>
+    <color name="over_gray">#d2d2d2</color>
+
+    <color name="oranger">#F39801</color>
+    <color name="yellow">#ECF862</color>
+    <color name="red">#F86262</color>
+    <color name="violet">#E862F8</color>
+    <color name="mazarine">#636DF9</color>
+    <color name="green">#63F970</color>
+    <color name="green_per">#7a7</color>
+
+    <!-- CityPicker   -->
+    <color name="divider">#E5E5E5</color>
+    <color name="shadow">#AAEBEBEB</color>
+    <color name="common_bg">#FAFAFA</color>
+    <color name="content_bg">#F3F3F3</color>
+    <color name="gray_deep">#5c5c5c</color>
+    <color name="alpha_gray">#CC646464</color>
+    <color name="theme_gray">#646464</color>
+
+
+    <color name="canlendar_text_color">#323232</color>
+
+    <color name="btntextcolor">#ff1E90FF</color><!--dialog中按钮字体颜色 -->
+
+
+
+
+</resources>

@@ -1,0 +1,217 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+
+>
+
+    <include layout="@layout/toolbar_title"
+             android:id="@+id/rb_toolbar"
+        />
+
+
+
+
+    <!--<LinearLayout-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:id="@+id/Linearlayout_rmb"-->
+        <!--android:orientation="vertical"-->
+        <!--&gt;-->
+
+
+    <!--<LinearLayout-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:id="@+id/linear_reb_one"-->
+         <!--android:paddingTop="@dimen/x10"-->
+        <!--android:orientation="horizontal">-->
+
+        <!--<LinearLayout-->
+            <!--android:layout_width="0dp"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:id="@+id/linear_rbm_not"-->
+            <!--android:layout_weight="1"-->
+            <!--android:gravity="center"-->
+            <!--android:orientation="vertical">-->
+
+            <!--<ImageView-->
+                <!--android:layout_width="wrap_content"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:background="@drawable/rbm_a" />-->
+
+            <!--<TextView-->
+                <!--android:layout_width="wrap_content"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:layout_marginTop="@dimen/x10"-->
+                <!--android:text="未制单消费"-->
+                <!--android:textColor="@color/bookBlue" />-->
+
+            <!--<TextView-->
+                <!--android:layout_width="wrap_content"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:id="@+id/rbm_not_amount"-->
+                <!--android:layout_marginTop="@dimen/x3"-->
+                <!--android:textSize="@dimen/x10"-->
+                <!--android:text="0条消费记录" />-->
+            <!--<TextView-->
+                <!--android:layout_width="wrap_content"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:id="@+id/rbm_not_money"-->
+                <!--android:layout_marginTop="@dimen/x3"-->
+                <!--android:textSize="@dimen/x10"-->
+                <!--android:text="共￥ 0.00" />-->
+
+        <!--</LinearLayout>-->
+
+        <!--<LinearLayout-->
+            <!--android:layout_width="0dp"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:layout_weight="1"-->
+
+            <!--android:gravity="center"-->
+            <!--android:orientation="vertical">-->
+
+            <!--<ImageView-->
+                <!--android:layout_width="wrap_content"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:background="@drawable/rbm_b" />-->
+
+            <!--<TextView-->
+                <!--android:layout_width="wrap_content"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:layout_marginTop="@dimen/x10"-->
+                <!--android:text="未制单消费"-->
+                <!--android:textColor="@color/bookBlue" />-->
+
+            <!--<TextView-->
+                <!--android:layout_width="wrap_content"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:layout_marginTop="@dimen/x3"-->
+                <!--android:paddingBottom="@dimen/x28"-->
+                <!--android:textSize="@dimen/x10"-->
+                <!--android:text="2条消费记录"-->
+
+                <!--/>-->
+
+        <!--</LinearLayout>-->
+
+        <!--<LinearLayout-->
+            <!--android:layout_width="0dp"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:layout_weight="1"-->
+            <!--android:gravity="center"-->
+            <!--android:orientation="vertical">-->
+
+            <!--<ImageView-->
+                <!--android:layout_width="wrap_content"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:background="@drawable/rbm_c" />-->
+
+            <!--<TextView-->
+                <!--android:layout_width="wrap_content"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:layout_marginTop="@dimen/x10"-->
+                <!--android:text="未制单消费"-->
+                <!--android:textColor="@color/bookBlue" />-->
+
+            <!--<TextView-->
+                <!--android:layout_width="wrap_content"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:layout_marginTop="@dimen/x3"-->
+                <!--android:textSize="@dimen/x10"-->
+                <!--android:text="2条消费记录" />-->
+        <!--</LinearLayout>-->
+    <!--</LinearLayout>-->
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/linear_reb_two"
+            android:layout_below="@+id/rb_toolbar"
+            android:layout_marginBottom="@dimen/x10"
+            android:layout_marginTop="@dimen/x5"
+            android:paddingTop="@dimen/x12"
+            android:orientation="horizontal">
+
+
+            <ToggleButton
+                android:id="@+id/rb_a"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1.0"
+                android:button="@null"
+                android:drawableTop="@drawable/selector_rbm_a"
+                android:textColor="@color/bookBlue"
+                android:gravity="center"
+                android:textOff="报销"
+                android:textOn="报销"
+                android:background="@color/white"
+              />
+
+            <ToggleButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/rb_b"
+                android:layout_weight="1.0"
+                android:button="@null"
+                android:drawableTop="@drawable/selector_rbm_b"
+                android:textColor="@color/bookBlue"
+                android:gravity="center"
+                android:textOff="添加报销单"
+                android:textOn="添加报销单"
+                android:background="@color/white"
+               />
+
+            <ToggleButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/rb_c"
+                android:layout_weight="1.0"
+                android:drawableTop="@drawable/selector_rbm_c"
+                android:textColor="@color/bookBlue"
+                android:button="@null"
+                android:gravity="center"
+                android:textOff="未制消费单"
+                android:textOn="未制消费单"
+                android:background="@color/white"
+               />
+
+
+
+    </LinearLayout>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fillViewport="true"
+        android:layout_below="@+id/linear_reb_two"
+        android:layout_above="@+id/btn_finish_rmb"
+        android:id="@+id/scroll_reb"
+        >
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            >
+
+
+        <android.support.v7.widget.RecyclerView
+            xmlns:android="http://schemas.android.com/apk/res/android"
+            android:id="@+id/recycler_rmb"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            />
+    </LinearLayout>
+    </ScrollView>
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/btn_finish_rmb"
+        android:background="@color/black"
+        android:textColor="@color/bookBlue"
+        android:layout_alignParentBottom="true"
+        android:text="查看已完成报销单"
+        />
+</RelativeLayout>

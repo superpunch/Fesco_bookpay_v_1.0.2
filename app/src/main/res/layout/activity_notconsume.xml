@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/bookGrayground"
+    >
+
+    <include layout="@layout/toolbar_title"
+        android:id="@+id/not_toolbar"
+        />
+
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/recycler_not"
+        android:layout_below="@+id/not_toolbar"
+        android:layout_above="@+id/btn_again_csp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"></android.support.v7.widget.RecyclerView>
+
+
+
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/btn_again_csp"
+        android:layout_alignParentBottom="true"
+        android:background="@color/bookBlue"
+        android:text="记一笔"
+
+
+        />
+
+</RelativeLayout>

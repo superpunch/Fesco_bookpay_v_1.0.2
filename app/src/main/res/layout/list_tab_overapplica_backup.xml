@@ -1,0 +1,260 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/bookGrayground"
+    android:orientation="vertical"
+    android:clickable="true"
+    >
+
+    <LinearLayout
+        android:id="@+id/linear_over_start"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/x7"
+        android:layout_marginRight="@dimen/x7"
+        android:layout_marginTop="@dimen/x17"
+        android:background="@color/white"
+
+        >
+
+        <TextView
+            android:id="@+id/att_star"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingBottom="@dimen/x7"
+            android:paddingLeft="@dimen/x17"
+            android:paddingRight="@dimen/x17"
+            android:paddingTop="@dimen/x7"
+            android:text="开始时间"
+            android:textColor="@color/black" />
+
+
+
+        <EditText
+            android:id="@+id/over_starttime"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@null"
+            android:cursorVisible="false"
+            android:hint="请选择开始时间"
+            android:paddingBottom="@dimen/x7"
+            android:paddingLeft="@dimen/x17"
+            android:paddingRight="@dimen/x7"
+            android:paddingTop="@dimen/x7"
+            android:textColor="@color/black"
+            android:textSize="@dimen/x12" />
+
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:id="@+id/linear_over_end"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/linear_over_start"
+        android:layout_marginBottom="@dimen/x7"
+        android:layout_marginLeft="@dimen/x7"
+        android:layout_marginRight="@dimen/x7"
+        android:layout_marginTop="@dimen/x10"
+        android:background="@color/white">
+
+        <TextView
+            android:id="@+id/att_end"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingBottom="@dimen/x7"
+            android:paddingLeft="@dimen/x17"
+            android:paddingRight="@dimen/x17"
+            android:paddingTop="@dimen/x7"
+            android:text="截止时间"
+            android:textColor="@color/black" />
+
+        <EditText
+            android:id="@+id/over_endtime"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@null"
+            android:cursorVisible="false"
+            android:hint="请选择截止时间"
+            android:paddingBottom="@dimen/x7"
+            android:paddingLeft="@dimen/x17"
+            android:paddingRight="@dimen/x7"
+            android:paddingTop="@dimen/x7"
+            android:textColor="@color/black"
+            android:textSize="@dimen/x12" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/linear_over_overtime"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/linear_over_end"
+        android:layout_marginBottom="@dimen/x7"
+        android:layout_marginLeft="@dimen/x7"
+        android:layout_marginTop="@dimen/x10"
+        android:background="@color/white"
+
+        >
+
+        <TextView
+            android:id="@+id/att_overtime"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingBottom="@dimen/x7"
+            android:paddingLeft="@dimen/x17"
+            android:paddingRight="@dimen/x17"
+            android:paddingTop="@dimen/x7"
+            android:text="加班时长"
+            android:textColor="@color/black" />
+
+        <EditText
+            android:id="@+id/over_duration"
+            android:layout_width="@dimen/x120"
+            android:layout_height="wrap_content"
+            android:inputType="number"
+            android:background="@null"
+            android:hint="请输入加班时长"
+            android:paddingBottom="@dimen/x7"
+            android:paddingLeft="@dimen/x17"
+            android:paddingRight="@dimen/x7"
+            android:paddingTop="@dimen/x7"
+            android:textColor="@color/black"
+            android:textSize="@dimen/x12" />
+
+    </LinearLayout>
+
+
+
+
+    <LinearLayout
+        android:id="@+id/linear_over_unit"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/linear_over_overtime"
+        android:layout_marginBottom="@dimen/x7"
+        android:layout_marginLeft="@dimen/x7"
+        android:layout_marginRight="@dimen/x7"
+        android:layout_marginTop="@dimen/x10"
+        android:background="@color/white"
+        >
+
+        <TextView
+            android:id="@+id/att_patch"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingBottom="@dimen/x7"
+            android:paddingLeft="@dimen/x17"
+            android:paddingRight="@dimen/x17"
+            android:paddingTop="@dimen/x7"
+            android:text="时长单位"
+            android:textColor="@color/black" />
+
+        <EditText
+            android:id="@+id/over_unit"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@null"
+            android:hint="小时"
+            android:paddingBottom="@dimen/x7"
+            android:paddingLeft="@dimen/x17"
+            android:paddingRight="@dimen/x7"
+            android:paddingTop="@dimen/x7"
+            android:textColor="@color/black"
+            android:textSize="@dimen/x12" />
+
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:id="@+id/linear_over_reason"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/linear_over_unit"
+        android:layout_marginBottom="@dimen/x7"
+        android:layout_marginLeft="@dimen/x7"
+        android:layout_marginRight="@dimen/x7"
+        android:layout_marginTop="@dimen/x10"
+        android:background="@color/white">
+
+        <TextView
+            android:id="@+id/over_reason"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingBottom="@dimen/x7"
+            android:paddingLeft="@dimen/x17"
+            android:paddingRight="@dimen/x17"
+            android:paddingTop="@dimen/x7"
+            android:text="加班原因"
+            android:textColor="@color/black" />
+
+        <EditText
+            android:id="@+id/over_reason_id"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@null"
+            android:hint="请输入加班原因"
+            android:paddingBottom="@dimen/x7"
+            android:paddingLeft="@dimen/x17"
+            android:paddingRight="@dimen/x7"
+            android:paddingTop="@dimen/x7"
+            android:textColor="@color/black"
+            android:textSize="@dimen/x12" />
+
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:id="@+id/linear_over_person"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+
+        android:layout_below="@+id/linear_over_reason"
+        android:layout_marginBottom="@dimen/x7"
+        android:layout_marginLeft="@dimen/x7"
+        android:layout_marginRight="@dimen/x7"
+        android:layout_marginTop="@dimen/x10"
+        android:background="@color/white">
+
+        <TextView
+            android:id="@+id/att_person"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingBottom="@dimen/x7"
+            android:paddingLeft="@dimen/x17"
+            android:paddingRight="@dimen/x17"
+            android:paddingTop="@dimen/x7"
+            android:text="审批人"
+            android:textColor="@color/black" />
+
+        <EditText
+            android:id="@+id/over_person_id"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@null"
+            android:cursorVisible="false"
+            android:hint="请选择请假审批人"
+            android:paddingBottom="@dimen/x7"
+            android:paddingLeft="@dimen/x27"
+            android:paddingRight="@dimen/x7"
+            android:paddingTop="@dimen/x7"
+            android:textColor="@color/black"
+            android:textSize="@dimen/x12" />
+
+    </LinearLayout>
+
+
+
+
+
+    <Button
+        android:id="@+id/btn_overtime"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="@dimen/x1"
+        android:background="@color/bookBlue"
+        android:text="提交申请" />
+
+</RelativeLayout>

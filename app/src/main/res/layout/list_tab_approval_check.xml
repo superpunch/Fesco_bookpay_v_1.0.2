@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:card_view="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <android.support.v7.widget.CardView
+        android:id="@+id/card_view"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:foreground="?android:attr/selectableItemBackground"
+        card_view:cardBackgroundColor="@color/cardview_light_background"
+        card_view:cardCornerRadius="3dp"
+        card_view:cardElevation="2dp"
+        card_view:cardUseCompatPadding="true">
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            >
+            <ImageView
+                android:id="@+id/imageview"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/x7"
+                android:layout_marginLeft="@dimen/x17"
+                android:background="@drawable/head" />
+
+
+    <TextView
+        android:id="@+id/approval_check_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toRightOf="@+id/imageview"
+        android:layout_alignLeft="@+id/approval_check_startime"
+        android:paddingLeft="@dimen/x17"
+        android:paddingRight="@dimen/x7"
+        android:paddingTop="@dimen/x7"
+        android:textSize="@dimen/x14"
+        android:text="@string/infor_name"
+        android:textColor="@color/black" />
+
+    <TextView
+        android:id="@+id/approval_check_tvtime"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toRightOf="@+id/imageview"
+        android:layout_below="@+id/approval_check_name"
+        android:layout_alignLeft="@+id/approval_check_startime"
+        android:paddingLeft="@dimen/x17"
+        android:paddingTop="@dimen/x7"
+        android:text="@string/approval_time"
+        android:textColor="@color/bookBlue" />
+
+            <TextView
+                android:id="@+id/approval_check_time"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_toRightOf="@+id/approval_check_tvtime"
+                android:layout_alignTop="@+id/approval_check_tvtime"
+                android:paddingLeft="@dimen/x7"
+                android:paddingRight="@dimen/x17"
+                android:paddingTop="@dimen/x7"
+                android:text="@string/not_available"
+                android:textColor="@color/bookBlue" />
+
+
+    <TextView
+        android:id="@+id/approval_check_star"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/approval_check_tvtime"
+        android:paddingLeft="@dimen/x17"
+        android:paddingRight="@dimen/x7"
+        android:paddingTop="@dimen/x7"
+        android:layout_marginTop="@dimen/x7"
+        android:text="@string/approval_datime"
+        android:textColor="@color/gray" />
+
+    <TextView
+        android:id="@+id/approval_check_startime"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/approval_check_star"
+        android:layout_toRightOf="@+id/approval_check_star"
+        android:paddingLeft="@dimen/x17"
+        android:paddingRight="@dimen/x7"
+        android:text="@string/not_available"
+        android:textColor="@color/gray" />
+
+    <TextView
+        android:id="@+id/approval_check_type"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/approval_check_star"
+        android:paddingLeft="@dimen/x17"
+        android:paddingRight="@dimen/x7"
+        android:paddingTop="@dimen/x7"
+        android:paddingBottom="@dimen/x7"
+        android:text="@string/approval_check"
+        android:textColor="@color/gray" />
+
+    <TextView
+        android:id="@+id/approval_check_typeid"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toRightOf="@+id/approval_check_type"
+        android:layout_alignTop="@+id/approval_check_type"
+        android:paddingLeft="@dimen/x17"
+        android:paddingRight="@dimen/x7"
+        android:paddingTop="@dimen/x7"
+        android:paddingBottom="@dimen/x7"
+        android:text="@string/not_available"
+        android:textColor="@color/gray" />
+
+
+
+
+
+</RelativeLayout>
+
+</android.support.v7.widget.CardView>
+</LinearLayout>

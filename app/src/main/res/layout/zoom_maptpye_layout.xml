@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+    <RadioGroup
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/grayInfor"
+        android:orientation="vertical">
+
+    <RadioButton
+        android:id="@+id/zoom_maptpye_plus"
+        android:layout_width="50dp"
+        android:layout_height="30dp"
+        android:button="@null"
+        android:background="@drawable/check_maptpye_selector"
+        android:textColor="@drawable/check_text_type_selector"
+        android:text="卫星"
+        android:gravity="center"
+        android:layout_gravity="center_horizontal"
+        android:layout_weight="1"
+        android:contentDescription="@string/app_name"
+        android:src="@drawable/mapmax" />
+
+    <RadioButton
+        android:id="@+id/zoom_maptpye_reduce"
+        android:layout_width="50dp"
+        android:layout_height="30dp"
+        android:checked="true"
+        android:button="@null"
+        android:background="@drawable/check_maptpye_selector"
+        android:textColor="@drawable/check_text_type_selector"
+        android:text="地图"
+        android:layout_gravity="center_horizontal"
+        android:gravity="center"
+        android:layout_weight="1"
+        android:contentDescription="@string/app_name"
+        android:src="@drawable/mapmin" />
+    </RadioGroup>
+</LinearLayout>
