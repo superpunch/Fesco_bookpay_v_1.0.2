@@ -5,6 +5,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.v4.content.ContextCompat;
 import android.support.v4.content.PermissionChecker;
 import android.telephony.TelephonyManager;
@@ -36,6 +37,10 @@ import org.json.JSONObject;
 import java.util.Calendar;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Set;
+
+import cn.jpush.android.api.JPushInterface;
+import cn.jpush.android.api.TagAliasCallback;
 
 
 /**
@@ -187,7 +192,6 @@ public class LoginActivity extends BasePermissionActivity {
                     Logger.json(jsonObject.toString());  //   "ERROR": "get token error."
                     Log.e("Fragment", "DEVICE_ID:" + DEVICE_ID);
                     LoginEntity loginEntity = gs.fromJson(jsonObject.toString(), LoginEntity.class);
-                    //   LoginEntity loginEntity   = JSON.parseObject(jsonObject.toString(),LoginEntity.class);
 
                     JSONObject object = null;
                     try {
@@ -212,6 +216,11 @@ public class LoginActivity extends BasePermissionActivity {
                             Calendar calendar = Calendar.getInstance();
                             int day = calendar.get(Calendar.DATE);//获取日
                             aCache.put("newDay", Integer.toString(day));
+
+                            String  alias=Integer.toString(loginEntity.getEmp_Id());
+                            //调用JPush API设置Alias   别名以 emp_Id
+                            mHandler.sendMessage(mHandler.obtainMessage(MSG_SET_ALIAS,alias ));
+
                             Intent intent = new Intent(LoginActivity.this, MainActivity.class);
                             Bundle bundle = new Bundle();
                             bundle.putSerializable("SUCCESS", loginEntity);
@@ -237,4 +246,52 @@ public class LoginActivity extends BasePermissionActivity {
     }
 
 
+
+    private static final int MSG_SET_ALIAS = 1001;
+    private static final int MSG_SET_TAGS = 1002;
+
+
+    private final Handler mHandler = new Handler() {
+        @Override
+        public void handleMessage(android.os.Message msg) {
+            super.handleMessage(msg);
+            switch (msg.what) {
+                case MSG_SET_ALIAS:;
+                    Log.d(TAG, "Set alias in handler.");
+                    JPushInterface.setAliasAndTags(getApplicationContext(), (String) msg.obj, null, mAliasCallback);
+                    break;
+                default:
+                    Log.i(TAG, "Unhandled msg - " + msg.what);
+            }
+        }
+    };
+
+    private final TagAliasCallback mAliasCallback = new TagAliasCallback() {
+
+        @Override
+        public void gotResult(int code, String alias, Set<String> tags) {
+            String logs;
+            switch (code) {
+                case 0:
+                    logs = "Set tag and alias success";
+                    Log.i(TAG, logs);
+                    break;
+
+                case 6002://设置超时	建议重试
+                    logs = "Failed to set alias and tags due to timeout. Try again after 60s.";
+                    Log.i(TAG, logs);
+                    if (NetworkUtils.isNetworkAvailable(LoginActivity.this)) {
+                        mHandler.sendMessageDelayed(mHandler.obtainMessage(MSG_SET_ALIAS, alias), 1000 * 60);
+                    } else {
+                        Log.i(TAG, "No network");
+                    }
+                    break;
+
+                default:
+                    logs = "Failed with errorCode = " + code;
+                    Log.e(TAG, logs);
+            }
+        }
+
+    };
 }

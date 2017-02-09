@@ -30,9 +30,16 @@ android {
         main {
             java.srcDirs = ['src/main/java', 'src/main/java-gen']
             assets.srcDirs = ['src/main/assets', 'src/main/assets/']
+            jniLibs.srcDirs = ['libs']
+
         }
     }
 
+//    repositories {
+//        flatDir {
+//            dirs 'libs'
+//        }
+//    }
 
 }
 
@@ -66,4 +73,6 @@ dependencies {
     compile 'com.google.android.gms:play-services-appindexing:8.1.0'
     compile 'org.freemarker:freemarker:2.3.20'
     compile 'com.alibaba:fastjson:1.2.23'
+    compile files('libs/jcore-android_v1.1.0.jar')
+    compile files('libs/jpush-android_v3.0.1.jar')
 }

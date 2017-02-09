@@ -5,6 +5,7 @@ import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
+import android.text.TextUtils;
 import android.text.format.DateFormat;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -34,6 +35,8 @@ import com.fesco.bookpay.entity.LoginEntity;
 import com.fesco.bookpay.util.ACache;
 import com.fesco.bookpay.util.AppToast;
 import com.fesco.bookpay.util.ConversionUtil;
+import com.fesco.bookpay.util.HttpUtil;
+import com.fesco.bookpay.util.SharedPrefUtil;
 import com.fesco.bookpay.util.StringUtils;
 import com.fesco.bookpay.util.okhttp.HttpOkManagerUtils;
 import com.fesco.bookpay.util.okhttp.OKManager;
@@ -45,9 +48,9 @@ import com.orhanobut.logger.Logger;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.util.Calendar;
 import java.util.HashMap;
 
-import static com.fesco.bookpay.util.HttpUtil.sign;
 
 /**
  * 签到
@@ -129,7 +132,7 @@ public class AttMapCheckFragment extends BasePageFragment {
             btnCheckIn.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    loadData(sign, mLongtitude, mLatitude, "1", "");
+                    loadData(mLongtitude, mLatitude, "1", "");
                 }
 
 
@@ -137,7 +140,7 @@ public class AttMapCheckFragment extends BasePageFragment {
             btnCheckOut.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    loadData(sign, mLongtitude, mLatitude, "2", "");
+                    loadData(mLongtitude, mLatitude, "2", "");
                 }
             });
             btnCheckField.setOnClickListener(new View.OnClickListener() {
@@ -159,9 +162,9 @@ public class AttMapCheckFragment extends BasePageFragment {
         //  bitmap= BitmapUtils.readBitmapFromFileDescriptor(pathList,80,80);
         ImageView headImage = (ImageView) view.findViewById(R.id.image_map_head);
         ACache aCache = ACache.get(mActivity);
-        Bitmap   bitmapHead= aCache.getAsBitmap(InforPersonActivity.IMAGE_HEAD);
-        Log.d("matrix", "onCreateView handler --"+bitmapHead);
-        if(bitmapHead!=null){
+        Bitmap bitmapHead = aCache.getAsBitmap(InforPersonActivity.IMAGE_HEAD);
+        Log.d("matrix", "onCreateView handler --" + bitmapHead);
+        if (bitmapHead != null) {
             headImage.setImageBitmap(bitmapHead);
         }
     }
@@ -215,7 +218,7 @@ public class AttMapCheckFragment extends BasePageFragment {
                 String message = editText.getText().toString();
                 Logger.i(message.toString());
                 if (StringUtils.isEmpty(message)) {
-                    loadData(sign, longitude, latitude, type, message);
+                    loadData(longitude, latitude, type, message);
 //                    InputMethodManager imm = (InputMethodManager)mActivity. getSystemService(Context.INPUT_METHOD_SERVICE);
 //                    if(getActivity() != null)
 //                        imm.showSoftInput(getActivity().getWindow().getDecorView(),InputMethodManager.HIDE_NOT_ALWAYS);
@@ -236,18 +239,65 @@ public class AttMapCheckFragment extends BasePageFragment {
 
 
     /**
+     * 防止多人签到签退使用同一个手机 ， 每个用户只能当天使用自己的手机签到签退一次。
+     *判断是否保存当天日期 当天是否第一次使用
+     * y 已签到过 {
+     *     判断当天日期与现在日期是否相同
+     *     y 相同 {
+     *     判断当前账号与存储过的账号是否相同
+     *     y 相同  签到
+     *     n 不同  提示 签到功能不支持多个用户签到
+     *     }
+     *     n 不同 签到
+     * }
+     * n 直接签到
+     *
+     *
+     * @param
+     */
+
+    String calendar_day;
+
+    public void loadData(double longitude, double latitude, final String type, String memo) {
+        String already_check = SharedPrefUtil.readCheckFlag(mActivity, "already_check");
+        String already_day = SharedPrefUtil.readCheckFlag(mActivity, "already_day");
+        Calendar calendar = Calendar.getInstance();
+        calendar_day = Integer.toString(calendar.get(Calendar.DATE));//获取当前日
+
+
+
+        if (TextUtils.isEmpty(already_day)) {  //当天未签到直接请求网络
+            httpsData(longitude, latitude, type, memo);
+        } else {
+            if (calendar_day.equals(already_day)) {
+                if (Integer.toString(emp_Id).equals(already_check)) {
+                    httpsData(longitude, latitude, type, memo);
+                } else {
+                    AppToast.showShortText(mActivity, "考勤功能不支持多人打卡！");
+                }
+            } else {
+                   httpsData(longitude, latitude, type, memo);
+            }
+
+
+        }
+
+
+    }
+    /**
      * 网络请求
      * emp_Id,cust_Id
      * cust_Id,emp_Id,longitude,latitude,type,memo（type=1为签到，2为签退，3为外勤）
      *
-     * @param loadEmpInfo
+     * @param
      */
-    public void loadData(String loadEmpInfo, double longitude, double latitude, final String type, String memo) {
+    private void httpsData(double longitude, double latitude, final String type, String memo) {
+
         String[] key = new String[]{"emp_Id", "cust_Id", "longitude", "latitude", "type", "memo"};
-        String[] value = new String[]{emp_Id + "", cust_Id + "", longitude + "", latitude + "", type, memo};
-        HashMap<String, String> map = HttpOkManagerUtils.updateEmpInfoPost(loadEmpInfo, key, value, token);
+        String[] value = new String[]{Integer.toString(emp_Id), Integer.toString(cust_Id), longitude + "", latitude + "", type, memo};
+        HashMap<String, String> map = HttpOkManagerUtils.updateEmpInfoPost(HttpUtil.sign, key, value, token);
         OKManager manager = OKManager.getInstance(mActivity);
-        manager.sendComplexForm(loadEmpInfo, map, new OKManager.Func4() {
+        manager.sendComplexForm(HttpUtil.sign, map, new OKManager.Func4() {
                     @Override
                     public void onResponse(JSONObject jsonObject) {
 
@@ -258,6 +308,12 @@ public class AttMapCheckFragment extends BasePageFragment {
                         try {
                             object = new JSONObject(jsonObject.toString());
                             String message = object.getString("message");
+
+
+                            if ("success".equals(message)) {
+                                SharedPrefUtil.writeCheckFlag(mActivity, "already_check", Integer.toString(emp_Id));
+                                SharedPrefUtil.writeCheckFlag(mActivity, "already_day", calendar_day);
+                            }
 
                             switch (type) {
                                 case "1":
@@ -300,7 +356,6 @@ public class AttMapCheckFragment extends BasePageFragment {
         );
     }
 
-
     private class TimeThread extends Thread {
         @Override
         public void run() {
@@ -324,9 +379,9 @@ public class AttMapCheckFragment extends BasePageFragment {
             super.handleMessage(msg);
             switch (msg.what) {
                 case 1:
-                  long sysTime = System.currentTimeMillis();
-                     String sysTimeStr = (String) DateFormat.format("yyyy-MM-dd  kk:mm:ss ", sysTime);
-                //   String sysTimeStr2 = CommonUtils.sdf.format(sysTime);
+                    long sysTime = System.currentTimeMillis();
+                    String sysTimeStr = (String) DateFormat.format("yyyy-MM-dd  kk:mm:ss ", sysTime);
+                    //   String sysTimeStr2 = CommonUtils.sdf.format(sysTime);
 
                     tvTime.setText(sysTimeStr); //更新时间
                     break;
@@ -400,7 +455,7 @@ public class AttMapCheckFragment extends BasePageFragment {
             mBaiduMap.setMyLocationData(data);
 
 
-            ConversionUtil.Gps gps = ConversionUtil.bd09_To_Gcj02(location.getLongitude(),location.getLatitude());
+            ConversionUtil.Gps gps = ConversionUtil.bd09_To_Gcj02(location.getLongitude(), location.getLatitude());
             // 更新经纬度
             mLatitude = gps.lat;
             mLongtitude = gps.lon;
@@ -415,7 +470,7 @@ public class AttMapCheckFragment extends BasePageFragment {
                 MapStatusUpdate msu = MapStatusUpdateFactory.newLatLng(latlang);
                 mBaiduMap.animateMapStatus(msu);
                 String mMapPlace = location.getAddrStr();
-                Log.d("matrix", "isFirstIn: "+isFirstIn+"   mMapPlace----" + mMapPlace);
+                Log.d("matrix", "isFirstIn: " + isFirstIn + "   mMapPlace----" + mMapPlace);
                 Log.d("matrix", "-mLatitude----" + mLatitude + "  mLongtitude : " + mLongtitude);
                 isFirstIn = false;
 

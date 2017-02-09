@@ -9,6 +9,7 @@ import com.orhanobut.logger.LogLevel;
 import com.orhanobut.logger.Logger;
 import com.orhanobut.logger.Settings;
 
+import cn.jpush.android.api.JPushInterface;
 import me.bookpay.greendao.DaoMaster;
 import me.bookpay.greendao.DaoSession;
 
@@ -34,6 +35,10 @@ public class FApplication extends Application {
         settings.logLevel(LogLevel.FULL); // 设置Log的是否输出，LogLevel.NONE即无Log输出
 
         setupDatabase();
+
+        JPushInterface.setDebugMode(true); 	// 设置开启日志,发布时请关闭日志
+        JPushInterface.init(this);     		// 初始化 JPush
+
     }
 
     public static Context getContext() {

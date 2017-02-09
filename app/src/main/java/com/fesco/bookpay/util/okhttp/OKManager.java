@@ -10,6 +10,7 @@ import android.os.Looper;
 import com.fesco.bookpay.activity.LoginActivity;
 import com.fesco.bookpay.entity.MessageBean;
 import com.fesco.bookpay.util.ACache;
+import com.fesco.bookpay.util.HTTPSUtils;
 import com.fesco.bookpay.util.ptutils.ActivityManager;
 import com.google.gson.Gson;
 
@@ -18,7 +19,15 @@ import org.json.JSONObject;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.security.GeneralSecurityException;
 import java.util.Map;
+
+import javax.net.ssl.HostnameVerifier;
+import javax.net.ssl.SSLContext;
+import javax.net.ssl.SSLSession;
+import javax.net.ssl.SSLSocketFactory;
+import javax.net.ssl.TrustManager;
+import javax.net.ssl.X509TrustManager;
 
 import okhttp3.Call;
 import okhttp3.Callback;
@@ -46,8 +55,46 @@ public class OKManager {
     private static final MediaType MEDIA_TYPE_MARKDOWN = MediaType.parse("text/x-markdown;charset=utf-8");
 
     private OKManager() {
-        client = new OkHttpClient();
+        //client = new OkHttpClient();
         handler = new Handler(Looper.getMainLooper());
+
+    //    mContext = context;
+        X509TrustManager trustManager;
+        SSLSocketFactory sslSocketFactory;
+        final InputStream inputStream;
+        try {
+            inputStream = mActivity.getAssets().open("zrfesco.cer"); // 得到证书的输入流
+            try {
+
+                trustManager = HTTPSUtils.trustManagerForCertificates(inputStream);//以流的方式读入证书
+                SSLContext sslContext = SSLContext.getInstance("TLS");
+                sslContext.init(null, new TrustManager[]{trustManager}, null);
+                sslSocketFactory = sslContext.getSocketFactory();
+
+            } catch (GeneralSecurityException e) {
+                throw new RuntimeException(e);
+            }
+
+            client = new OkHttpClient.Builder()
+                    .sslSocketFactory(sslSocketFactory, trustManager)
+                    .hostnameVerifier(new HostnameVerifier() {
+                        @Override
+                        public boolean verify(String hostname, SSLSession session) {
+                            return true;
+                        }
+                    })
+                    .build();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+
+
+
+
+
+
+
 
     }
 
