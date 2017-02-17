@@ -19,7 +19,6 @@ public class ContactsListAdapter extends RecyclerView.Adapter<ContactsListAdapte
     private Context mContext;
     private String mPhone,mMobile;
     private List<ContactsChangeBean.EmpsBean> listEmpsBean;
- //   private List<String> listEmpsBean;
     public ContactsListAdapter(Context mContext, List<ContactsChangeBean.EmpsBean> listEmpsBean) {
         this.mContext = mContext;
         this.listEmpsBean = listEmpsBean;
@@ -36,13 +35,9 @@ public class ContactsListAdapter extends RecyclerView.Adapter<ContactsListAdapte
     @Override
     public void onBindViewHolder(final ContactsListAdapter.ViewHolder holder, final int position) {
         final View view = holder.mView;
-     //   holder.emps_name.setText("");
         if (holder instanceof ViewHolder) {
 
             ViewHolder viewHolder=holder;
-         //   System.out.println("onBindViewHolder------<<<<<-----"+listEmpsBean.get(6));
-//            System.out.println("onBindViewHolder----"+position+":"+ listEmpsBean.get(position).getGroup_Name()+"-----------");
-//
             if(listEmpsBean ==null){
                 return;
             }
@@ -92,7 +87,6 @@ public class ContactsListAdapter extends RecyclerView.Adapter<ContactsListAdapte
             }
 
             viewHolder.emps_name.setText(listEmpsBean.get(position).getEmp_Name());
-     //       viewHolder.emps_name.setText(listEmpsBean.get(position));
         }
 
         view.setOnClickListener(new View.OnClickListener() {
@@ -105,7 +99,6 @@ public class ContactsListAdapter extends RecyclerView.Adapter<ContactsListAdapte
 
     @Override
     public int getItemCount() {
-        System.out.println("getItemCount-----:"+listEmpsBean.size());
 
         return listEmpsBean.size();
     }

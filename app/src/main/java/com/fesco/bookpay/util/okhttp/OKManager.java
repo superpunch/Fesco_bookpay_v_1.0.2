@@ -6,10 +6,12 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Handler;
 import android.os.Looper;
+import android.util.Log;
 
 import com.fesco.bookpay.activity.LoginActivity;
 import com.fesco.bookpay.entity.MessageBean;
 import com.fesco.bookpay.util.ACache;
+import com.fesco.bookpay.util.AppToast;
 import com.fesco.bookpay.util.HTTPSUtils;
 import com.fesco.bookpay.util.ptutils.ActivityManager;
 import com.google.gson.Gson;
@@ -21,6 +23,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.security.GeneralSecurityException;
 import java.util.Map;
+import java.util.concurrent.TimeUnit;
 
 import javax.net.ssl.HostnameVerifier;
 import javax.net.ssl.SSLContext;
@@ -75,7 +78,10 @@ public class OKManager {
                 throw new RuntimeException(e);
             }
 
-            client = new OkHttpClient.Builder()
+            client = new OkHttpClient.Builder().
+                    connectTimeout(10, TimeUnit.SECONDS)
+                    .readTimeout(10, TimeUnit.SECONDS)
+                    .writeTimeout(10, TimeUnit.SECONDS)
                     .sslSocketFactory(sslSocketFactory, trustManager)
                     .hostnameVerifier(new HostnameVerifier() {
                         @Override
@@ -235,6 +241,8 @@ public class OKManager {
      * @param params
      * @param callBack
      */
+    int serversLoadTimes=0;
+    int maxLoadTimes=3;
     public void sendComplexForm(String url, Map<String, String> params, final Func4 callBack) {
         FormBody.Builder form_builder = new FormBody.Builder();//表单对象，包含以input开始的对象，以html表单为主
         if (params != null && !params.isEmpty()) {
@@ -242,14 +250,40 @@ public class OKManager {
                 form_builder.add(entry.getKey(), entry.getValue());
             }
         }
+        serversLoadTimes = 0;
         RequestBody request_body = form_builder.build();
         Request request = new Request.Builder().url(url).post(request_body).build();//采用post方式提交
         client.newCall(request).enqueue(new Callback() {
             @Override
             public void onFailure(Call call, IOException e) {
+
+                if (Looper.getMainLooper().getThread() == Thread.currentThread()) {
+
+                    Log.d("TAG", "Main Thread");
+                } else {
+                    Log.d("TAG", "Not Main Thread");
+                }
+
+
                 e.printStackTrace();
-                //   Toast.makeText(get,"Error",1).show();;
                 //   callBack.OnError("Error");
+
+//                if(e.getCause().equals(SocketTimeoutException.class) && serversLoadTimes<maxLoadTimes)//如果超时并未超过指定次数，则重新连接
+//                {
+//
+//                    serversLoadTimes++;
+//                    client.newCall(call.request()).enqueue(this);
+//                    Log.i("Fragment", "onFailure 网络连接超时：   "+serversLoadTimes );
+//
+//                }else {
+//                    Looper.prepare();
+//                    AppToast.makeShortToast(mActivity,"网络连接超时，请稍后再次重试");
+//                    Looper.loop();
+//                    e.printStackTrace();
+//                }
+                Looper.prepare();
+                AppToast.makeShortToast(mActivity,"网络连接超时，请稍后再次重试");
+                Looper.loop();
             }
 
             @Override
@@ -257,6 +291,13 @@ public class OKManager {
                 if (response != null && response.isSuccessful()) {
                     onSuccessJsonObjectMethod(response.body().string(), callBack);
 
+                }
+
+                if (Looper.getMainLooper().getThread() == Thread.currentThread()) {
+
+                    Log.d("TAG", "isSuccessful  Main Thread");
+                } else {
+                    Log.d("TAG", "isSuccessful Not Main Thread");
                 }
             }
         });

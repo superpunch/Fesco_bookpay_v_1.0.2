@@ -38,6 +38,7 @@
             android:id="@+id/bill_detail_recycle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+
             >
 
         </android.support.v7.widget.RecyclerView>
@@ -111,7 +112,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/x10"
-
+        android:background="@drawable/check_edit_linear"
         >
         <TextView
             android:layout_width="wrap_content"
@@ -128,6 +129,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@null"
+            android:cursorVisible="false"
             android:hint="请输入审批意见"
             android:paddingBottom="@dimen/x7"
             android:paddingLeft="@dimen/x17"
@@ -144,7 +146,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/x10"
-
+        android:background="@drawable/check_edit_linear"
         >
         <TextView
             android:layout_width="wrap_content"

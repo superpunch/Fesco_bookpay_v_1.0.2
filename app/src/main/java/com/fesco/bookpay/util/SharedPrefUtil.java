@@ -2,7 +2,6 @@ package com.fesco.bookpay.util;
 
 import android.content.Context;
 import android.content.SharedPreferences;
-import android.util.Log;
 
 /**
  * SharedPreferences 工具
@@ -105,25 +104,21 @@ public class SharedPrefUtil {
 	public static void writeFlag(Context context, String key, String value) {
 		SharedPreferences sp = context.getSharedPreferences(SPNAMECHECKFLAG, 0);
 		sp.edit().putString(key, value).commit();
-		Log.d("OASharedPrefUtil", "OAborad:li写入key:" + key + "value:" + value);
 	}
 
 	public static void writeCheckFlag(Context context, String key, String value) {
 		SharedPreferences sp = context.getSharedPreferences(SPNAME_LOGIN_CHECK, 0);
 		sp.edit().putString(key, value).commit();
-		Log.d("OASharedPrefUtil", "OAborad:li写入key:" + key + "value:" + value);
 	}
 
 	public static void write(Context context, String key, String value) {
 		SharedPreferences sp = context.getSharedPreferences(SPNAME, 0);
 		sp.edit().putString(key, value).commit();
-		Log.d("OASharedPrefUtil", "OAborad:li写入key:" + key + "value:" + value);
 	}
 
 	public static void write(Context context, String key, int value) {
 		SharedPreferences sp = context.getSharedPreferences(SPNAME, 0);
 		sp.edit().putInt(key, value).commit();
-		Log.d("OASharedPrefUtil", "OAborad:li写入key:" + key + "value:" + value);
 	}
 
 	public static void clear(Context context, String SPNAME) {

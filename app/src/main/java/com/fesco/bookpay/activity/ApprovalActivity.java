@@ -13,17 +13,16 @@ import android.widget.TextView;
 
 import com.fesco.bookpay.adapter.ContactsFragmentAdapter;
 import com.fesco.bookpay.base.BaseActivity;
-import com.fesco.bookpay.entity.LoginEntity;
+import com.fesco.bookpay.fragment.ApprovalBillFragment;
 import com.fesco.bookpay.fragment.ApprovalCheckFragment;
 import com.fesco.bookpay.fragment.ApprovalOvertimeFragment;
-import com.fesco.bookpay.fragment.ApprovalBillFragment;
 import com.fesco.bookpay.fragment.ApprovalRestFragment;
 
 import java.util.ArrayList;
 import java.util.List;
 
 /**
- * 加班页面
+ * 审批
  * Created by gong.min on 2016/9/29.
  */
 public class ApprovalActivity extends BaseActivity {
@@ -31,14 +30,13 @@ public class ApprovalActivity extends BaseActivity {
     private TabLayout mTabLayout;
     private Toolbar toolbar;
     private ViewPager mViewPager;
-    private LoginEntity loginEntity;
 
     private TextView textView;
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_tab_layout);
-        loginEntity = (LoginEntity) getIntent().getExtras().getSerializable("ApprovalActivity");
+       // loginEntity = (LoginEntity) getIntent().getExtras().getSerializable("ApprovalActivity");
 
         initViews();
     }

@@ -10,9 +10,9 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.fesco.bookpay.entity.approvalbean.ValidateCode;
+import com.fesco.bookpay.impl.OnClickEvent;
 import com.fesco.bookpay.util.AppToast;
 import com.fesco.bookpay.util.HttpUtil;
 import com.fesco.bookpay.util.NetworkUtils;
@@ -36,6 +36,7 @@ public class EnrollActivity extends AppCompatActivity {
     private TextView mSendCode;
     private EditText mUser;
     private EditText mPassword;
+    private EditText mcfmPassword;
     private Button btnEnroll;
     private OKManager manager;
     private Gson gson;
@@ -46,6 +47,7 @@ public class EnrollActivity extends AppCompatActivity {
     private String strCode;
     private String strUser;
     private String strPassword;
+    private String strcfmPassword;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -62,6 +64,7 @@ public class EnrollActivity extends AppCompatActivity {
         mSendCode = (TextView) findViewById(R.id.enr_sendcode);
         mUser = (EditText) findViewById(R.id.enr_user);
         mPassword = (EditText) findViewById(R.id.enr_password);
+        mcfmPassword = (EditText) findViewById(R.id.enr_confirm_password);
         btnEnroll = (Button) findViewById(R.id.enr_btn);
 
         manager = OKManager.getInstance(this);
@@ -81,16 +84,16 @@ public class EnrollActivity extends AppCompatActivity {
      */
     private void enrollCode() {
 
-        mSendCode.setOnClickListener(new View.OnClickListener() {
+        mSendCode.setOnClickListener(new OnClickEvent(){
             @Override
-            public void onClick(View v) {
+            public void singleClick(View v) {
                 strMail = mMail.getText().toString().trim();
                 if (!StringUtils.isEmpty(strMail)) {
                     AppToast.showShortText(mContext, "请输入邮箱");
                     return;
                 }
                 HashMap<String, String> map = new HashMap<String, String>();
-                map.put("email", strMail);
+                map.put("emailOrPhone", strMail);
                 manager.sendComplexForm(HttpUtil.preRegister, map, new OKManager.Func4() {
                     @Override
                     public void onResponse(JSONObject jsonObject) {
@@ -127,21 +130,25 @@ public class EnrollActivity extends AppCompatActivity {
                 strCode = mCode.getText().toString().trim();
                 strUser = mUser.getText().toString().trim();
                 strPassword = mPassword.getText().toString().trim();
-                if (StringUtils.isEmpty(strMail, strCode) && StringUtils.isEmpty(strUser, strPassword)) {
+                strcfmPassword = mcfmPassword.getText().toString().trim();
+                if (StringUtils.isEmpty(strMail, strCode) && StringUtils.isEmpty(strUser, strPassword,strcfmPassword)) {
 
                     if (!NetworkUtils.isNetworkAvailable(EnrollActivity.this)) {
-                        Toast.makeText(EnrollActivity.this, "当前无网络~", Toast.LENGTH_LONG).show();
+                        AppToast.showShortText(EnrollActivity.this, "当前无网络~");
                         return;
                     }
 
                     if (!strCode.equals(String.valueOf(vaildateCode.getValidateCode()))) {
-                        Toast.makeText(EnrollActivity.this, "验证码不匹配请重新输入", Toast.LENGTH_LONG).show();
+                        AppToast.showShortText(EnrollActivity.this, "验证码不匹配请重新输入");
+                        return;
+                    }
+                    if (!strcfmPassword.equals(strPassword)) {
+                        AppToast.showShortText(EnrollActivity.this, "两次输入的密码不匹配请重新输入");
                         return;
                     }
 
-
                     HashMap<String, String> map = new HashMap<String, String>();
-                    map.put("email", strMail);
+                    map.put("emailOrPhone", strMail);
                     map.put("login_name", strUser);
                     map.put("login_password", strPassword);
                     manager.sendComplexForm(HttpUtil.register, map, new OKManager.Func4() {
@@ -219,5 +226,13 @@ public class EnrollActivity extends AppCompatActivity {
 //                    break;
 //            }
 //        }
-//    }
+//    }'
+
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        mHandler.removeCallbacks(runnable);
+    }
+
 }

@@ -58,7 +58,7 @@
             android:layout_width="@dimen/x220"
             android:layout_height="@dimen/x32"
             android:layout_gravity="center"
-            android:layout_marginTop="@dimen/x44"
+            android:layout_marginTop="@dimen/x34"
             android:background="@drawable/edit_enroll"
             android:ems="10"
             android:hint="邮箱"
@@ -126,15 +126,27 @@
             android:paddingLeft="5dp"
             android:textColor="@color/white"
             android:textColorHint="@color/white"
-
             />
-
+        <EditText
+            android:id="@+id/enr_confirm_password"
+            android:layout_width="@dimen/x220"
+            android:layout_height="@dimen/x32"
+            android:layout_gravity="center"
+            android:layout_marginTop="@dimen/x15"
+            android:background="@drawable/edit_enroll"
+            android:inputType="numberPassword"
+            android:ems="10"
+            android:hint="确认密码"
+            android:paddingLeft="5dp"
+            android:textColor="@color/white"
+            android:textColorHint="@color/white"
+            />
         <Button
             android:id="@+id/enr_btn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:layout_marginTop="@dimen/x34"
+            android:layout_marginTop="@dimen/x30"
             android:background="@drawable/selector_enroll_btn"
             android:textSize="@dimen/x14"
             android:text="点击注册"

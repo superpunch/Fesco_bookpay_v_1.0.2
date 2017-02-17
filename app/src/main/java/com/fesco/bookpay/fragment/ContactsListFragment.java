@@ -46,7 +46,6 @@ public class ContactsListFragment extends Fragment {
         if (mRecyclerView == null) {
             mRecyclerView =
                     (RecyclerView) inflater.inflate(R.layout.list_fragment, container, false);
-            System.out.println("mRecyclerView--------重复加载？？？？>>>>>>>"+listEmpsBean+"-----------");
         }
         return mRecyclerView;
     }

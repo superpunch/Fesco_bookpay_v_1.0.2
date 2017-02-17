@@ -3,6 +3,7 @@ package com.fesco.bookpay.activity;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Looper;
 import android.support.v4.app.Fragment;
@@ -10,6 +11,8 @@ import android.support.v4.app.FragmentActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
+import android.view.Window;
+import android.view.WindowManager;
 import android.widget.ImageView;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
@@ -20,17 +23,20 @@ import com.fesco.bookpay.adapter.FragmentTabAdapter;
 import com.fesco.bookpay.adapter.cycleviewadapter.CycleViewPager;
 import com.fesco.bookpay.entity.ADInfo;
 import com.fesco.bookpay.entity.LoginEntity;
-import com.fesco.bookpay.fragment.tabfragment.CounsleFragment;
+import com.fesco.bookpay.entity.UpdateStatus;
+import com.fesco.bookpay.entity.VersionInfo;
 import com.fesco.bookpay.fragment.tabfragment.HelpFragment;
 import com.fesco.bookpay.fragment.tabfragment.MyFragment;
-import com.fesco.bookpay.fragment.tabfragment.ToolFragment;
 import com.fesco.bookpay.fragment.tabfragment.WordFragment;
 import com.fesco.bookpay.util.ACache;
+import com.fesco.bookpay.util.AppToast;
 import com.fesco.bookpay.util.HttpUtil;
+import com.fesco.bookpay.util.UpdateVersionUtil;
 import com.fesco.bookpay.util.ViewFactory;
 import com.fesco.bookpay.util.okhttp.CropSquareTrans;
 import com.fesco.bookpay.util.okhttp.HttpOkManagerUtils;
 import com.fesco.bookpay.util.okhttp.OKManager;
+import com.google.gson.Gson;
 import com.nostra13.universalimageloader.cache.disc.naming.Md5FileNameGenerator;
 import com.nostra13.universalimageloader.core.DisplayImageOptions;
 import com.nostra13.universalimageloader.core.ImageLoader;
@@ -64,23 +70,26 @@ public class MainActivity extends FragmentActivity {
     public List<Fragment> fragments = new ArrayList<Fragment>();
     public ACache aCache;
     public LoginEntity loginEntity;
+    private Gson gson;
     private String[] imageUrls = {"http://img.taodiantong.cn/v55183/infoimg/2013-07/130720115322ky.jpg",
             "http://pic30.nipic.com/20130626/8174275_085522448172_2.jpg",
             "http://pic18.nipic.com/20111215/577405_080531548148_2.jpg"
     };
-
+   // private  VersionInfo versionInfo;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-//        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
-//            Window window = getWindow();
-//            // Translucent status bar
-//            window.setFlags(
-//                    WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS,
-//                    WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
-//        }
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
+            Window window = getWindow();
+            // Translucent status bar
+            window.setFlags(
+                    WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS,
+                    WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
+        }
+
         aCache = ACache.get(this);
+        gson=new Gson();
         loginEntity = (LoginEntity) aCache.getAsObject("loginEntity");
 
         String test = aCache.getAsString("test");
@@ -90,7 +99,8 @@ public class MainActivity extends FragmentActivity {
 //        initialize();
 
         initdata();
-
+        //本地测试检测是否有新版本发布
+        getversion();
 
     }
 
@@ -98,8 +108,68 @@ public class MainActivity extends FragmentActivity {
     protected void onResume() {
         super.onResume();
         loadImageHead();
-    }
 
+
+
+
+    }
+private  void updateGetVersion(VersionInfo versionInfo){
+    if(versionInfo != null ) {
+        final List<VersionInfo.AppStoreBean>  appStoreBeen =  versionInfo.getAppStore();
+        if( appStoreBeen != null && !appStoreBeen.isEmpty()){
+
+
+
+            UpdateVersionUtil.localCheckedVersion(MainActivity.this, appStoreBeen.get(0), new UpdateVersionUtil.UpdateListener() {
+
+                @Override
+                public void onUpdateReturned(int updateStatus, VersionInfo.AppStoreBean versionInfo) {
+                    //判断回调过来的版本检测状态
+                    switch (updateStatus) {
+                        case UpdateStatus.YES:
+                            //弹出更新提示
+                            UpdateVersionUtil.showDialog(MainActivity.this, versionInfo);
+                            break;
+                        case UpdateStatus.NO:
+                            //没有新版本
+                     //       AppToast.showShortText(getApplicationContext(), "已经是最新版本了!");
+                             //存储c版本号
+                            break;
+                        case UpdateStatus.NOWIFI:
+                            //当前是非wifi网络
+                            AppToast.showShortText(getApplicationContext(), "当前非wifi网络,下载会消耗手机流量！");
+
+                            UpdateVersionUtil.showDialog(MainActivity.this, versionInfo);
+
+//							DialogUtils.showDialog(MainActivity.this, "温馨提示","当前非wifi网络,下载会消耗手机流量!", "确定", "取消",new DialogOnClickListenner() {
+//								@Override
+//								public void btnConfirmClick(Dialog dialog) {
+//									dialog.dismiss();
+//									//点击确定之后弹出更新对话框
+//									UpdateVersionUtil.showDialog(SystemActivity.this,versionInfo);
+//								}
+//
+//								@Override
+//								public void btnCancelClick(Dialog dialog) {
+//									dialog.dismiss();
+//								}
+//							});
+                            break;
+                        case UpdateStatus.ERROR:
+                            //检测失败
+                            AppToast.showShortText(getApplicationContext(), "检测失败，请稍后重试！");
+                            break;
+                        case UpdateStatus.TIMEOUT:
+                            //链接超时
+                            AppToast.showShortText(getApplicationContext(), "链接超时，请检查网络设置!");
+                            break;
+                    }
+                }
+
+            });
+        }
+    }
+}
     private void loadImageHead() {
         Bitmap bitmap= aCache.getAsBitmap(InforPersonActivity.IMAGE_HEAD);
         if (bitmap == null) {
@@ -111,8 +181,6 @@ public class MainActivity extends FragmentActivity {
     @Override
     protected void onDestroy() {
         super.onDestroy();
-
-        Log.d("Fragment", "onDestroy  消耗Main页面");
     }
 
     private void initView() {
@@ -121,16 +189,19 @@ public class MainActivity extends FragmentActivity {
         rbWroid = (RadioButton) findViewById(R.id.rb_word);
         rbHelp = (RadioButton) findViewById(R.id.rb_help);
         rbCounsle = (RadioButton) findViewById(R.id.rb_counsle);
-        rbTool = (RadioButton) findViewById(R.id.rb_tool);
-        rbMy = (RadioButton) findViewById(R.id.rb_my);
+       // rbTool = (RadioButton) findViewById(R.id.rb_tool);
+      //  rbMy = (RadioButton) findViewById(R.id.rb_my);
         //     View layout = getLayoutInflater().inflate(R.layout.test, null);
-//        Toolbar  toolbar = (Toolbar) findViewById(R.id.main_toobar);
+
+
+        toolbar = (Toolbar) findViewById(R.id.toolbar_main);
+        toolbar.setTitle("");
 //                          findViewById(R.id.toolbar);
-        title = (TextView) findViewById(R.id.toolbar_text);
-        back = (TextView) findViewById(R.id.toolbar_back);
+        title = (TextView) findViewById(R.id.toolbar_main_title);
+        title.setText("工作");
+        back = (TextView) findViewById(R.id.toolbar_main_back);
+        ImageView search = (ImageView) findViewById(R.id.toolbar__main_search);
         //  Toolbar   toolbar = (Toolbar)layout.findViewById(R.id.toolbar);
-        Logger.e("Main : " + title);
-        Logger.e("Main : " + toolbar);
         back.setVisibility(View.VISIBLE);
         back.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -144,41 +215,15 @@ public class MainActivity extends FragmentActivity {
         });
 
 
-        title.setText("工作");
+
 //        toolbar.setTitle("");
         fragments.add(WordFragment.getInstance(loginEntity));
         fragments.add(new HelpFragment());
-        fragments.add(new CounsleFragment());
-        fragments.add(new ToolFragment());
-        fragments.add(new MyFragment());
-        FragmentTabAdapter tabAdapter = new FragmentTabAdapter(this, fragments, R.id.tab_content, rgBottom, title);
-
-
-        //   toolbar = (Toolbar)main_toobar.findViewById(R.id.toolbar);
-        //    title = (TextView)main_toobar. findViewById(R.id.toolbar_text);
-        //     toolbar.setTitle("");
-//        rgBottom.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
-//            @Override
-//            public void onCheckedChanged(RadioGroup group, int checkedId) {
-//                switch (checkedId) {
-//                    case 0:
-//                        title.setText("首页");
-//                        break;
-//                    case 1:
-//                        title.setText("自助");
-//                        break;
-//                    case 2:
-//                        title.setText("咨询");
-//                        break;
-//                    case 3:
-//                        title.setText("工具");
-//                        break;
-//                    case 4:
-//                        title.setText("我的");
-//                        break;
-//                }
-//            }
-//        });
+//        fragments.add(new CounsleFragment());
+//        fragments.add(new ToolFragment());
+        fragments.add(MyFragment.getInstance(loginEntity));
+        FragmentTabAdapter tabAdapter = new FragmentTabAdapter(this, fragments, R.id.tab_content, rgBottom);
+        tabAdapter.setRadioButton(rbWroid,rbHelp,rbCounsle,title,search,back,aCache);
     }
 
 
@@ -228,7 +273,18 @@ public class MainActivity extends FragmentActivity {
         );
     }
 
+    public void getversion () {
+        OKManager manager = OKManager.getInstance(this);
+        manager.asyncJsonStringByURL(HttpUtil.getAppStore, new OKManager.Func1() {
+            @Override
+            public void onResponse(String result) {
+                Logger.json(result);
+                VersionInfo  versionInfo=       gson.fromJson(result,VersionInfo.class);
+                updateGetVersion(versionInfo);
+            }
+        });
 
+    }
     private void initialize() {
 
         cycleViewPager = (CycleViewPager) getFragmentManager()

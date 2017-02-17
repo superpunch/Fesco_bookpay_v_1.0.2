@@ -18,7 +18,6 @@ import android.widget.ImageView;
 
 import com.fesco.bookpay.activity.ApprovalActivity;
 import com.fesco.bookpay.activity.AttendanceActivity;
-import com.fesco.bookpay.activity.ContactsActivity;
 import com.fesco.bookpay.activity.InforPersonActivity;
 import com.fesco.bookpay.activity.OvertimeActivity;
 import com.fesco.bookpay.activity.R;
@@ -130,9 +129,6 @@ public class WordFragment extends Fragment {
                         break;
                     case 3:
                         Intent inentApproval = new Intent(mActivity, ApprovalActivity.class);
-                        Bundle bundleApproval = new Bundle();
-                        bundleApproval.putSerializable("ApprovalActivity", loginEntity);
-                        inentApproval.putExtras(bundleApproval);
                         startActivity(inentApproval);
                         break;
                     case 4:
@@ -142,35 +138,35 @@ public class WordFragment extends Fragment {
                         inentOver.putExtras(bundleOver);
                         startActivity(inentOver);
                         break;
+//                    case 5:
+//                        Intent inentContact = new Intent(mActivity, ContactsActivity.class);
+//                        Bundle bundleCotact = new Bundle();
+//                        bundleCotact.putSerializable("ContactsActivity", loginEntity);
+//                        inentContact.putExtras(bundleCotact);
+//                        startActivity(inentContact);
+//                        break;
                     case 5:
-                        Intent inentContact = new Intent(mActivity, ContactsActivity.class);
-                        Bundle bundleCotact = new Bundle();
-                        bundleCotact.putSerializable("ContactsActivity", loginEntity);
-                        inentContact.putExtras(bundleCotact);
-                        startActivity(inentContact);
-                        break;
-                    case 6:
                         Intent inentSatis = new Intent(mActivity, StatisticActivity.class);
                         Bundle bundleStatis = new Bundle();
                         bundleStatis.putSerializable("StatisticActivity", loginEntity);
                         inentSatis.putExtras(bundleStatis);
                         startActivity(inentSatis);
                         break;
-                    case 7:
+                    case 6:
                         Intent inentOutLate = new Intent(mActivity, RankOutLateActivity.class);
                         Bundle bundleOutLate = new Bundle();
                         bundleOutLate.putSerializable("RankOutLateActivity", loginEntity);
                         inentOutLate.putExtras(bundleOutLate);
                         startActivity(inentOutLate);
                         break;
-                    case 8:
+                    case 7:
                         Intent inentOverTime = new Intent(mActivity, RankOverTimeActivity.class);
                         Bundle bundleOverTime = new Bundle();
                         bundleOverTime.putSerializable("RankOverTimeActivity", loginEntity);
                         inentOverTime.putExtras(bundleOverTime);
                         startActivity(inentOverTime);
                         break;
-                    case 9:
+                    case 8:
                         Intent inentRbm = new Intent(mActivity, ReimbursementActivity.class);
 //                        Bundle bundleRbm = new Bundle();
 //                        bundleRbm.putSerializable("ReimbursementActivity", loginEntity);

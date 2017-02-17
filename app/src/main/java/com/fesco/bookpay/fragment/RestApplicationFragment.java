@@ -1056,6 +1056,9 @@ public class RestApplicationFragment extends BasePageFragment {
                         loadDataRecord(HttpUtil.getEmpHol);
                     } else if ("not enough".equals(message)) {
                         AppToast.showShortText(mActivity, "您的时间不足够！");
+                    }
+                     else if ("duplicate".equals(message)) {
+                        AppToast.showShortText(mActivity, "请假时间段重复,请重新填写！");
                     } else {
                         AppToast.showShortText(mActivity, "服务器暂停 请稍后！");
                     }

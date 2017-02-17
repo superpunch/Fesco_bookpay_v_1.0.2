@@ -18,7 +18,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_marginLeft="@dimen/x23"
-            android:background="@drawable/head" />
+            android:background="@drawable/ruzhi" />
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -79,7 +79,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_marginRight="@dimen/x23"
-            android:background="@drawable/head" />
+            android:background="@drawable/shebao" />
     </LinearLayout>
 
     <LinearLayout
@@ -96,7 +96,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_marginLeft="@dimen/x23"
-            android:background="@drawable/head" />
+            android:background="@drawable/jijing" />
 
         <LinearLayout
             android:layout_width="match_parent"

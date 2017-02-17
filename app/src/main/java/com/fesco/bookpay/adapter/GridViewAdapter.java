@@ -14,13 +14,13 @@ import com.fesco.bookpay.activity.R;
  * Created by gong.min on 2016/9/5.
  */
 public class GridViewAdapter extends BaseAdapter {
-    private int[] images = {R.drawable.a, R.drawable.b, R.drawable.c, R.drawable.d, R.drawable.e, R.drawable.f, R.drawable.g, R.drawable.h, R.drawable.i, R.drawable.m, R.drawable.j, R.drawable.k, R.drawable.l};
+    private int[] images = {R.drawable.a, R.drawable.b, R.drawable.c, R.drawable.d, R.drawable.e, R.drawable.g, R.drawable.h, R.drawable.i, R.drawable.m};
     private String[] textsTotal = {
             // 九宫格图片下方文字的设置
             "个人信息", "考勤", "休假"
-            , "审批", "加班", "通讯录",
-            "签到统计", "迟到排行", "加班排行","报销",
-            "薪资列表", "HRS数据录入", "HRS数据勘察"
+            , "审批", "加班",
+            "签到统计", "迟到排行", "加班排行","报销"
+           // //"通讯录", R.drawable.f,,"薪资列表", "HRS数据录入", "HRS数据勘察"  ,R.drawable.j, R.drawable.k, R.drawable.l
     };
     private LayoutInflater inflater;
 

@@ -26,6 +26,7 @@ import com.fesco.bookpay.util.ACache;
 import com.fesco.bookpay.util.AppToast;
 import com.fesco.bookpay.util.HttpUtil;
 import com.fesco.bookpay.util.NetworkUtils;
+import com.fesco.bookpay.util.SpUtils;
 import com.fesco.bookpay.util.okhttp.OKManager;
 import com.fesco.bookpay.weight.dialog.PermissionDialogInfo;
 import com.google.gson.Gson;
@@ -54,6 +55,7 @@ public class LoginActivity extends BasePermissionActivity {
     private EditText password;
     private Button btnLogin;
     private TextView login_enroll;
+    private TextView login_version;
     private Gson gs;
     public OKManager manager;
     public String DEVICE_ID = "";
@@ -85,6 +87,7 @@ public class LoginActivity extends BasePermissionActivity {
         password = (EditText) findViewById(R.id.password);
         btnLogin = (Button) findViewById(R.id.buttonlogin);
         login_enroll = (TextView) findViewById(R.id.login_enroll);
+        login_version = (TextView) findViewById(R.id.login_version);
         manager = OKManager.getInstance(this);
         gs = new Gson();
         //operaTionPermission();
@@ -92,7 +95,15 @@ public class LoginActivity extends BasePermissionActivity {
 
         loginOnClickListener();
         login_enroll();
+
+        String  getVersion_Name=SpUtils.getInstance(this).getString(SpUtils.VERSION_NAME,null);
+        if(getVersion_Name !=null){
+            login_version.setText(getVersion_Name);
+        }
+
     }
+
+
 
     private void loginOnClickListener() {
         btnLogin.setOnClickListener(new View.OnClickListener() {
@@ -144,7 +155,6 @@ public class LoginActivity extends BasePermissionActivity {
                 Log.e("Fragment", "onGranted");
                 loginLoading();
             }
-
 
 
             @Override
@@ -217,9 +227,9 @@ public class LoginActivity extends BasePermissionActivity {
                             int day = calendar.get(Calendar.DATE);//获取日
                             aCache.put("newDay", Integer.toString(day));
 
-                            String  alias=Integer.toString(loginEntity.getEmp_Id());
+                            String alias = Integer.toString(loginEntity.getEmp_Id());
                             //调用JPush API设置Alias   别名以 emp_Id
-                            mHandler.sendMessage(mHandler.obtainMessage(MSG_SET_ALIAS,alias ));
+                            mHandler.sendMessage(mHandler.obtainMessage(MSG_SET_ALIAS, alias));
 
                             Intent intent = new Intent(LoginActivity.this, MainActivity.class);
                             Bundle bundle = new Bundle();
@@ -227,8 +237,7 @@ public class LoginActivity extends BasePermissionActivity {
                             intent.putExtras(bundle);
                             startActivity(intent);
                             finish();
-                        }
-                        else {
+                        } else {
                             AppToast.makeShortToast(LoginActivity.this, "用户名或密码错误");
                         }
                     }
@@ -246,7 +255,6 @@ public class LoginActivity extends BasePermissionActivity {
     }
 
 
-
     private static final int MSG_SET_ALIAS = 1001;
     private static final int MSG_SET_TAGS = 1002;
 
@@ -256,7 +264,8 @@ public class LoginActivity extends BasePermissionActivity {
         public void handleMessage(android.os.Message msg) {
             super.handleMessage(msg);
             switch (msg.what) {
-                case MSG_SET_ALIAS:;
+                case MSG_SET_ALIAS:
+                    ;
                     Log.d(TAG, "Set alias in handler.");
                     JPushInterface.setAliasAndTags(getApplicationContext(), (String) msg.obj, null, mAliasCallback);
                     break;

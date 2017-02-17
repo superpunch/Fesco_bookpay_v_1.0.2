@@ -5,16 +5,24 @@ package com.fesco.bookpay.util;
  */
 public class HttpUtil {
    // http://11.0.162.82:8080/payroll/expense/loadAddApply.json  报销接口
-   // 
+   //
+   public  static  String  updateApkUrl="https://www.payrollpen.com/payroll/app.apk";
+
+
     private  static String baseUrl="https://www.payrollpen.com";
+
     //   private  static String baseUrl="http://11.0.162.82:8080";
    //  private  static String baseUrl="http://11.0.161.15:8080";
-    // private  static String baseUrl="https://11.0.197.196:8443";
+    //   private  static String baseUrl="https://11.0.197.196:8443";
 
     // public static String baseRetrofitUrl = baseUrl+"/payroll/";
     public static String baseRetrofitUrl = baseUrl+"/payroll/";
 
-   //  @"token":tokenkey
+
+    public  static  String  getAppStore=baseUrl+"/payroll/appStore/getAppStore.json";
+
+
+    //  @"token":tokenkey
     public static String tokenKey = baseUrl+"/payroll/getNewToken.json";//获取最新token值
     public static String login_path = baseUrl+"/payroll/login.json";
     public static String getMenuPath = baseUrl+"/payroll/getMenu.json";//首页URl信息

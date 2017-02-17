@@ -5,7 +5,7 @@
     android:orientation="vertical"
     >
 
-    <include layout="@layout/toolbar_title"
+    <include layout="@layout/toolbar_title_contacts"
         ></include>
 
 
@@ -54,7 +54,7 @@
             android:drawableTop="@drawable/selector_tab_help"
             android:textColor="@drawable/selector_tab_tvcolor"
             android:gravity="center"
-            android:text="自助"
+            android:text="社保"
             android:textSize="11sp" />
 
         <RadioButton
@@ -62,35 +62,35 @@
             android:layout_height="wrap_content"
             android:id="@+id/rb_counsle"
             android:layout_weight="1.0"
-            android:drawableTop="@drawable/selector_tab_counsle"
-            android:textColor="@drawable/selector_tab_tvcolor"
-            android:button="@null"
-            android:gravity="center"
-            android:text="咨询"
-            android:textSize="11sp" />
-
-        <RadioButton
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/rb_tool"
-            android:layout_weight="1.0"
-            android:button="@null"
-            android:drawableTop="@drawable/selector_tab_tool"
-            android:textColor="@drawable/selector_tab_tvcolor"
-            android:gravity="center"
-            android:text="工具"
-            android:textSize="11sp" />
-        <RadioButton
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/rb_my"
-            android:layout_weight="1.0"
-            android:button="@null"
             android:drawableTop="@drawable/selector_tab_my"
             android:textColor="@drawable/selector_tab_tvcolor"
+            android:button="@null"
             android:gravity="center"
-            android:text="我的"
+            android:text="通讯录"
             android:textSize="11sp" />
+
+        <!--<RadioButton-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:id="@+id/rb_tool"-->
+            <!--android:layout_weight="1.0"-->
+            <!--android:button="@null"-->
+            <!--android:drawableTop="@drawable/selector_tab_tool"-->
+            <!--android:textColor="@drawable/selector_tab_tvcolor"-->
+            <!--android:gravity="center"-->
+            <!--android:text="工具"-->
+            <!--android:textSize="11sp" />-->
+        <!--<RadioButton-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:id="@+id/rb_my"-->
+            <!--android:layout_weight="1.0"-->
+            <!--android:button="@null"-->
+            <!--android:drawableTop="@drawable/selector_tab_my"-->
+            <!--android:textColor="@drawable/selector_tab_tvcolor"-->
+            <!--android:gravity="center"-->
+            <!--android:text="我的"-->
+            <!--android:textSize="11sp" />-->
     </RadioGroup>
 
 

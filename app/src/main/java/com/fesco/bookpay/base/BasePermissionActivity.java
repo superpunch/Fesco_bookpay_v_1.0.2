@@ -23,6 +23,7 @@ public class BasePermissionActivity extends AppCompatActivity {
     public static final int PERMISSIONS_DENIED = 1; // 权限拒绝
     private static final String PACKAGE_URL_SCHEME = "package:"; // 方案
     private PermissionListenter mListenter;
+
     public boolean isPermission;
     public void requestBasePermissions(String[] permissions, PermissionListenter permissionListenter) {
         mListenter = permissionListenter;

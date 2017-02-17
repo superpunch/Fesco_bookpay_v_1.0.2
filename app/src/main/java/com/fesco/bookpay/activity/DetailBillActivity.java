@@ -10,7 +10,7 @@ import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.text.InputType;
 import android.text.TextUtils;
-import android.util.Log;
+import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -92,7 +92,7 @@ public class DetailBillActivity extends BaseActivity {
         approvalBillDetailAdapter = new ApprovalBillDetailAdapter(this);
         mRecyclerView.setLayoutManager(new LinearLayoutManager(mRecyclerView.getContext()));
         mRecyclerView.setAdapter(approvalBillDetailAdapter);
-
+        mRecyclerView.setFocusable(false);
         initializeLinearBackground();
         textView.setText("审批进度");
         toolbar.setTitle("");
@@ -135,37 +135,59 @@ public class DetailBillActivity extends BaseActivity {
         final LinearLayout linear_opinion = (LinearLayout) findViewById(R.id.linear_bill_detail_opinion);
         linear_person = (LinearLayout) findViewById(R.id.linear_bill_detail_person);
         mPerson.setInputType(InputType.TYPE_NULL);
-
-        mPerson.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+        linear_opinion.setSelected(true);
+        mPerson.setOnTouchListener(new View.OnTouchListener() {
             @Override
-            public void onFocusChange(View v, boolean hasFocus) {
-                Log.d(TAG, "mPerson is MotionEvent.hasFocus" + hasFocus);
-                if (hasFocus) {
-                    if (mFirst) {
-                        pvOptionsPerson.show();
-                    }
-                    linear_person.setBackgroundResource(R.drawable.bg_edittext_focused);
-                } else {
-                    linear_person.setBackgroundResource(R.drawable.bg_edittext_normal);
-                }
+            public boolean onTouch(View v, MotionEvent event) {
+
+                linear_opinion.setSelected(false);
+                linear_person.setSelected(true);
+                return false;
             }
         });
+
+        mOpinion.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                linear_opinion.setSelected(true);
+                linear_person.setSelected(false);
+                return false;
+            }
+        });
+
+
+//        mPerson.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+//            @Override
+//            public void onFocusChange(View v, boolean hasFocus) {
+//                Log.d(TAG, "mPerson is MotionEvent.hasFocus" + hasFocus);
+//                if (hasFocus) {
+//                    if (mFirst) {
+//                        pvOptionsPerson.show();
+//                    }
+//                    linear_person.setBackgroundResource(R.drawable.bg_edittext_focused);
+//                } else {
+//                    linear_person.setBackgroundResource(R.drawable.bg_edittext_normal);
+//                }
+//            }
+//        });
 //        mOpinion.setFocusable(true);
 //        mOpinion.setFocusableInTouchMode(true);
-//        mOpinion.requestFocus();
-        mOpinion.setOnFocusChangeListener(new View.OnFocusChangeListener() {
-            @Override
-            public void onFocusChange(View v, boolean hasFocus) {
-                if (hasFocus) {
-                    Log.d(TAG, "mOpinion is MotionEvent.hasFocus" + hasFocus);
-                    linear_opinion.setBackgroundResource(R.drawable.bg_edittext_focused);
-                } else {
-                    linear_opinion.setBackgroundResource(R.drawable.bg_edittext_normal);
-                    Log.d(TAG, "mOpinion is MotionEvent.hasFocus" + hasFocus);
+////        mOpinion.requestFocus();
 
-                }
-            }
-        });
+//
+//        mOpinion.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+//            @Override
+//            public void onFocusChange(View v, boolean hasFocus) {
+//                if (hasFocus) {
+//
+//                    linear_opinion.setBackgroundResource(R.drawable.bg_edittext_focused);
+//                } else {
+//                    linear_opinion.setBackgroundResource(R.drawable.bg_edittext_normal);
+//
+//
+//                }
+//            }
+//        });
 
     }
 

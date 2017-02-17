@@ -84,6 +84,9 @@ public  class BaseActivity extends AppCompatActivity {
         List<String> permissionList = new ArrayList<>();
 
         for (String permission : permissions) {
+//            if(ActivityCompat.shouldShowRequestPermissionRationale(this,permission) ){
+//
+//            }
             if (ContextCompat.checkSelfPermission(this, permission) != PermissionChecker.PERMISSION_GRANTED) {
                 permissionList.add(permission);
             } else {

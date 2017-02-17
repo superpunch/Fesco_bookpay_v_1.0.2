@@ -23,7 +23,7 @@ public abstract class OnClickEvent implements View.OnClickListener {
         boolean flag = false;
         long time = System.currentTimeMillis() - lastTime;
 
-        if (time < 500) {
+        if (time < 1000) {
             flag = true;
         }
         lastTime = System.currentTimeMillis();

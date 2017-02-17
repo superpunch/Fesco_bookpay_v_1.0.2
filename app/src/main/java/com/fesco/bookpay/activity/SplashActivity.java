@@ -13,6 +13,7 @@ import android.view.WindowManager;
 import com.fesco.bookpay.entity.LoginEntity;
 import com.fesco.bookpay.util.ACache;
 import com.fesco.bookpay.util.HttpUtil;
+import com.fesco.bookpay.util.SpUtils;
 import com.fesco.bookpay.util.okhttp.OKManager;
 import com.orhanobut.logger.Logger;
 
@@ -34,6 +35,17 @@ public class SplashActivity extends AppCompatActivity {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        // 判断是否是第一次开启应用
+        boolean isFirstOpen = SpUtils.getInstance(this).getBoolean( SpUtils.FIRST_OPEN,false);
+        // 如果是第一次启动，则先进入功能引导页
+        if (!isFirstOpen) {
+            Intent intent = new Intent(this, WelcomeGuideActivity.class);
+            startActivity(intent);
+            finish();
+            return;
+        }
+
         setContentView(R.layout.activity_splash);
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
             Window window = getWindow();
