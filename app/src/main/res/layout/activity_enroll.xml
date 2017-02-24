@@ -61,7 +61,7 @@
             android:layout_marginTop="@dimen/x34"
             android:background="@drawable/edit_enroll"
             android:ems="10"
-            android:hint="邮箱"
+            android:hint="邮箱/手机号"
             android:paddingLeft="5dp"
             android:textColor="@color/white"
             android:textColorHint="@color/white" />

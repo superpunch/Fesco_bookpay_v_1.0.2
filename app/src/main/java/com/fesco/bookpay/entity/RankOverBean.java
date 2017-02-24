@@ -40,7 +40,7 @@ public class RankOverBean {
 
     public static class RankListBean {
         private String emp_Name;
-        private String duration;
+        private double duration;
         private Object counts;
 
         public String getEmp_Name() {
@@ -51,11 +51,11 @@ public class RankOverBean {
             this.emp_Name = emp_Name;
         }
 
-        public String getDuration() {
+        public double getDuration() {
             return duration;
         }
 
-        public void setDuration(String duration) {
+        public void setDuration(double duration) {
             this.duration = duration;
         }
 

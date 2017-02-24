@@ -105,7 +105,7 @@ public class EnrollActivity extends AppCompatActivity {
                                 AppToast.showShortText(mContext, "系统没有该员工");
                                 // {"ValidateCode": 913084}
                             } else if ("already exist".equals(vaildateCode.getMessage())) {
-                                AppToast.showShortText(mContext, "邮箱已注册");
+                                AppToast.showShortText(mContext, "此用户已注册");
                             }
 
                         } else if (vaildateCode.getValidateCode() > 0) {

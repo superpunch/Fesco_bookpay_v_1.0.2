@@ -20,7 +20,6 @@ public class RankOverAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
     private static final int VIEW_TYPE = 1;
     private List<RankOverBean.RankListBean>  rankOverBean;
 
-
     public RankOverAdapter(RankOverTimeActivity mContext) {
         this.mLayoutInflater = LayoutInflater.from(mContext);
 
@@ -52,6 +51,7 @@ public class RankOverAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
                 return;
             }
             RankOverBean.RankListBean listBean = rankOverBean.get(position);
+
             if(position==0){
                 viewHolder.rankTrohpy.setImageResource(R.drawable.trophy);
             }else if(position==1){
@@ -82,6 +82,9 @@ public class RankOverAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
         }else return 1;
 
     }
+
+
+
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
         public TextView rankName;
