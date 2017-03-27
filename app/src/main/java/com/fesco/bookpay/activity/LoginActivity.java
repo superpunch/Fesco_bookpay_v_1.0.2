@@ -1,6 +1,7 @@
 package com.fesco.bookpay.activity;
 
 import android.Manifest;
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Build;
@@ -21,7 +22,6 @@ import android.widget.Toast;
 
 import com.fesco.bookpay.base.BasePermissionActivity;
 import com.fesco.bookpay.entity.LoginEntity;
-import com.fesco.bookpay.impl.PermissionListenter;
 import com.fesco.bookpay.util.ACache;
 import com.fesco.bookpay.util.AppToast;
 import com.fesco.bookpay.util.HttpUtil;
@@ -30,6 +30,9 @@ import com.fesco.bookpay.util.SpUtils;
 import com.fesco.bookpay.util.okhttp.OKManager;
 import com.fesco.bookpay.weight.dialog.PermissionDialogInfo;
 import com.google.gson.Gson;
+import com.hyphenate.EMCallBack;
+import com.hyphenate.EMError;
+import com.hyphenate.chat.EMClient;
 import com.orhanobut.logger.Logger;
 
 import org.json.JSONException;
@@ -37,7 +40,6 @@ import org.json.JSONObject;
 
 import java.util.Calendar;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Set;
 
 import cn.jpush.android.api.JPushInterface;
@@ -49,18 +51,18 @@ import cn.jpush.android.api.TagAliasCallback;
  */
 public class LoginActivity extends BasePermissionActivity {
     private final static String TAG = MainActivity.class.getSimpleName();
-    private static final String PACKAGE_URL_SCHEME = "package:"; // 方案
-    private String login_pathc = "http://api2.hichao.com/stars?category=%E5%85%A8%E9%83%A8&pin=&ga=%2Fstars&flag=&gv=63&access_token=&gi=862949022047018&gos=5.2.3&p=2013022&gc=xiaomi&gn=mxyc_adr&gs=720x1280&gf=android&page=2";
+    private static final int MSG_SET_ALIAS = 1001;
     private EditText user;
     private EditText password;
     private Button btnLogin;
     private TextView login_enroll;
     private TextView login_version;
+    private TextView login_forget_passowrd;
     private Gson gs;
     public OKManager manager;
     public String DEVICE_ID = "";
     public Context context;
-
+    public ProgressDialog   mDialog;
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -87,10 +89,10 @@ public class LoginActivity extends BasePermissionActivity {
         password = (EditText) findViewById(R.id.password);
         btnLogin = (Button) findViewById(R.id.buttonlogin);
         login_enroll = (TextView) findViewById(R.id.login_enroll);
-        login_version = (TextView) findViewById(R.id.login_version);
+       // login_version = (TextView) findViewById(R.id.login_version);
+        login_forget_passowrd = (TextView) findViewById(R.id.login_forget_passowrd);
         manager = OKManager.getInstance(this);
         gs = new Gson();
-        //operaTionPermission();
 
 
         loginOnClickListener();
@@ -98,7 +100,7 @@ public class LoginActivity extends BasePermissionActivity {
 
         String  getVersion_Name=SpUtils.getInstance(this).getString(SpUtils.VERSION_NAME,null);
         if(getVersion_Name !=null){
-            login_version.setText(getVersion_Name);
+          //      login_version.setText(getVersion_Name);
         }
 
     }
@@ -110,16 +112,6 @@ public class LoginActivity extends BasePermissionActivity {
             @Override
             public void onClick(View v) {
 
-//                if(isPermission){
-//                    Log.e("Fragment", "isPermission"+isPermission);
-//                    TelephonyManager tm = (TelephonyManager) getSystemService(Context.TELEPHONY_SERVICE);
-//                    DEVICE_ID = tm.getDeviceId();
-//                    loginLoading();//权限已开
-//                }else
-
-
-                //    operaTionPermission();
-                Log.e("Fragment", "onFirstGranted");
                 if (ContextCompat.checkSelfPermission(context, Manifest.permission.READ_PHONE_STATE) != PermissionChecker.PERMISSION_GRANTED) {
                     PermissionDialogInfo permissionDialogInfo = new PermissionDialogInfo(context);
                     permissionDialogInfo.setMessage("电话和手机信息权限");
@@ -143,31 +135,7 @@ public class LoginActivity extends BasePermissionActivity {
 
     }
 
-    public void operaTionPermission() {
-        String[] permissions = new String[]{
-                Manifest.permission.READ_PHONE_STATE, Manifest.permission.CALL_PHONE
-        };
-        requestBasePermissions(permissions, new PermissionListenter() {
-            @Override
-            public void onGranted() {
-//                TelephonyManager tm = (TelephonyManager) getSystemService(Context.TELEPHONY_SERVICE);
-//                DEVICE_ID = tm.getDeviceId();
-                Log.e("Fragment", "onGranted");
-                loginLoading();
-            }
 
-
-            @Override
-            public void onDenied(List<String> denied) {
-                for (String permission : denied) {
-                    AppToast.makeShortToast(LoginActivity.this, "被拒绝的权限：" + permission);
-                }
-                showMissingPermissionDialog();
-
-
-            }
-        });
-    }
 
     private void login_enroll() {
         login_enroll.setOnClickListener(new View.OnClickListener() {
@@ -177,7 +145,14 @@ public class LoginActivity extends BasePermissionActivity {
                 startActivity(intent);
             }
         });
-
+        login_forget_passowrd.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(LoginActivity.this, EnrollActivity.class);
+                intent.putExtra(EnrollActivity.FORGET_PASSWORD,true);
+                startActivity(intent);
+            }
+        });
     }
 
 
@@ -189,27 +164,27 @@ public class LoginActivity extends BasePermissionActivity {
                 Toast.makeText(LoginActivity.this, "当前无网络~", Toast.LENGTH_LONG).show();
                 return;
             }
+            mDialog = new ProgressDialog(this);
+            mDialog.setMessage("正在登陆，请稍后...");
+            mDialog.show();
+
             HashMap<String, String> map = new HashMap<String, String>();
             map.put("login_Name", userStr);
             map.put("password", passwordStr);
-//            Log.e("Fragment", DEVICE_ID);
             map.put("deviceId", DEVICE_ID);//
             map.put("deviceType", "0");
-            Log.e("Fragment", "-----------map: " + map.toString());
             manager.sendComplexForm(HttpUtil.login_path, map, new OKManager.Func4() {
                 @Override
                 public void onResponse(JSONObject jsonObject) {
                     Logger.json(jsonObject.toString());  //   "ERROR": "get token error."
-                    Log.e("Fragment", "DEVICE_ID:" + DEVICE_ID);
+
                     LoginEntity loginEntity = gs.fromJson(jsonObject.toString(), LoginEntity.class);
 
                     JSONObject object = null;
                     try {
                         object = new JSONObject(jsonObject.toString());
-                        Log.i("Fragment", "-object--Token: " + object.getString("token"));
                         String token = object.getString("token");
                         token = token.replace("\'", "").replace("\r\n", "");
-                        Log.i("Fragment", "-新的--Token: " + token);
                         loginEntity.setToken(token);
                     } catch (JSONException e) {
                         e.printStackTrace();
@@ -221,8 +196,6 @@ public class LoginActivity extends BasePermissionActivity {
                         if (!TextUtils.isEmpty(loginEntity.getToken())) {
                             ACache aCache = ACache.get(LoginActivity.this);
                             aCache.put("loginEntity", loginEntity);
-                            Log.i("Fragment", "-put--Token: " + loginEntity.getToken());
-                            //  aCache.put("loginEntity", loginEntity,ACache.TIME_DAY);
                             Calendar calendar = Calendar.getInstance();
                             int day = calendar.get(Calendar.DATE);//获取日
                             aCache.put("newDay", Integer.toString(day));
@@ -230,24 +203,33 @@ public class LoginActivity extends BasePermissionActivity {
                             String alias = Integer.toString(loginEntity.getEmp_Id());
                             //调用JPush API设置Alias   别名以 emp_Id
                             mHandler.sendMessage(mHandler.obtainMessage(MSG_SET_ALIAS, alias));
+                            String password = loginEntity.getLogin_Password().replace("\'", "").replace("\r\n", "");
+                            String rid = JPushInterface.getRegistrationID(getApplicationContext());
 
+                            Log.e("Fragment", "getRegistrationID:"+rid);
+
+                            signIn(loginEntity.getEmp_Id(),password);
+
+
+
+                            mDialog.dismiss();
                             Intent intent = new Intent(LoginActivity.this, MainActivity.class);
                             Bundle bundle = new Bundle();
                             bundle.putSerializable("SUCCESS", loginEntity);
                             intent.putExtras(bundle);
                             startActivity(intent);
                             finish();
+
                         } else {
+                            mDialog.dismiss();
                             AppToast.makeShortToast(LoginActivity.this, "用户名或密码错误");
+
                         }
                     }
 
                 }
             });
         } else {
-//                    Intent intent = new Intent(LoginActivity.this, MainActivity.class);
-//                    startActivity(intent);
-
             AppToast.makeShortToast(LoginActivity.this, "用户名或密码不能为空！");
         }
 
@@ -255,8 +237,12 @@ public class LoginActivity extends BasePermissionActivity {
     }
 
 
-    private static final int MSG_SET_ALIAS = 1001;
-    private static final int MSG_SET_TAGS = 1002;
+
+
+
+
+
+
 
 
     private final Handler mHandler = new Handler() {
@@ -265,7 +251,6 @@ public class LoginActivity extends BasePermissionActivity {
             super.handleMessage(msg);
             switch (msg.what) {
                 case MSG_SET_ALIAS:
-                    ;
                     Log.d(TAG, "Set alias in handler.");
                     JPushInterface.setAliasAndTags(getApplicationContext(), (String) msg.obj, null, mAliasCallback);
                     break;
@@ -303,4 +288,133 @@ public class LoginActivity extends BasePermissionActivity {
         }
 
     };
+
+
+
+    /**
+     * 登录方法
+     */
+    private void signIn(int  emp_id,String password ) {
+
+
+        String username="zrfesco_"+Integer.toString(emp_id);
+        if ( TextUtils.isEmpty(password)) {
+            return;
+        }
+        EMClient.getInstance().login(username,password , new EMCallBack() {
+            /**
+             * 登陆成功的回调
+             */
+            @Override
+            public void onSuccess() {
+                runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        mDialog.dismiss();
+                        // 加载所有会话到内存
+                        EMClient.getInstance().chatManager().loadAllConversations();
+
+                        // 加载所有群组到内存，如果使用了群组的话
+                        // EMClient.getInstance().groupManager().loadAllGroups();
+                        Log.e("Fragment", "EMClient:onSuccess");
+                    }
+                });
+            }
+
+            /**
+             * 登陆错误的回调
+             * @param i
+             * @param s
+             */
+            @Override
+            public void onError(final int i, final String s) {
+                runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        mDialog.dismiss();
+                        Log.d("lzan13", "登录失败 Error code:" + i + ", message:" + s);
+                        /**
+                         * 关于错误码可以参考官方api详细说明
+                         * http://www.easemob.com/apidoc/android/chat3.0/classcom_1_1hyphenate_1_1_e_m_error.html
+                         */
+                        switch (i) {
+                            // 网络异常 2
+                            case EMError.NETWORK_ERROR:
+                                //      Toast.makeText(context, "网络错误 code: " + i + ", message:" + s, Toast.LENGTH_LONG).show();
+                                Log.e("Fragment", "网络错误 code: " + i + ", message:" + s);
+                                break;
+                            // 无效的用户名 101
+                            case EMError.INVALID_USER_NAME:
+                                //    Toast.makeText(context, "无效的用户名 code: " + i + ", message:" + s, Toast.LENGTH_LONG).show();
+                                Log.e("Fragment", "无效的用户名 code: " + i + ", message:" + s);
+                                break;
+                            // 无效的密码 102
+                            case EMError.INVALID_PASSWORD:
+                                //     Toast.makeText(context, "无效的密码 code: " + i + ", message:" + s, Toast.LENGTH_LONG).show();
+                                Log.e("Fragment", "无效的密码 code: " + i + ", message:" + s);
+                                break;
+                            // 用户认证失败，用户名或密码错误 202
+                            case EMError.USER_AUTHENTICATION_FAILED:
+                                //   Toast.makeText(context, "用户认证失败，用户名或密码错误 code: " + i + ", message:" + s, Toast.LENGTH_LONG).show();
+                                Log.e("Fragment", "用户认证失败 code: " + i + ", message:" + s);
+                                break;
+                            // 用户不存在 204
+                            case EMError.USER_NOT_FOUND:
+                                //   Toast.makeText(context, "用户不存在 code: " + i + ", message:" + s, Toast.LENGTH_LONG).show();
+                                Log.e("Fragment", "用户不存在 code: " + i + ", message:" + s);
+                                break;
+                            // 无法访问到服务器 300
+                            case EMError.SERVER_NOT_REACHABLE:
+                                //    Toast.makeText(context, "无法访问到服务器 code: " + i + ", message:" + s, Toast.LENGTH_LONG).show();
+                                Log.e("Fragment", "无法访问到服务器 code: " + i + ", message:" + s);
+                                break;
+                            // 等待服务器响应超时 301
+                            case EMError.SERVER_TIMEOUT:
+                                //     Toast.makeText(context, "等待服务器响应超时 code: " + i + ", message:" + s, Toast.LENGTH_LONG).show();
+                                Log.e("Fragment", "等待服务器响应超时 code: " + i + ", message:" + s);
+                                break;
+                            // 服务器繁忙 302
+                            case EMError.SERVER_BUSY:
+                                //   Toast.makeText(context, "服务器繁忙 code: " + i + ", message:" + s, Toast.LENGTH_LONG).show();
+                                Log.e("Fragment", "服务器繁忙 code: " + i + ", message:" + s);
+                                break;
+                            // 未知 Server 异常 303 一般断网会出现这个错误
+                            case EMError.SERVER_UNKNOWN_ERROR:
+                                //    Toast.makeText(context, "未知的服务器异常 code: " + i + ", message:" + s, Toast.LENGTH_LONG).show();
+                                Log.e("Fragment", "未知的服务器异常 code: " + i + ", message:" + s);
+                                break;
+                            default:
+                                //  Toast.makeText(context, "ml_sign_in_failed code: " + i + ", message:" + s, Toast.LENGTH_LONG).show();
+                                Log.e("Fragment", "ml_sign_in_failed code: " + i + ", message:" + s);
+                                break;
+                        }
+                    }
+                });
+            }
+
+            @Override
+            public void onProgress(int i, String s) {
+
+            }
+        });
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 }

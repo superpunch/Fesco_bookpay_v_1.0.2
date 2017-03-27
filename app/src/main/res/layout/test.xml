@@ -1,9 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
     android:id="@+id/test"
-    android:background="@color/bookBlue"
-    android:layout_height="20dp">
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+
+    android:orientation="vertical">
+
     <TextView
         android:id="@+id/toolbar_text"
         android:layout_width="wrap_content"
@@ -11,6 +13,24 @@
         android:layout_gravity="center"
         android:singleLine="true"
         android:text="123"
-        android:textSize="@dimen/x16"
-        />
+        android:textSize="@dimen/x16" />
+
+    <LinearLayout
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:background="@drawable/edit_rest_style"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginLeft="@dimen/x20"
+        android:layout_marginTop="@dimen/x20"
+        >
+        <com.fesco.bookpay.view.MapTypeView
+            android:id="@+id/zcv_zoom2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+
+
+            />
+    </LinearLayout>
+
 </LinearLayout>

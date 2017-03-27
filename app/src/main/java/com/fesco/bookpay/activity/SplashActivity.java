@@ -57,6 +57,7 @@ public class SplashActivity extends AppCompatActivity {
         aCache = ACache.get(this);
         loginEntity = (LoginEntity) aCache.getAsObject("loginEntity");
         splashTime = aCache.getAsString("newDay");
+
         handler.postDelayed(runnable, 1500);
 
         loadToken();
@@ -107,15 +108,7 @@ public class SplashActivity extends AppCompatActivity {
         public void run() {
 
             if (loginEntity != null &&  splashTime !=null) {
-//                if( CommonUtils.isCompare(splashTime,startTime)){
-//                    Intent intent = new Intent(SplashActivity.this, MainActivity.class);
-//                    startActivity(intent);
-//                    finish();
-//                }else {
-//                    Intent intent = new Intent(SplashActivity.this, LoginActivity.class);
-//                    startActivity(intent);
-//                    finish();
-//                }
+
 
                 Intent intent = new Intent(SplashActivity.this, MainActivity.class);
                 startActivity(intent);

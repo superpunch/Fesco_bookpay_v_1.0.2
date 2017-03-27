@@ -56,5 +56,8 @@
 
 
 
+    <color name="line">#16BBD9 </color>
+    <color name="grid_item_bg">#00b6d8 </color>
+    <color name="lightblue">#DCF4F9 </color>
 
 </resources>

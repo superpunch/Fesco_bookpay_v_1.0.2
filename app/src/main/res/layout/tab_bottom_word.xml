@@ -13,14 +13,23 @@
 
         />
 
-        <GridView
+<LinearLayout
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:background="@color/line"
+    >
+
+        <com.fesco.bookpay.view.LineGridView
             android:id="@+id/gridView"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:background="@color/bookBackground"
+
             android:gravity="center"
-            android:numColumns="3"
+            android:numColumns="2"
+            android:layout_marginLeft="@dimen/x10"
+            android:layout_marginRight="@dimen/x10"
+            android:layout_marginTop="@dimen/x8"
 
             />
-
+</LinearLayout>
 </LinearLayout>

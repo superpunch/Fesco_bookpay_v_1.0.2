@@ -1,20 +1,14 @@
 package com.fesco.bookpay.fragment;
 
 import android.content.Context;
-import android.graphics.Bitmap;
 import android.os.Bundle;
-import android.os.Handler;
-import android.os.Message;
 import android.text.TextUtils;
-import android.text.format.DateFormat;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ImageView;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import com.baidu.location.BDLocation;
@@ -28,11 +22,9 @@ import com.baidu.mapapi.map.MapView;
 import com.baidu.mapapi.map.MyLocationData;
 import com.baidu.mapapi.model.LatLng;
 import com.fesco.bookpay.activity.AttendanceActivity;
-import com.fesco.bookpay.activity.InforPersonActivity;
 import com.fesco.bookpay.activity.R;
 import com.fesco.bookpay.base.BasePageFragment;
 import com.fesco.bookpay.entity.LoginEntity;
-import com.fesco.bookpay.util.ACache;
 import com.fesco.bookpay.util.AppToast;
 import com.fesco.bookpay.util.ConversionUtil;
 import com.fesco.bookpay.util.HttpUtil;
@@ -64,12 +56,10 @@ public class AttMapCheckFragment extends BasePageFragment {
     private String token;
     private View view;
     private AttendanceActivity mActivity;
-    private TextView tvTime;
     private Button btnCheckIn;
     private Button btnCheckOut;
     private Button btnCheckField;
     private CustomDialogCheck dialog;
-
 
     private MapView mMapView = null;
     private double mLatitude;
@@ -116,14 +106,13 @@ public class AttMapCheckFragment extends BasePageFragment {
             zoomControlView.setMapView(mMapView);
             mapTypeView.setMapView(mMapView);
 
-            initImageHead();
 
 
             initViewMap();
             initLocation();
 
 
-            tvTime = (TextView) view.findViewById(R.id.tv_time);
+
             btnCheckIn = (Button) view.findViewById(R.id.btn_checkin);
             btnCheckOut = (Button) view.findViewById(R.id.btn_checkout);
             btnCheckField = (Button) view.findViewById(R.id.btn_checkfield);
@@ -157,46 +146,19 @@ public class AttMapCheckFragment extends BasePageFragment {
         return view;
     }
 
-    private void initImageHead() {
-        //  String pathList=  aCache.getAsString("pathList");
-        //  bitmap= BitmapUtils.readBitmapFromFileDescriptor(pathList,80,80);
-        ImageView headImage = (ImageView) view.findViewById(R.id.image_map_head);
-        ACache aCache = ACache.get(mActivity);
-        Bitmap bitmapHead = aCache.getAsBitmap(InforPersonActivity.IMAGE_HEAD);
-        Log.d("matrix", "onCreateView handler --" + bitmapHead);
-        if (bitmapHead != null) {
-            headImage.setImageBitmap(bitmapHead);
-        }
-    }
 
 
-    @Override
-    public void onActivityCreated(Bundle savedInstanceState) {
-        super.onActivityCreated(savedInstanceState);
-
-    }
 
 
-    @Override
-    public void setUserVisibleHint(boolean isVisibleToUser) {
-        super.setUserVisibleHint(isVisibleToUser);
 
-    }
+
 
     @Override
     public void fetchData() {
 
-        new TimeThread().start(); //启动新的线程
-
-
     }
 
-//    @Override
-//    public void onAttach(Activity activity) {
-//        super.onAttach(activity);
-//        mActivity = (AttendanceActivity) activity;
-//
-//    }
+
 
     @Override
     public void onAttach(Context context) {
@@ -356,39 +318,9 @@ public class AttMapCheckFragment extends BasePageFragment {
         );
     }
 
-    private class TimeThread extends Thread {
-        @Override
-        public void run() {
-            do {
-                try {
-                    Thread.sleep(1000);
-                    Message msg = mHandler.obtainMessage();
-                    msg.what = 1;  //消息(一个整型值)
-                    mHandler.sendMessage(msg);// 每隔1秒发送一个msg给mHandler
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                }
-            } while (mRunning);
-        }
 
-    }
 
-    private Handler mHandler = new android.os.Handler() {
-        @Override
-        public void handleMessage(Message msg) {
-            super.handleMessage(msg);
-            switch (msg.what) {
-                case 1:
-                    long sysTime = System.currentTimeMillis();
-                    String sysTimeStr = (String) DateFormat.format("yyyy-MM-dd  kk:mm:ss ", sysTime);
-                    //   String sysTimeStr2 = CommonUtils.sdf.format(sysTime);
 
-                    tvTime.setText(sysTimeStr); //更新时间
-                    break;
-            }
-
-        }
-    };
 
 
     /**
@@ -482,10 +414,8 @@ public class AttMapCheckFragment extends BasePageFragment {
     @Override
     public void onResume() {
         super.onResume();
-        mRunning = true;
         //在activity执行onResume时执行mMapView. onResume ()，实现地图生命周期管理
         mMapView.onResume();
-        Log.d("matrix", "onResume handler --");
     }
 
     @Override
@@ -493,13 +423,11 @@ public class AttMapCheckFragment extends BasePageFragment {
         super.onPause();
         //在activity执行onPause时执行mMapView. onPause ()，实现地图生命周期管理
         mMapView.onPause();
-        Log.d("matrix", "onPause handler --");
     }
 
     @Override
     public void onStart() {
         super.onStart();
-        Log.d("matrix", "onStart handler --");
 
         // 开启定位
         mBaiduMap.setMyLocationEnabled(true);
@@ -510,11 +438,9 @@ public class AttMapCheckFragment extends BasePageFragment {
     @Override
     public void onStop() {
         super.onStop();
-        mRunning = false;
         // 停止定位
         mBaiduMap.setMyLocationEnabled(false);
         mLocationClient.stop();
-        Log.d("matrix", "onStop handler --");
     }
 
     @Override
@@ -522,9 +448,6 @@ public class AttMapCheckFragment extends BasePageFragment {
         super.onDestroy();
         // 在activity执行onDestroy时执行mMapView.onDestroy()，实现地图生命周期管理
         mMapView.onDestroy();
-        mHandler.removeCallbacks(TimeThread.currentThread());
-        Log.d("matrix", "onDestroy handler --");
-        Log.d("Fragment", System.currentTimeMillis() + "    Fragment1");
     }
 
 

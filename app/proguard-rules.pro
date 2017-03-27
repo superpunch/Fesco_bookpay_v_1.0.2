@@ -324,9 +324,21 @@ public void xxxxxx(**);
 -dontwarn org.apache.log4j.**
 -keep class  org.apache.log4j.** { *;}
 #下面几行 是环信即时通信的代码混淆
--keep class com.easemob.** {*;}
+#-keep class com.easemob.** {*;}
+#-keep class org.jivesoftware.** {*;}
+#-dontwarn  com.easemob.**
+
+
+
+-keep class com.hyphenate.** {*;}
+-dontwarn com.hyphenate.**
+-keep class com.superrtc.** {*;}
+-keep class com.hyphenate.chat.** {*;}
 -keep class org.jivesoftware.** {*;}
--dontwarn  com.easemob.**
+-keep class org.apache.** {*;}
+#另外，demo中发送表情的时候使用到反射，需要keep SmileUtils,注意前面的包名，
+#不要SmileUtils复制到自己的项目下keep的时候还是写的demo里的包名
+-keep class com.hyphenate.chatuidemo.utils.SmileUtils {*;}
 
 
 

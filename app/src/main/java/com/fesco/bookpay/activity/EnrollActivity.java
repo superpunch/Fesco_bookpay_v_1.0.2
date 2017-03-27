@@ -30,7 +30,7 @@ import java.util.HashMap;
  */
 public class EnrollActivity extends AppCompatActivity {
 
-
+    public final static String FORGET_PASSWORD = "forget_password";
     private EditText mMail;
     private EditText mCode;
     private TextView mSendCode;
@@ -48,12 +48,15 @@ public class EnrollActivity extends AppCompatActivity {
     private String strUser;
     private String strPassword;
     private String strcfmPassword;
-
+    private boolean   isForget=false;
+    private String https=HttpUtil.preRegister;
+    private String btn_https=HttpUtil.register;
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_enroll);
         mContext = this;
+
         initview();
     }
 
@@ -69,10 +72,17 @@ public class EnrollActivity extends AppCompatActivity {
 
         manager = OKManager.getInstance(this);
         gson = new Gson();
+        isForget=     getIntent().getBooleanExtra(FORGET_PASSWORD,false);
+        if(isForget){
+            mPassword.setHint("新密码");
+            btnEnroll.setText("确定重置");
+            https=HttpUtil.preReset;
+            btn_https=HttpUtil.reset;
 
-
+        }
         enrollCode();
         enrollLoading();
+
 
 
     }
@@ -94,7 +104,8 @@ public class EnrollActivity extends AppCompatActivity {
                 }
                 HashMap<String, String> map = new HashMap<String, String>();
                 map.put("emailOrPhone", strMail);
-                manager.sendComplexForm(HttpUtil.preRegister, map, new OKManager.Func4() {
+
+                manager.sendComplexForm(https, map, new OKManager.Func4() {
                     @Override
                     public void onResponse(JSONObject jsonObject) {
                         Logger.json(jsonObject.toString());
@@ -119,8 +130,10 @@ public class EnrollActivity extends AppCompatActivity {
     }
 
     /**
-     * 2. 接口：/user/register.json
+     * 1.注册接口：/user/register.json
      * 参数：{'methodname':'user/register.json','email':'','login_name':'','login_password':''}
+     * 2.重置接口：/user/reset.json
+     * /user/reset.json?emailOrPhone='111'&login_name='aaa'&login_password='12323'
      */
     private void enrollLoading() {
         btnEnroll.setOnClickListener(new View.OnClickListener() {
@@ -151,7 +164,7 @@ public class EnrollActivity extends AppCompatActivity {
                     map.put("emailOrPhone", strMail);
                     map.put("login_name", strUser);
                     map.put("login_password", strPassword);
-                    manager.sendComplexForm(HttpUtil.register, map, new OKManager.Func4() {
+                    manager.sendComplexForm(btn_https, map, new OKManager.Func4() {
                         @Override
                         public void onResponse(JSONObject jsonObject) {
                             Logger.json(jsonObject.toString());
@@ -159,6 +172,9 @@ public class EnrollActivity extends AppCompatActivity {
                             // {"message": invalid email address}
                             if (vaildateCode.getMessage() != null) {
                                 if ("success".equals(vaildateCode.getMessage())) {
+                                    if(isForget){
+                                        AppToast.showShortText(mContext, "重置成功");
+                                    }else
                                     AppToast.showShortText(mContext, "注册成功");
                                     EnrollActivity.this.finish();
 

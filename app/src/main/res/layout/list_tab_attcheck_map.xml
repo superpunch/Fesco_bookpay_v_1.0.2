@@ -4,71 +4,71 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/x140"
-        android:id="@+id/linear_check"
-        android:background="@color/black_tran"
-        android:orientation="horizontal">
+    <!--<LinearLayout-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="@dimen/x140"-->
+        <!--android:id="@+id/linear_check"-->
+        <!--android:background="@color/black_tran"-->
+        <!--android:orientation="horizontal">-->
 
 
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            >
+        <!--<RelativeLayout-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--&gt;-->
 
-            <!--<ImageView-->
-                <!--android:id="@+id/imageview"-->
-                <!--android:layout_width="wrap_content"-->
-                <!--android:layout_height="wrap_content"-->
+            <!--&lt;!&ndash;<ImageView&ndash;&gt;-->
+                <!--&lt;!&ndash;android:id="@+id/imageview"&ndash;&gt;-->
+                <!--&lt;!&ndash;android:layout_width="wrap_content"&ndash;&gt;-->
+                <!--&lt;!&ndash;android:layout_height="wrap_content"&ndash;&gt;-->
+                <!--&lt;!&ndash;android:layout_centerVertical="true"&ndash;&gt;-->
+                <!--&lt;!&ndash;android:layout_marginLeft="@dimen/x20"&ndash;&gt;-->
+                <!--&lt;!&ndash;android:background="@drawable/head" />&ndash;&gt;-->
+
+            <!--<com.fesco.bookpay.view.cliperimage.CircleImageView-->
+                <!--android:id="@+id/image_map_head"-->
+                <!--android:layout_width="@dimen/x80"-->
+                <!--android:layout_height="@dimen/x80"-->
                 <!--android:layout_centerVertical="true"-->
                 <!--android:layout_marginLeft="@dimen/x20"-->
-                <!--android:background="@drawable/head" />-->
+                <!--android:src="@drawable/head" />-->
+            <!--<TextView-->
+                <!--android:id="@+id/check_tv"-->
+                <!--android:layout_width="wrap_content"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:layout_alignParentRight="true"-->
+                <!--android:layout_marginRight="@dimen/x45"-->
+                <!--android:layout_marginTop="@dimen/x20"-->
+                <!--android:text="今日签到"-->
 
-            <com.fesco.bookpay.view.cliperimage.CircleImageView
-                android:id="@+id/image_map_head"
-                android:layout_width="@dimen/x80"
-                android:layout_height="@dimen/x80"
-                android:layout_centerVertical="true"
-                android:layout_marginLeft="@dimen/x20"
-                android:src="@drawable/head" />
-            <TextView
-                android:id="@+id/check_tv"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentRight="true"
-                android:layout_marginRight="@dimen/x45"
-                android:layout_marginTop="@dimen/x20"
-                android:text="今日签到"
+                <!--android:textColor="@color/white" />-->
 
-                android:textColor="@color/white" />
+            <!--<TextView-->
+                <!--android:id="@+id/textView3"-->
+                <!--android:layout_width="wrap_content"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:layout_alignParentRight="true"-->
+                <!--android:layout_below="@+id/check_tv"-->
+                <!--android:layout_marginRight="@dimen/x60"-->
+                <!--android:layout_marginTop="@dimen/dp_10"-->
+                <!--android:gravity="center"-->
+                <!--android:text="1"-->
+                <!--android:textColor="@color/white"-->
+                <!--android:textSize="@dimen/x48" />-->
 
-            <TextView
-                android:id="@+id/textView3"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentRight="true"
-                android:layout_below="@+id/check_tv"
-                android:layout_marginRight="@dimen/x60"
-                android:layout_marginTop="@dimen/dp_10"
-                android:gravity="center"
-                android:text="1"
-                android:textColor="@color/white"
-                android:textSize="@dimen/x48" />
+            <!--<TextView-->
+                <!--android:id="@+id/tv_time"-->
+                <!--android:layout_width="wrap_content"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:layout_alignParentRight="true"-->
+                <!--android:layout_marginRight="@dimen/x45"-->
+                <!--android:layout_marginBottom="@dimen/x10"-->
+                <!--android:layout_alignParentBottom="true"-->
+                <!--android:text="时间"-->
+                <!--android:textColor="@color/white" />-->
 
-            <TextView
-                android:id="@+id/tv_time"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentRight="true"
-                android:layout_marginRight="@dimen/x45"
-                android:layout_marginBottom="@dimen/x10"
-                android:layout_alignParentBottom="true"
-                android:text="时间"
-                android:textColor="@color/white" />
-
-        </RelativeLayout>
-    </LinearLayout>
+        <!--</RelativeLayout>-->
+    <!--</LinearLayout>-->
 
     <FrameLayout
         android:layout_width="match_parent"
@@ -85,6 +85,7 @@
         android:id="@+id/linearid"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+
         >
 
 
@@ -97,22 +98,27 @@
             android:layout_alignParentLeft="true"
             android:layout_alignParentTop="true"
             android:layout_marginLeft="@dimen/x20"
-            android:layout_marginTop="@dimen/x20"
+            android:layout_marginTop="@dimen/x90"
           />
 
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/edit_rest_style"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginLeft="@dimen/x20"
+            android:layout_marginTop="@dimen/x20"
+            >
         <com.fesco.bookpay.view.MapTypeView
             android:id="@+id/zcv_zoom2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignParentBottom="true"
-            android:layout_alignParentRight="true"
-            android:layout_marginBottom="@dimen/x20"
-            android:layout_marginRight="@dimen/x20"
 
 
             />
-
-
+</LinearLayout>
     </RelativeLayout>
 </FrameLayout>
 
@@ -130,7 +136,7 @@
             android:layout_weight="1"
             android:background="@drawable/check_button_selector"
             android:button="@null"
-            android:checked="true"
+
             android:gravity="center"
             android:text="@string/att_checkin"
             android:textColor="@drawable/check_text_color_selector" />

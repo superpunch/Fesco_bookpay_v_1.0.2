@@ -25,10 +25,13 @@
         </activity>
 
         <activity android:name=".LoginActivity"
-             android:screenOrientation="portrait"
+            android:screenOrientation="portrait"
             ></activity>
         <activity android:name=".EnrollActivity"></activity>
-        <activity android:name=".MainActivity"></activity>
+        <activity android:name=".MainActivity"
+            android:launchMode="singleTask"
+
+            ></activity>
         <activity android:name=".WelcomeGuideActivity"></activity>
         <activity android:name=".InforPersonActivity"></activity>
         <activity android:name=".ClipImageActivity"></activity>
@@ -67,7 +70,6 @@
         <activity android:name=".SocialActivity"></activity>
 
 
-
         <activity android:name=".ScrollViewActivity"></activity>
 
 
@@ -76,6 +78,20 @@
         <activity android:name=".ptui.ImageZoomActivity"></activity>
         <activity android:name=".ptui.TakePhotoPreview"></activity>
         <activity android:name=".ptui.KSelectImagesActivity"></activity>
+
+
+        <activity android:name=".ChatActivity"></activity>
+        <!-- 地图 -->
+        <activity
+            android:name="com.hyphenate.easeui.ui.EaseBaiduMapActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/horizontal_slide" />
+        <!-- 显示下载大图页面 -->
+        <activity
+            android:name="com.hyphenate.easeui.ui.EaseShowBigImageActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/horizontal_slide" />
+
 
 
         <receiver android:name="com.fesco.bookpay.receivers.ApkInstallReceiver">
@@ -204,7 +220,26 @@
         <meta-data android:name="JPUSH_APPKEY" android:value="16bf989abad0ce9125fb0c73" /> <!--  </>值来自开发者平台取得的AppKey-->
 
 
-
+        <!-- 设置环信应用的AppKey -->
+        <meta-data android:name="EASEMOB_APPKEY"  android:value="1187170223115321#payrollpen" />
+        <!-- 声明SDK所需的service SDK核心功能-->
+        <service android:name="com.hyphenate.chat.EMChatService" android:exported="true"/>
+        <service android:name="com.hyphenate.chat.EMJobService"
+            android:permission="android.permission.BIND_JOB_SERVICE"
+            android:exported="true"
+            />
+        <!-- 声明SDK所需的receiver -->
+        <receiver android:name="com.hyphenate.chat.EMMonitorReceiver">
+            <intent-filter>
+                <action android:name="android.intent.action.PACKAGE_REMOVED"/>
+                <data android:scheme="package"/>
+            </intent-filter>
+            <!-- 可选filter -->
+            <intent-filter>
+                <action android:name="android.intent.action.BOOT_COMPLETED"/>
+                <action android:name="android.intent.action.USER_PRESENT" />
+            </intent-filter>
+        </receiver>
 
 
 
@@ -228,7 +263,6 @@
     <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" /> <!-- 用于开启 debug 版本的应用在6.0 系统上 层叠窗口权限 -->
     <uses-permission android:name="android.permission.ACCESS_LOCATION_EXTRA_COMMANDS" />
     <uses-permission android:name="android.permission.CHANGE_NETWORK_STATE" />
-    <uses-permission android:name="android.permission.GET_TASKS" />
 
 
 
@@ -259,6 +293,10 @@
 
     <uses-permission android:name="android.permission.READ_PHONE_STATE"/>
 
+    <!-- Required -->
+    <uses-permission android:name="android.permission.RECORD_AUDIO" />
 
+    <uses-permission android:name="android.permission.MODIFY_AUDIO_SETTINGS" />
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
 
 </manifest>

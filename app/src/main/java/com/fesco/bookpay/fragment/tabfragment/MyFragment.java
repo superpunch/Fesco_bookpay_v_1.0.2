@@ -1,6 +1,8 @@
 package com.fesco.bookpay.fragment.tabfragment;
 
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -8,6 +10,7 @@ import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
 import android.support.v7.widget.Toolbar;
+import android.util.Base64;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
@@ -41,7 +44,8 @@ import java.util.List;
  * Created by gong.min on 2016/10/19.
  */
 public class MyFragment extends BasePageFragment {
-    private static final String KEY = "EXTRA";
+    public static final String KEY = "EXTRA";
+    public static final String KEYBYTE = "KEYBYTE";
 
     private View view;
     private List<String> listTitle = new ArrayList<>();
@@ -83,7 +87,8 @@ public class MyFragment extends BasePageFragment {
         gson = new Gson();
         initViews();
         loadData();
-       // operaTionPermission();
+        //initPhotodata();
+        // operaTionPermission();
         return view;
     }
 
@@ -221,6 +226,17 @@ public class MyFragment extends BasePageFragment {
 
 
     /**
+     * base64转为bitmap
+     *
+     * @param base64Data
+     * @return
+     */
+    public  Bitmap base64ToBitmap(String base64Data) {
+        byte[] bytes = Base64.decode(base64Data, Base64.DEFAULT);
+        return BitmapFactory.decodeByteArray(bytes, 0, bytes.length);
+    }
+
+    /**
      * HashMap<String, List<ContactsChangeBean.EmpsBean>>
      * key: 部门名称，list<> 对应部门下的员工信息
      *
@@ -256,8 +272,10 @@ public class MyFragment extends BasePageFragment {
     @Override
     public void fetchData() {
     }
-
-
-
-
+//    @Override
+//    public void onAttach(Context context) {
+//        super.onAttach(context);
+//        listBytes=   ( (MainActivity) context).getBytes();
+//
+//    }
 }

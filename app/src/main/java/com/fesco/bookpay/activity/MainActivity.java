@@ -1,14 +1,14 @@
 package com.fesco.bookpay.activity;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.os.Build;
 import android.os.Bundle;
-import android.os.Looper;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
 import android.support.v7.widget.Toolbar;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
 import android.view.Window;
@@ -17,11 +17,9 @@ import android.widget.ImageView;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
-import android.widget.Toast;
 
+import com.fesco.bookpay.FApplication;
 import com.fesco.bookpay.adapter.FragmentTabAdapter;
-import com.fesco.bookpay.adapter.cycleviewadapter.CycleViewPager;
-import com.fesco.bookpay.entity.ADInfo;
 import com.fesco.bookpay.entity.LoginEntity;
 import com.fesco.bookpay.entity.UpdateStatus;
 import com.fesco.bookpay.entity.VersionInfo;
@@ -32,50 +30,46 @@ import com.fesco.bookpay.util.ACache;
 import com.fesco.bookpay.util.AppToast;
 import com.fesco.bookpay.util.HttpUtil;
 import com.fesco.bookpay.util.UpdateVersionUtil;
-import com.fesco.bookpay.util.ViewFactory;
-import com.fesco.bookpay.util.okhttp.CropSquareTrans;
 import com.fesco.bookpay.util.okhttp.HttpOkManagerUtils;
 import com.fesco.bookpay.util.okhttp.OKManager;
 import com.google.gson.Gson;
-import com.nostra13.universalimageloader.cache.disc.naming.Md5FileNameGenerator;
-import com.nostra13.universalimageloader.core.DisplayImageOptions;
-import com.nostra13.universalimageloader.core.ImageLoader;
-import com.nostra13.universalimageloader.core.ImageLoaderConfiguration;
-import com.nostra13.universalimageloader.core.assist.QueueProcessingType;
+import com.hyphenate.chat.EMClient;
+import com.hyphenate.util.EMLog;
 import com.orhanobut.logger.Logger;
 
+import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
+
+import de.greenrobot.dao.query.QueryBuilder;
+import me.bookpay.greendao.ImagePhotos;
+import me.bookpay.greendao.ImagePhotosDao;
 
 /**
  * 主页面
  */
 public class MainActivity extends FragmentActivity {
+    public static final String ACCOUNT_CONFLICT = "conflict";
     private RadioGroup rgBottom;
     private RadioButton rbWroid;
     private RadioButton rbHelp;
     private RadioButton rbCounsle;
-    private RadioButton rbTool;
-    private RadioButton rbMy;
     private Toolbar toolbar;
     private TextView title;
     private TextView back;
-    private List<ImageView> views = new ArrayList<ImageView>();
-    private List<ADInfo> infos = new ArrayList<ADInfo>();
-    private CycleViewPager cycleViewPager;
 
     public List<Fragment> fragments = new ArrayList<Fragment>();
     public ACache aCache;
     public LoginEntity loginEntity;
     private Gson gson;
-    private String[] imageUrls = {"http://img.taodiantong.cn/v55183/infoimg/2013-07/130720115322ky.jpg",
-            "http://pic30.nipic.com/20130626/8174275_085522448172_2.jpg",
-            "http://pic18.nipic.com/20111215/577405_080531548148_2.jpg"
-    };
-   // private  VersionInfo versionInfo;
+    private String aCacheVersion_No = "";
+    private  AlertDialog.Builder exceptionBuilder;
+    private  boolean isExceptionDialogShow = false;
+    // private  VersionInfo versionInfo;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -89,95 +83,65 @@ public class MainActivity extends FragmentActivity {
         }
 
         aCache = ACache.get(this);
-        gson=new Gson();
+        gson = new Gson();
         loginEntity = (LoginEntity) aCache.getAsObject("loginEntity");
-
-        String test = aCache.getAsString("test");
-        Log.i("Fragment", "--------getToken: " + loginEntity.getToken());
         initView();
-//        configImageLoader();
-//        initialize();
+        showExceptionDialogFromIntent(getIntent());
 
         initdata();
         //本地测试检测是否有新版本发布
         getversion();
-
+        initPhotodata();
     }
 
-    @Override
-    protected void onResume() {
-        super.onResume();
-        loadImageHead();
 
 
+    private void updateGetVersion(VersionInfo versionInfo) {
+        if (versionInfo != null) {
+            final List<VersionInfo.AppStoreBean> appStoreBeen = versionInfo.getAppStore();
+            if (appStoreBeen != null && !appStoreBeen.isEmpty()) {
 
 
-    }
-private  void updateGetVersion(VersionInfo versionInfo){
-    if(versionInfo != null ) {
-        final List<VersionInfo.AppStoreBean>  appStoreBeen =  versionInfo.getAppStore();
-        if( appStoreBeen != null && !appStoreBeen.isEmpty()){
+                UpdateVersionUtil.localCheckedVersion(MainActivity.this, appStoreBeen.get(0), new UpdateVersionUtil.UpdateListener() {
 
+                    @Override
+                    public void onUpdateReturned(int updateStatus, VersionInfo.AppStoreBean versionInfo) {
+                        //判断回调过来的版本检测状态
+                        switch (updateStatus) {
+                            case UpdateStatus.YES:
+                                //弹出更新提示
+                                UpdateVersionUtil.showDialog(MainActivity.this, versionInfo);
+                                break;
+                            case UpdateStatus.NO:
+                                //没有新版本
+                                //       AppToast.showShortText(getApplicationContext(), "已经是最新版本了!");
+                                //存储c版本号
+                                break;
+                            case UpdateStatus.NOWIFI:
+                                //当前是非wifi网络
+                                AppToast.showShortText(getApplicationContext(), "当前非wifi网络,下载会消耗手机流量！");
 
+                                UpdateVersionUtil.showDialog(MainActivity.this, versionInfo);
 
-            UpdateVersionUtil.localCheckedVersion(MainActivity.this, appStoreBeen.get(0), new UpdateVersionUtil.UpdateListener() {
-
-                @Override
-                public void onUpdateReturned(int updateStatus, VersionInfo.AppStoreBean versionInfo) {
-                    //判断回调过来的版本检测状态
-                    switch (updateStatus) {
-                        case UpdateStatus.YES:
-                            //弹出更新提示
-                            UpdateVersionUtil.showDialog(MainActivity.this, versionInfo);
-                            break;
-                        case UpdateStatus.NO:
-                            //没有新版本
-                     //       AppToast.showShortText(getApplicationContext(), "已经是最新版本了!");
-                             //存储c版本号
-                            break;
-                        case UpdateStatus.NOWIFI:
-                            //当前是非wifi网络
-                            AppToast.showShortText(getApplicationContext(), "当前非wifi网络,下载会消耗手机流量！");
-
-                            UpdateVersionUtil.showDialog(MainActivity.this, versionInfo);
-
-//							DialogUtils.showDialog(MainActivity.this, "温馨提示","当前非wifi网络,下载会消耗手机流量!", "确定", "取消",new DialogOnClickListenner() {
-//								@Override
-//								public void btnConfirmClick(Dialog dialog) {
-//									dialog.dismiss();
-//									//点击确定之后弹出更新对话框
-//									UpdateVersionUtil.showDialog(SystemActivity.this,versionInfo);
-//								}
-//
-//								@Override
-//								public void btnCancelClick(Dialog dialog) {
-//									dialog.dismiss();
-//								}
-//							});
-                            break;
-                        case UpdateStatus.ERROR:
-                            //检测失败
-                            AppToast.showShortText(getApplicationContext(), "检测失败，请稍后重试！");
-                            break;
-                        case UpdateStatus.TIMEOUT:
-                            //链接超时
-                            AppToast.showShortText(getApplicationContext(), "链接超时，请检查网络设置!");
-                            break;
+                                break;
+                            case UpdateStatus.ERROR:
+                                //检测失败
+                                AppToast.showShortText(getApplicationContext(), "检测失败，请稍后重试！");
+                                break;
+                            case UpdateStatus.TIMEOUT:
+                                //链接超时
+                                AppToast.showShortText(getApplicationContext(), "链接超时，请检查网络设置!");
+                                break;
+                        }
                     }
-                }
 
-            });
+                });
+            }
         }
     }
-}
-    private void loadImageHead() {
-        Bitmap bitmap= aCache.getAsBitmap(InforPersonActivity.IMAGE_HEAD);
-        if (bitmap == null) {
-            // java.lang.NullPointerException: Attempt to get length of null array
-            loadImageData(HttpUtil.showPicture);
-            Log.d("Fragment", "网络请求头像  ");
-        }
-    }
+
+
+
     @Override
     protected void onDestroy() {
         super.onDestroy();
@@ -189,14 +153,8 @@ private  void updateGetVersion(VersionInfo versionInfo){
         rbWroid = (RadioButton) findViewById(R.id.rb_word);
         rbHelp = (RadioButton) findViewById(R.id.rb_help);
         rbCounsle = (RadioButton) findViewById(R.id.rb_counsle);
-       // rbTool = (RadioButton) findViewById(R.id.rb_tool);
-      //  rbMy = (RadioButton) findViewById(R.id.rb_my);
-        //     View layout = getLayoutInflater().inflate(R.layout.test, null);
-
-
         toolbar = (Toolbar) findViewById(R.id.toolbar_main);
         toolbar.setTitle("");
-//                          findViewById(R.id.toolbar);
         title = (TextView) findViewById(R.id.toolbar_main_title);
         title.setText("工作");
         back = (TextView) findViewById(R.id.toolbar_main_back);
@@ -206,6 +164,7 @@ private  void updateGetVersion(VersionInfo versionInfo){
         back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                EMClient.getInstance().logout(true);
                 aCache.clear();
                 MainActivity.this.finish();
                 Intent intent = new Intent(MainActivity.this, LoginActivity.class);
@@ -215,15 +174,13 @@ private  void updateGetVersion(VersionInfo versionInfo){
         });
 
 
-
-//        toolbar.setTitle("");
         fragments.add(WordFragment.getInstance(loginEntity));
         fragments.add(new HelpFragment());
 //        fragments.add(new CounsleFragment());
-//        fragments.add(new ToolFragment());
+
         fragments.add(MyFragment.getInstance(loginEntity));
         FragmentTabAdapter tabAdapter = new FragmentTabAdapter(this, fragments, R.id.tab_content, rgBottom);
-        tabAdapter.setRadioButton(rbWroid,rbHelp,rbCounsle,title,search,back,aCache);
+        tabAdapter.setRadioButton(rbWroid, rbHelp, rbCounsle, title, search, back, aCache);
     }
 
 
@@ -244,114 +201,166 @@ private  void updateGetVersion(VersionInfo versionInfo){
         });
 
     }
-    public void loadImageData(String loadEmpInfo) {
 
-        String[] key = new String[]{"emp_Id"};
-        String[] value = new String[]{Integer.toString(loginEntity.getEmp_Id())};
-        HashMap<String, String> map = HttpOkManagerUtils.updateEmpInfoPost(loadEmpInfo, key, value, loginEntity.getToken());
-        OKManager manager = OKManager.getInstance(this);
-        manager.sendComplexImageByURL(loadEmpInfo, map, new OKManager.Func2() {
+
+    @Override
+    protected void onNewIntent(Intent intent) {
+        super.onNewIntent(intent);
+        showExceptionDialogFromIntent(intent);
+
+    }
+
+
+
+    private void showExceptionDialogFromIntent(Intent intent) {
+
+        if (!isExceptionDialogShow && intent.getBooleanExtra(ACCOUNT_CONFLICT, false)) {
+            showExceptionDialog();
+        }
+
+
+    }
+
+    private void showExceptionDialog() {
+        isExceptionDialogShow = true;
+        if (!MainActivity.this.isFinishing()) {
+            // clear up global variables
+            try {
+                if (exceptionBuilder == null)
+                    exceptionBuilder = new android.app.AlertDialog.Builder(MainActivity.this);
+                exceptionBuilder.setTitle("下线通知");
+                exceptionBuilder.setMessage("同一帐号已在其他设备登录");
+                exceptionBuilder.setPositiveButton(R.string.ok, new DialogInterface.OnClickListener() {
+
                     @Override
-                    public void onResponse(byte[] data) {
-                        if (Looper.getMainLooper().getThread() == Thread.currentThread()) {
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.dismiss();
+                        exceptionBuilder = null;
+                        isExceptionDialogShow = false;
+                        Log.e("Fragment", "---------Main showExceptionDialog error");
+                        finish();
+                        Intent intent = new Intent(MainActivity.this, LoginActivity.class);
+                        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
+                        startActivity(intent);
+                    }
+                });
+                exceptionBuilder.setCancelable(false);
+                exceptionBuilder.create().show();
+            } catch (Exception e) {
+                EMLog.e("Fragment", "---------color conflictBuilder error" + e.getMessage());
+            }
+        }
 
-                            Log.d("TAG", "Main Thread"+data.length);
+
+    }
+
+
+
+
+    /**
+     * 网络请求
+     */
+    private void initPhotodata() {
+
+        aCacheVersion_No = aCache.getAsString("version_No");
+        Log.d("Fragment", " aCacheVersion_No " + aCacheVersion_No);
+        if (TextUtils.isEmpty(aCacheVersion_No)) {
+            aCacheVersion_No = "0";
+        }
+
+        final String token = loginEntity.getToken();
+        int cust_Id = loginEntity.getCust_Id();
+        String[] key = new String[]{"cust_Id", "version_No"};
+        String[] value = new String[]{Integer.toString(cust_Id), aCacheVersion_No};
+        HashMap<String, String> map = HttpOkManagerUtils.updateEmpInfoPost(HttpUtil.getEmpsPhotos, key, value, token);
+        OKManager manager = OKManager.getInstance(this);
+        manager.sendComplexForm(HttpUtil.getEmpsPhotos, map, new OKManager.Func4() {
+            @Override
+            public void onResponse(JSONObject jsonObject) {
+                Logger.json(jsonObject.toString());
+                JSONObject jObect = null;
+                try {
+                    jObect = new JSONObject(jsonObject.toString());
+                    if (!jObect.has("empPhotos")) {
+                        return;
+                    }
+                    JSONObject empPhotosObject = jObect.getJSONObject("empPhotos");
+                    String version_No = jObect.getString("version_No");
+                    if (version_No.equals(aCacheVersion_No)) {
+                        return;
+                    }
+
+                    aCache.put("version_No", version_No);
+                    //通过迭代器获取这段json当中所有的key值
+                    Iterator keys = empPhotosObject.keys();
+                    //然后通过一个循环取出所有的key值
+                    while (keys.hasNext()) {
+                        String key = String.valueOf(keys.next());
+                        //最后就可以通过刚刚得到的key值去解析后面的json了
+                        String base64Data = empPhotosObject.getString(key);
+                        QueryBuilder<ImagePhotos> qb = getImagePhotos().queryBuilder().where(ImagePhotosDao.Properties.Emp_Id.eq(key));
+                        List<ImagePhotos> imagePhotosList = qb.list();
+
+                        if (imagePhotosList != null && !imagePhotosList.isEmpty()) {
+                            Log.d("Fragment", key + " 初始化 更新数据 ");
+                            //更新数据
+                            for (ImagePhotos imagePhotos : imagePhotosList) {
+                                if (key.equals(imagePhotos.getEmp_Id())) {
+                                    //  ImagePhotos imagePhotos1 = new ImagePhotos(null, version_No, key, base64Data);
+                                    getImagePhotos().update(imagePhotos);
+                                    Log.e("Fragment", key + " 初始化 更新数据 成功 " + version_No);
+                                }
+                            }
                         } else {
-                            Log.d("TAG", "Not Main Thread");
-                        }
+                            //插入新数据
+                            Log.d("Fragment", key + " 初始化 插入数据 " + version_No);
+                            ImagePhotos image = new ImagePhotos(null, version_No, key, base64Data);
+                            getImagePhotos().insert(image);
 
-                        if(data.length>0){
-                            Log.d("TAG", "Main Thread222"+data.length);
-                            //        Bitmap bitmap = BitmapFactory.decodeStream(inputStream);  //为何不能写在主线程里？？？？
-                            Bitmap bitmap = new CropSquareTrans().transform(BitmapFactory.decodeByteArray(data, 0, data.length));
-                            aCache.put(InforPersonActivity.IMAGE_HEAD,bitmap);
                         }
 
 
                     }
-                }
-        );
-    }
 
-    public void getversion () {
-        OKManager manager = OKManager.getInstance(this);
-        manager.asyncJsonStringByURL(HttpUtil.getAppStore, new OKManager.Func1() {
-            @Override
-            public void onResponse(String result) {
-                Logger.json(result);
-                VersionInfo  versionInfo=       gson.fromJson(result,VersionInfo.class);
-                updateGetVersion(versionInfo);
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+
             }
+
         });
 
     }
-    private void initialize() {
 
-        cycleViewPager = (CycleViewPager) getFragmentManager()
-                .findFragmentById(R.id.fragment_cycle_viewpager_content);
 
-        for (int i = 0; i < imageUrls.length; i++) {
-            ADInfo info = new ADInfo();
-            info.setUrl(imageUrls[i]);
-            info.setContent("图片-->" + i);
-            infos.add(info);
-        }
-
-        // 将最后一个ImageView添加进来
-        views.add(ViewFactory.getImageView(this, infos.get(infos.size() - 1).getUrl()));
-        for (int i = 0; i < infos.size(); i++) {
-            views.add(ViewFactory.getImageView(this, infos.get(i).getUrl()));
-        }
-        // 将第一个ImageView添加进来
-        views.add(ViewFactory.getImageView(this, infos.get(0).getUrl()));
-
-        // 设置循环，在调用setData方法前调用
-        cycleViewPager.setCycle(true);
-
-        // 在加载数据前设置是否循环
-        cycleViewPager.setData(views, infos, mAdCycleViewListener);
-        //设置轮播
-        cycleViewPager.setWheel(true);
-
-        // 设置轮播时间，默认5000ms
-        cycleViewPager.setTime(2000);
-        //设置圆点指示图标组居中显示，默认靠右
-        cycleViewPager.setIndicatorCenter();
+    private ImagePhotosDao getImagePhotos() {
+        // 通过 BaseApplication 类提供的 getDaoSession() 获取具体 Dao
+        return ((FApplication) this.getApplicationContext()).getDaoSession().getImagePhotosDao();
     }
 
-    private CycleViewPager.ImageCycleViewListener mAdCycleViewListener = new CycleViewPager.ImageCycleViewListener() {
 
-        @Override
-        public void onImageClick(ADInfo info, int position, View imageView) {
-            if (cycleViewPager.isCycle()) {
-                position = position - 1;
-                Toast.makeText(MainActivity.this,
-                        "position-->" + info.getContent(), Toast.LENGTH_SHORT)
-                        .show();
+    public void getversion() {
+        OKManager manager = OKManager.getInstance(this);
+
+        HashMap<String, String> map = new HashMap<String, String>();
+        map.put("app_Type","1");
+        map.put("app_Name","书薪APP");
+        manager.sendComplexForm(HttpUtil.getAppStore,map, new OKManager.Func4() {
+            @Override
+            public void onResponse(JSONObject jsonObject) {
+                Logger.json(jsonObject.toString());
+                VersionInfo versionInfo = gson.fromJson(jsonObject.toString(), VersionInfo.class);
+                updateGetVersion(versionInfo);
             }
 
-        }
+//            @Override
+//            public void onResponse(String result) {
+//                Logger.json(result);
+//                VersionInfo versionInfo = gson.fromJson(result, VersionInfo.class);
+//                updateGetVersion(versionInfo);
+//            }
+        });
 
-    };
-
-    /**
-     * 配置ImageLoder
-     */
-    private void configImageLoader() {
-        // 初始化ImageLoader
-        @SuppressWarnings("deprecation")
-        DisplayImageOptions options = new DisplayImageOptions.Builder().showStubImage(R.drawable.icon_stub) // 设置图片下载期间显示的图片
-                .showImageForEmptyUri(R.drawable.icon_empty) // 设置图片Uri为空或是错误的时候显示的图片
-                .showImageOnFail(R.drawable.icon_error) // 设置图片加载或解码过程中发生错误显示的图片
-                .cacheInMemory(true) // 设置下载的图片是否缓存在内存中
-                .cacheOnDisc(true) // 设置下载的图片是否缓存在SD卡中
-                // .displayer(new RoundedBitmapDisplayer(20)) // 设置成圆角图片
-                .build(); // 创建配置过得DisplayImageOption对象
-
-        ImageLoaderConfiguration config = new ImageLoaderConfiguration.Builder(getApplicationContext()).defaultDisplayImageOptions(options)
-                .threadPriority(Thread.NORM_PRIORITY - 2).denyCacheImageMultipleSizesInMemory()
-                .discCacheFileNameGenerator(new Md5FileNameGenerator()).tasksProcessingOrder(QueueProcessingType.LIFO).build();
-        ImageLoader.getInstance().init(config);
     }
 
 

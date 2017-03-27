@@ -5,7 +5,6 @@ import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
 import android.util.AttributeSet;
-import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewConfiguration;
@@ -168,7 +167,6 @@ public class CalendarCard extends View {
 			callBackCellSpace = true;
 		}
 		mTextPaint.setTextSize(mCellSpace / 4);
-//		Log.e("Fragment","w: "+mViewWidth+" H: "+mViewHeight+"---mCellSpace "+mCellSpace);
 	}
 
 	@Override
@@ -490,10 +488,7 @@ public class CalendarCard extends View {
 							* mCellSpace - mTextPaint
 							.measureText(content, 0, 1) / 2), mTextPaint);
 
-			Log.e("Fragment","X: "+(float) ((i + 0.5) * mCellSpace - mTextPaint
-					.measureText(content) / 2)+" Y: "+(float) ((j + 0.7)
-					* mCellSpace - mTextPaint
-					.measureText(content, 0, 1) / 2)+"---mCellSpace "+mCellSpace);
+
 
 		}
 	}

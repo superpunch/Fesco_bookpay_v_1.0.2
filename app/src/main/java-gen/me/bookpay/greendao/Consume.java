@@ -7,7 +7,7 @@ import java.io.Serializable;
 /**
  * Entity mapped to table CONSUME.
  */
-public class Consume implements Serializable {
+public class Consume implements Serializable{
 
     private static final long serialVersionUID = 7534077750620010889L;
     private Long id;

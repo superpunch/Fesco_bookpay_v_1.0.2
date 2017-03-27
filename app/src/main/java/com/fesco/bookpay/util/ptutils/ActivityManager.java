@@ -24,9 +24,18 @@ public class ActivityManager {
     public int getActivityCount() {
         return activities.size();
     }
-
+ int  k=0;
     public void addActivity(Activity activity) {
-        activities.add(activity);
+        if(!activities.contains(activity)){
+            activities.add(activity);
+            Log.e("Fragment",++k+"mActivity----:  "+activity.hashCode());
+        }
+
+
+
+
+
+
     }
 
     public void removeTopActivity() {

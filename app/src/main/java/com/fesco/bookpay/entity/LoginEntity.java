@@ -15,13 +15,22 @@ public class LoginEntity implements Serializable {
      * emp_Id : 163  员工id
      * cust_Id : 29  公司id
      * ERROR :get token error.
+     * login_Password  f9uiGzKzuGu6G2GsGnoKtQ==
      */
 
-
+    private String login_Password;
     private String emp_Name;
     private String cust_Name;
     private String SUCCESS;
     private String ERROR;
+
+    public String getLogin_Password() {
+        return login_Password == null ? "" : login_Password;
+    }
+
+    public void setLogin_Password(String login_Password) {
+        this.login_Password = login_Password;
+    }
 
     public String getERROR() {
         return ERROR == null ? "" : ERROR;

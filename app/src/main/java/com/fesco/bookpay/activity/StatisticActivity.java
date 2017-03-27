@@ -336,12 +336,7 @@ public class StatisticActivity extends BaseActivity implements OnClickListener, 
                              }
                             builder.dismiss();
 
-                            //   adapter.notifyDataSetChanged();
-//                            for (List<String> list5 : lists) {
-//                                for (String s : list5) {
-//                                    System.out.println("S " + s + " list5" + list5 + "---lists:" + lists.size());
-//                                }
-//                            }
+
 
                         } else {
 

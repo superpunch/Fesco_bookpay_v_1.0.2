@@ -1,1 +1,1 @@
-include ':app', ':testutil', ':bookpaygreendao', ':pickerview', ':LRecyclerview_library'
+include ':app', ':testutil', ':bookpaygreendao', ':pickerview', ':LRecyclerview_library',':easeUI_CN'

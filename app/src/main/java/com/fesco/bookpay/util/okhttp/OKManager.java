@@ -6,7 +6,6 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Handler;
 import android.os.Looper;
-import android.util.Log;
 
 import com.fesco.bookpay.activity.LoginActivity;
 import com.fesco.bookpay.entity.MessageBean;
@@ -49,7 +48,6 @@ public class OKManager {
     private static Activity mActivity;
     private OkHttpClient client;
     private volatile static OKManager manager;
-    private final String TAG = OKManager.class.getSimpleName();//获得类名
     private Handler handler;
     private Gson gson = new Gson();
     //提交json数据
@@ -256,31 +254,7 @@ public class OKManager {
         client.newCall(request).enqueue(new Callback() {
             @Override
             public void onFailure(Call call, IOException e) {
-
-                if (Looper.getMainLooper().getThread() == Thread.currentThread()) {
-
-                    Log.d("TAG", "Main Thread");
-                } else {
-                    Log.d("TAG", "Not Main Thread");
-                }
-
-
                 e.printStackTrace();
-                //   callBack.OnError("Error");
-
-//                if(e.getCause().equals(SocketTimeoutException.class) && serversLoadTimes<maxLoadTimes)//如果超时并未超过指定次数，则重新连接
-//                {
-//
-//                    serversLoadTimes++;
-//                    client.newCall(call.request()).enqueue(this);
-//                    Log.i("Fragment", "onFailure 网络连接超时：   "+serversLoadTimes );
-//
-//                }else {
-//                    Looper.prepare();
-//                    AppToast.makeShortToast(mActivity,"网络连接超时，请稍后再次重试");
-//                    Looper.loop();
-//                    e.printStackTrace();
-//                }
                 Looper.prepare();
                 AppToast.makeShortToast(mActivity,"网络连接超时，请稍后再次重试");
                 Looper.loop();
@@ -293,12 +267,7 @@ public class OKManager {
 
                 }
 
-                if (Looper.getMainLooper().getThread() == Thread.currentThread()) {
 
-                    Log.d("TAG", "isSuccessful  Main Thread");
-                } else {
-                    Log.d("TAG", "isSuccessful Not Main Thread");
-                }
             }
         });
     }

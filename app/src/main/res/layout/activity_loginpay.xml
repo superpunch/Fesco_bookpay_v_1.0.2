@@ -81,17 +81,17 @@ android:background="@drawable/login_backgroud"
         android:layout_marginRight="@dimen/x60"
         android:background="@color/white"
         />
-
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:id="@+id/login_version"
+        android:id="@+id/login_forget_passowrd"
         android:layout_marginTop="@dimen/x24"
-        android:text="v1.0.1"
+        android:text="忘记密码"
         android:textColor="@color/white"
         android:textSize="18sp"
-       />
+        />
+
 
 
 </LinearLayout>

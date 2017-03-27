@@ -4,16 +4,15 @@ package com.fesco.bookpay.util;
  * Created by gong.min on 2016/8/31.
  */
 public class HttpUtil {
-   // http://11.0.162.82:8080/payroll/expense/loadAddApply.json  报销接口
-   //
-   public  static  String  updateApkUrl="https://www.payrollpen.com/payroll/app.apk";
+    // http://11.0.162.82:8080/payroll/expense/loadAddApply.json  报销接口
+    //
+    public  static  String  updateApkUrl="https://www.payrollpen.com/payroll/app.apk";
 
 
     private  static String baseUrl="https://www.payrollpen.com";
 
-    //   private  static String baseUrl="http://11.0.162.82:8080";
-   //  private  static String baseUrl="http://11.0.161.15:8080";
-    //   private  static String baseUrl="https://11.0.197.196:8443";
+
+     // private  static String baseUrl="https://10.0.17.234:8443";
 
     // public static String baseRetrofitUrl = baseUrl+"/payroll/";
     public static String baseRetrofitUrl = baseUrl+"/payroll/";
@@ -21,6 +20,11 @@ public class HttpUtil {
 
     public  static  String  getAppStore=baseUrl+"/payroll/appStore/getAppStore.json";
 
+
+
+
+
+    public static String getEmpsPhotos = baseUrl+"/payroll/emp/getEmpsPhotos.json";//获取通讯录头像
 
     //  @"token":tokenkey
     public static String tokenKey = baseUrl+"/payroll/getNewToken.json";//获取最新token值
@@ -32,7 +36,9 @@ public class HttpUtil {
     public static String validatePswd = baseUrl+"/payroll/user/validatePswd.json";//校验旧密码
     public static String modifyPswd = baseUrl+"/payroll/user/modifyPswd.json";//保存新密码
     public static String preRegister = baseUrl+"/payroll/user/preRegister.json";//发送验证码
+    public static String preReset = baseUrl+"/payroll/user/preReset.json";//忘记密码时发送验证码
     public static String register = baseUrl+"/payroll/user/register.json";//注册
+    public static String reset = baseUrl+"/payroll/user/reset.json";//重置密码
 
 
 /**************考勤模块***********************/
@@ -152,54 +158,51 @@ public class HttpUtil {
      *normal=正常，lateArrive=迟到，earlyLeave=早退，offWork=旷工，holiday=请假，extraWork=加班；
      *可能存在一天好几个状态的情况，颜色分块显示
      */
-     public static String getCheckDetailForEmp = baseUrl+"/payroll/kq/getCheckDetailForEmp.json"; // ​打卡记录
-     public static String getRestHolidays = baseUrl+"/payroll/kq/getRestHolidays.json"; // ​假期剩余
-     public static String getCheckListForEmp = baseUrl+"/payroll/kq/getCheckListForEmp.json"; // ​员工个人考勤统计
+    public static String getCheckDetailForEmp = baseUrl+"/payroll/kq/getCheckDetailForEmp.json"; // ​打卡记录
+    public static String getRestHolidays = baseUrl+"/payroll/kq/getRestHolidays.json"; // ​假期剩余
+    public static String getCheckListForEmp = baseUrl+"/payroll/kq/getCheckListForEmp.json"; // ​员工个人考勤统计
     /**************排行模块*********************/
-  /**
-    *迟到排行：
-    *{'methodname':'kq/getCedRanking.json','cust_Id':''}
-    *加班排行：
-    *{'methodname':'kq/getWorkRanking.json','cust_Id':''}
-    */
+    /**
+     *迟到排行：
+     *{'methodname':'kq/getCedRanking.json','cust_Id':''}
+     *加班排行：
+     *{'methodname':'kq/getWorkRanking.json','cust_Id':''}
+     */
     public static String getCedRanking = baseUrl+"/payroll/kq/getCedRanking.json";
     public static String getWorkRanking = baseUrl+"/payroll/kq/getWorkRanking.json";
 
     /**************报销模块*********************/
     /**
-    1. 加载报销列表
-    {'methodname':'expense/getExpenseApplyList.json','emp_Id':''}
-    2. 加载消费记录
-    {'methodname':'expense/getExpenseRecords.json','emp_Id':''}
-    3. 加载编辑报销单
-    {'methodname':'expense/loadAddApply.json','emp_Id':'','cust_Id':''}
-    d.读取上次 信息
+     1. 加载报销列表
+     {'methodname':'expense/getExpenseApplyList.json','emp_Id':''}
+     2. 加载消费记录
+     {'methodname':'expense/getExpenseRecords.json','emp_Id':''}
+     3. 加载编辑报销单
+     {'methodname':'expense/loadAddApply.json','emp_Id':'','cust_Id':''}
+     d.读取上次 信息
      {'methodname':'expense/loadEditApply.json','emp_Id':'','cust_Id':'','apply_Id':''}
-
-    4. 保存消费记录
-    {'methodname':'expense/saveExpenseRecord.json','emp_Id':'','spend_Type':'','money_Amount':'','bill_Num':'',
-            'detail_Memo':'','pic_Ids':'','spend_Begin':'',
-            'spend_End':'','spend_City':''}
-    5. 保存报销申请
-    {'methodname':'expense/saveExpenseApply.json','emp_Id':'','cust_Id':'','apply':'','details':''}
-    apply和details参数拼成JSONArray数组[]，不行再作调整。
-            6. 提交报销申请
-    {'methodname':'expense/submitExpenseApply.json',
-            'emp_Id':'','cust_Id':'','apply':'','details':'','approval_Man':''}
-
+     4. 保存消费记录
+     {'methodname':'expense/saveExpenseRecord.json','emp_Id':'','spend_Type':'','money_Amount':'','bill_Num':'',
+     'detail_Memo':'','pic_Ids':'','spend_Begin':'',
+     'spend_End':'','spend_City':''}
+     5. 保存报销申请
+     {'methodname':'expense/saveExpenseApply.json','emp_Id':'','cust_Id':'','apply':'','details':''}
+     apply和details参数拼成JSONArray数组[]，不行再作调整。
+     6. 提交报销申请
+     {'methodname':'expense/submitExpenseApply.json',
+     'emp_Id':'','cust_Id':'','apply':'','details':'','approval_Man':''}
      删除报销申请：
      {'methodname':'expense/deleteApply.json','apply_Id':''}
      删除消费记录：
      {'methodname':'expense/deleteRecord.json','detail_Id':''}
-
-    上传图片
-    expense/uploadPic.json
-    参数：request
+     上传图片
+     expense/uploadPic.json
+     参数：request
      */
 
     public static String getExpenseApplyList = baseUrl+"/payroll/expense/getExpenseApplyList.json"; //加载报销列表
     public static String getExpenseRecords = baseUrl+"/payroll/expense/getExpenseRecords.json"; //加载消费记录
- //   public static String loadAddApply = baseUrl+"/payroll/expense/loadAddApply.json"; //加载编辑报销单
+    //   public static String loadAddApply = baseUrl+"/payroll/expense/loadAddApply.json"; //加载编辑报销单
     public static String loadAddApply = "http://11.0.161.15:8080/payroll/expense/loadAddApply.json"; //加载编辑报销单
     public static String loadEditApply = baseUrl+"/payroll/expense/loadEditApply.json"; //加载报销单信息
 
@@ -207,7 +210,7 @@ public class HttpUtil {
     public static String loadNewExpenseExamInfo = baseUrl+"/payroll/expense/loadNewExpenseExamInfo.json"; //驳回后再次编辑报销单信息
 
     public static String saveExpenseRecord = baseUrl+"/payroll/expense/saveExpenseRecord.json"; //保存消费记录
-  //  public static String saveExpenseApply = "http://11.0.162.82:8080/payroll/expense/saveExpenseApply.json"; //保存报销申请
+    //  public static String saveExpenseApply = "http://11.0.162.82:8080/payroll/expense/saveExpenseApply.json"; //保存报销申请
     public static String saveExpenseApply = baseUrl+"/payroll/expense/saveExpenseApply.json"; //保存报销申请
 
 
@@ -224,7 +227,7 @@ public class HttpUtil {
 
     public static String getPicStream = baseUrl+"/payroll/expense/getPicStream.json"; //
 
-   // 删除凭证接口{'methodname':'expense/deletePic.json','pic_Id':''}
+    // 删除凭证接口{'methodname':'expense/deletePic.json','pic_Id':''}
     public static String deletePic = baseUrl+"/payroll/expense/deletePic.json"; // 删除图片接口
 
 

@@ -56,7 +56,7 @@ public class ApkUtils {
 		} catch (NameNotFoundException e) {
 
 		}
-		return null;
+		return "";
 	}
 
 	/**

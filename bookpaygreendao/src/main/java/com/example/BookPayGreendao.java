@@ -8,11 +8,12 @@ public class BookPayGreendao {
 
     public  static  void  main(String[] args) throws Exception {
 
-        Schema schema= new Schema(5,"me.bookpay.greendao");
+        Schema schema= new Schema(6,"me.bookpay.greendao");
 
-      //  add(schema);
+        //  add(schema);
         addComusmption(schema);
- //       new DaoGenerator().generateAll(schema, "/Users/tangqi/android-dev/AndroidStudioProjects/MyGreenDAO/app/src/main/java-gen");
+        addImagePhotos(schema);
+        //       new DaoGenerator().generateAll(schema, "/Users/tangqi/android-dev/AndroidStudioProjects/MyGreenDAO/app/src/main/java-gen");
         new DaoGenerator().generateAll(schema, "/AndroidStudioProjects_workspace001/Fesco_bookpay_v_1.0/app/src/main/java-gen");
 
 
@@ -21,6 +22,7 @@ public class BookPayGreendao {
     private static void add(Schema schema) {
         //一个实体（类）就关联到数据库中的一张表,表名为[Contact]即类名
         Entity contact=schema.addEntity("Contact");
+        Entity photos=schema.addEntity("AddressBook");
         // 可以重新给表命名
         // contact.setTableName("NODE");
     }
@@ -38,7 +40,15 @@ public class BookPayGreendao {
         mData.addStringProperty("city");
         mData.addIntProperty("count");
         mData.addStringProperty("description");
-     
-    }
 
+    }
+    private static void addImagePhotos(Schema schema) {
+        Entity mData = schema.addEntity("ImagePhotos");
+        mData.addIdProperty().primaryKey().autoincrement();
+        mData.addStringProperty("version_No");
+        mData.addStringProperty("emp_Id");//"fontIcon"
+        mData.addStringProperty("image_Url");
+
+
+    }
 }

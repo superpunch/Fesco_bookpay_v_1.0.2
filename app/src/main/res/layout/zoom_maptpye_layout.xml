@@ -6,7 +6,6 @@
     <RadioGroup
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/grayInfor"
         android:orientation="vertical">
 
     <RadioButton
@@ -23,7 +22,7 @@
         android:contentDescription="@string/app_name"
         android:src="@drawable/mapmax" />
 
-    <RadioButton
+        <RadioButton
         android:id="@+id/zoom_maptpye_reduce"
         android:layout_width="50dp"
         android:layout_height="30dp"

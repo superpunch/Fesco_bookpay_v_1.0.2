@@ -55,11 +55,14 @@ public class WordFragment extends Fragment {
     private List<ImageView> views = new ArrayList<ImageView>();
     private List<ADInfo> infos = new ArrayList<ADInfo>();
     private CycleViewPager cycleViewPager;
-    private String[] imageUrls = {"http://i1.piimg.com/1949/e54063875e47230b.png",
-            "http://i1.piimg.com/1949/726e6d5c55305d67.png",
-            "http://i1.piimg.com/1949/28dc4917e61a584d.png"
+//    private String[] imageUrls = {"http://i1.piimg.com/1949/e54063875e47230b.png",
+//            "http://i1.piimg.com/1949/726e6d5c55305d67.png",
+//            "http://i1.piimg.com/1949/28dc4917e61a584d.png"
+//    };
+    private String[] imageUrls = {"http://i1.piimg.com/1949/58d5d99fb0d400f6.png",
+            "http://i1.piimg.com/1949/5004d73d3131baa4.png",
+            "http://i1.piimg.com/1949/ca69ccaf0058968c.png"
     };
-
     public static WordFragment getInstance(LoginEntity flag) {
 //传值
         Bundle bundle = new Bundle();
